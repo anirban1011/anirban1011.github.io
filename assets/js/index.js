@@ -192,8 +192,23 @@ document.addEventListener("DOMContentLoaded", () => {
       if (window.location.hash.substring(1) !== targetTab) {
         window.location.hash = targetTab;
       }
+
+      // Close mobile navigation overlay menu if open
+      const navWrapper = document.getElementById("navWrapper");
+      if (navWrapper) {
+        navWrapper.classList.remove("open");
+      }
     });
   });
+
+  // Toggle mobile navigation overlay menu
+  const menuToggle = document.getElementById("menuToggle");
+  const navWrapper = document.getElementById("navWrapper");
+  if (menuToggle && navWrapper) {
+    menuToggle.addEventListener("click", () => {
+      navWrapper.classList.toggle("open");
+    });
+  }
 
   function showSidebarSection(sidebarId) {
     sidebars.forEach(section => {
@@ -236,17 +251,41 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // About tab file explorer
-  const fileNodes = document.querySelectorAll("#sidebarAbout .sidebar-tree li[data-file]");
+  // About tab file explorer (sync desktop and mobile file nodes)
+  const fileNodes = document.querySelectorAll("#sidebarAbout .sidebar-tree li[data-file], .mobile-about-filter .sidebar-tree li[data-file]");
   fileNodes.forEach(node => {
     node.addEventListener("click", () => {
+      // Clear active from all
       fileNodes.forEach(n => n.classList.remove("active"));
-      node.classList.add("active");
-
+      
       const file = node.dataset.file;
+      // Sync active state to both desktop and mobile lists
+      document.querySelectorAll(`[data-file="${file}"]`).forEach(n => n.classList.add("active"));
+      
       loadAboutFile(file);
     });
   });
+
+  // Collapsible mobile folder titles helper
+  function setupMobileCollapse(titleId) {
+    const titleEl = document.getElementById(titleId);
+    if (titleEl) {
+      titleEl.addEventListener("click", () => {
+        titleEl.classList.toggle("collapsed");
+        const tree = titleEl.nextElementSibling;
+        if (tree) {
+          const collapsed = titleEl.classList.contains("collapsed");
+          tree.style.display = collapsed ? "none" : "block";
+        }
+      });
+    }
+  }
+
+  // Setup mobile collapses for About and Contact views
+  setupMobileCollapse("mobileAboutTitlePersonal");
+  setupMobileCollapse("mobileAboutTitleProfessional");
+  setupMobileCollapse("mobileContactTitleInfo");
+  setupMobileCollapse("mobileContactTitleFindMe");
 
   // Initialize About File
   loadAboutFile("bio.js");
@@ -254,13 +293,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // Project filtering checkboxes & Active filters bar
   const filterAndroid = document.getElementById("filterAndroid");
   const filterWeb = document.getElementById("filterWeb");
+  const mobileFilterAndroid = document.getElementById("mobileFilterAndroid");
+  const mobileFilterWeb = document.getElementById("mobileFilterWeb");
   const projectCards = document.querySelectorAll(".project-card-ide");
   const activeFilterTags = document.getElementById("activeFilterTags");
   const filterBarClearAll = document.getElementById("filterBarClearAll");
 
   function filterProjects() {
-    const showAndroid = filterAndroid.checked;
-    const showWeb = filterWeb.checked;
+    const showAndroid = (filterAndroid && filterAndroid.checked) || (mobileFilterAndroid && mobileFilterAndroid.checked);
+    const showWeb = (filterWeb && filterWeb.checked) || (mobileFilterWeb && mobileFilterWeb.checked);
 
     // If no filters are selected, default to showing everything!
     const showAll = !showAndroid && !showWeb;
@@ -281,17 +322,26 @@ document.addEventListener("DOMContentLoaded", () => {
     updateActiveFilterTags();
   }
 
+  function syncFilters(source, target) {
+    if (source && target) {
+      target.checked = source.checked;
+    }
+  }
+
   function updateActiveFilterTags() {
     if (!activeFilterTags) return;
 
     let html = `<span>// projects / </span>`;
     let activeCount = 0;
 
-    if (filterAndroid.checked) {
+    const androidChecked = (filterAndroid && filterAndroid.checked) || (mobileFilterAndroid && mobileFilterAndroid.checked);
+    const webChecked = (filterWeb && filterWeb.checked) || (mobileFilterWeb && mobileFilterWeb.checked);
+
+    if (androidChecked) {
       html += `<span class="active-tag-item">Android <i class="bi bi-x active-tag-close" data-target="android"></i></span>`;
       activeCount++;
     }
-    if (filterWeb.checked) {
+    if (webChecked) {
       if (activeCount > 0) html += `<span style="margin: 0 4px; color: var(--text-muted); font-size: 11px;">;</span>`;
       html += `<span class="active-tag-item">Web <i class="bi bi-x active-tag-close" data-target="web"></i></span>`;
       activeCount++;
@@ -304,9 +354,11 @@ document.addEventListener("DOMContentLoaded", () => {
       closeBtn.addEventListener("click", () => {
         const target = closeBtn.dataset.target;
         if (target === "android") {
-          filterAndroid.checked = false;
+          if (filterAndroid) filterAndroid.checked = false;
+          if (mobileFilterAndroid) mobileFilterAndroid.checked = false;
         } else if (target === "web") {
-          filterWeb.checked = false;
+          if (filterWeb) filterWeb.checked = false;
+          if (mobileFilterWeb) mobileFilterWeb.checked = false;
         }
         filterProjects();
       });
@@ -318,21 +370,57 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  if (filterAndroid && filterWeb) {
-    filterAndroid.addEventListener("change", filterProjects);
-    filterWeb.addEventListener("change", filterProjects);
-    
-    if (filterBarClearAll) {
-      filterBarClearAll.addEventListener("click", () => {
-        filterAndroid.checked = false;
-        filterWeb.checked = false;
-        filterProjects();
-      });
-    }
-    
-    // Initial run
-    filterProjects();
+  // Bind change listeners to both desktop and mobile filters
+  if (filterAndroid) {
+    filterAndroid.addEventListener("change", () => {
+      syncFilters(filterAndroid, mobileFilterAndroid);
+      filterProjects();
+    });
   }
+  if (filterWeb) {
+    filterWeb.addEventListener("change", () => {
+      syncFilters(filterWeb, mobileFilterWeb);
+      filterProjects();
+    });
+  }
+  if (mobileFilterAndroid) {
+    mobileFilterAndroid.addEventListener("change", () => {
+      syncFilters(mobileFilterAndroid, filterAndroid);
+      filterProjects();
+    });
+  }
+  if (mobileFilterWeb) {
+    mobileFilterWeb.addEventListener("change", () => {
+      syncFilters(mobileFilterWeb, filterWeb);
+      filterProjects();
+    });
+  }
+
+  if (filterBarClearAll) {
+    filterBarClearAll.addEventListener("click", () => {
+      if (filterAndroid) filterAndroid.checked = false;
+      if (filterWeb) filterWeb.checked = false;
+      if (mobileFilterAndroid) mobileFilterAndroid.checked = false;
+      if (mobileFilterWeb) mobileFilterWeb.checked = false;
+      filterProjects();
+    });
+  }
+
+  // Collapsible mobile projects filter title
+  const mobileFilterTitle = document.getElementById("mobileFilterTitle");
+  if (mobileFilterTitle) {
+    mobileFilterTitle.addEventListener("click", () => {
+      mobileFilterTitle.classList.toggle("collapsed");
+      const tree = mobileFilterTitle.nextElementSibling;
+      if (tree) {
+        const collapsed = mobileFilterTitle.classList.contains("collapsed");
+        tree.style.display = collapsed ? "none" : "block";
+      }
+    });
+  }
+
+  // Initial run
+  filterProjects();
 
 
   // Real-time contact form code preview

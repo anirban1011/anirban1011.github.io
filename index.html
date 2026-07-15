@@ -35,12 +35,17 @@
             <div class="ide-header-logo">
                 <span>anirban-routh</span>
             </div>
-            <nav class="ide-header-tabs" aria-label="Main Navigation">
-                <div class="ide-tab active" data-tab="hello">_hello</div>
-                <div class="ide-tab" data-tab="about">_about-me</div>
-                <div class="ide-tab" data-tab="projects">_projects</div>
-            </nav>
-            <div class="ide-header-contact" data-tab="contact">_contact-me</div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+                <i class="bi bi-list"></i>
+            </button>
+            <div class="ide-header-nav-wrapper" id="navWrapper">
+                <nav class="ide-header-tabs" aria-label="Main Navigation">
+                    <div class="ide-tab active" data-tab="hello">_hello</div>
+                    <div class="ide-tab" data-tab="about">_about-me</div>
+                    <div class="ide-tab" data-tab="projects">_projects</div>
+                </nav>
+                <div class="ide-header-contact" data-tab="contact">_contact-me</div>
+            </div>
         </header>
 
         <!-- IDE Body -->
@@ -289,6 +294,39 @@
                 <!-- About Tab Content -->
                 <section class="tab-view" id="viewAbout">
                     <div class="about-layout">
+                        <!-- Mobile about file explorer (visible only on mobile) -->
+                        <div class="mobile-about-filter">
+                            <div class="sidebar-title collapsed" id="mobileAboutTitlePersonal">
+                                <i class="bi bi-chevron-down"></i>
+                                <span>personal-info</span>
+                            </div>
+                            <ul class="sidebar-tree" style="display: none; padding: 10px 0; list-style: none;">
+                                <li data-file="bio.js" class="mobile-file-node active" style="padding: 8px 25px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 14px;">
+                                    <i class="bi bi-file-earmark-code" style="color: #fea15f;"></i>
+                                    <span>bio.js</span>
+                                </li>
+                                <li data-file="education.js" class="mobile-file-node" style="padding: 8px 25px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 14px;">
+                                    <i class="bi bi-file-earmark-code" style="color: #fea15f;"></i>
+                                    <span>education.js</span>
+                                </li>
+                                <li data-file="skills.js" class="mobile-file-node" style="padding: 8px 25px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 14px;">
+                                    <i class="bi bi-file-earmark-code" style="color: #fea15f;"></i>
+                                    <span>skills.js</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="sidebar-title collapsed" id="mobileAboutTitleProfessional">
+                                <i class="bi bi-chevron-down"></i>
+                                <span>professional-info</span>
+                            </div>
+                            <ul class="sidebar-tree" style="display: none; padding: 10px 0; list-style: none;">
+                                <li data-file="experience.js" class="mobile-file-node" style="padding: 8px 25px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 14px;">
+                                    <i class="bi bi-file-earmark-code" style="color: #fea15f;"></i>
+                                    <span>experience.js</span>
+                                </li>
+                            </ul>
+                        </div>
+
                         <!-- Full width editor view -->
                         <div class="about-pane-left" style="border-right: none;">
                             <div class="editor-pane">
@@ -314,6 +352,31 @@
                 <!-- Projects Tab Content -->
                 <section class="tab-view" id="viewProjects">
                     <div class="projects-pane">
+                        <!-- Mobile projects filter (visible only on mobile) -->
+                        <div class="mobile-projects-filter">
+                            <div class="sidebar-title collapsed" id="mobileFilterTitle">
+                                <i class="bi bi-chevron-down"></i>
+                                <span>projects</span>
+                            </div>
+                            <ul class="sidebar-tree" style="display: none; padding: 10px 0; list-style: none;">
+                                <li style="padding: 0;">
+                                    <label class="checkbox-item" style="display: flex; width: 100%; align-items: center; cursor: pointer; padding: 8px 25px; user-select: none;">
+                                        <input type="checkbox" id="mobileFilterAndroid" value="app" checked />
+                                        <div class="checkbox-box"></div>
+                                        <i class="bi bi-android2" style="color: #3DDC84; margin-right: 8px;"></i>
+                                        <span>Android Apps</span>
+                                    </label>
+                                </li>
+                                <li style="padding: 0;">
+                                    <label class="checkbox-item" style="display: flex; width: 100%; align-items: center; cursor: pointer; padding: 8px 25px; user-select: none;">
+                                        <input type="checkbox" id="mobileFilterWeb" value="web" checked />
+                                        <div class="checkbox-box"></div>
+                                        <i class="bi bi-globe" style="color: var(--variable-color); margin-right: 8px;"></i>
+                                        <span>Web Systems</span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
                         <!-- Path Active Filters Bar -->
                         <div class="projects-filter-bar">
                             <div class="active-tags-list" id="activeFilterTags">
@@ -344,7 +407,7 @@
                                     </div>
                                     <div class="project-card-actions" style="display: flex; gap: 12px; width: 100%;">
                                         <a class="project-card-btn" href="https://github.com/anirban1011/SMS_Forwarder" target="_blank" rel="noopener" style="flex: 1; text-align: center; text-decoration: none;">view-project</a>
-                                        <a class="project-card-btn" href="https://github.com/anirban1011/SMS_Forwarder/releases/download/v3.4/SMS_Forwarder_v3.4.apk" target="_blank" rel="noopener" style="flex: 1; text-align: center; text-decoration: none; background-color: var(--accent-orange); color: var(--bg-dark); font-weight: 500;">download-app</a>
+                                        <a class="project-card-btn" href="https://github.com/anirban1011/SMS_Forwarder/releases/download/v3.4/SMS_Forwarder_v3.4.0.apk" target="_blank" rel="noopener" style="flex: 1; text-align: center; text-decoration: none; background-color: var(--accent-orange); color: var(--bg-dark); font-weight: 500;">download-app</a>
                                     </div>
                                 </div>
                             </div>
@@ -355,6 +418,49 @@
                 <!-- Contact Tab Content -->
                 <section class="tab-view" id="viewContact">
                     <div class="contact-layout">
+                        <!-- Mobile contact explorer (visible only on mobile) -->
+                        <div class="mobile-contact-filter">
+                            <div class="sidebar-title collapsed" id="mobileContactTitleInfo">
+                                <i class="bi bi-chevron-down"></i>
+                                <span>contacts</span>
+                            </div>
+                            <ul class="sidebar-tree" style="display: none; padding: 10px 0; list-style: none;">
+                                <li style="padding: 8px 25px; display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 14px;">
+                                    <i class="bi bi-envelope-fill" style="color: var(--text-muted);"></i>
+                                    <span style="font-size: 11px;">developer@anirbanrouth.in</span>
+                                </li>
+                                <li style="padding: 8px 25px; display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 14px;">
+                                    <i class="bi bi-telephone-fill" style="color: var(--text-muted);"></i>
+                                    <span style="font-size: 11px;">+91-XXXXXXXXXX</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="sidebar-title collapsed" id="mobileContactTitleFindMe">
+                                <i class="bi bi-chevron-down"></i>
+                                <span>find-me-also-in</span>
+                            </div>
+                            <ul class="sidebar-tree" style="display: none; padding: 10px 0; list-style: none;">
+                                <li style="padding: 8px 25px; font-family: var(--font-mono); font-size: 14px;">
+                                    <a href="https://linkedin.com/in/anirbanrouth" target="_blank" rel="noopener" style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                                        <i class="bi bi-box-arrow-up-right"></i>
+                                        <span style="font-size: 11px;">LinkedIn profile</span>
+                                    </a>
+                                </li>
+                                <li style="padding: 8px 25px; font-family: var(--font-mono); font-size: 14px;">
+                                    <a href="https://github.com/anirban1011" target="_blank" rel="noopener" style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                                        <i class="bi bi-box-arrow-up-right"></i>
+                                        <span style="font-size: 11px;">GitHub profile</span>
+                                    </a>
+                                </li>
+                                <li style="padding: 8px 25px; font-family: var(--font-mono); font-size: 14px;">
+                                    <a href="https://leetcode.com/anirban1011" target="_blank" rel="noopener" style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                                        <i class="bi bi-box-arrow-up-right"></i>
+                                        <span style="font-size: 11px;">LeetCode profile</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
                         <!-- Left pane: Form or Success -->
                         <div class="contact-pane-left">
                             <div id="contactFormContainer">
