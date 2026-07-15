@@ -15,15 +15,14 @@ const developer = {
   roles: [
     "Software Developer",
     "App Automation Expert",
-    "Kotlin Specialist",
     "Backend Integrator"
   ],
   location: "Maynaguri, West Bengal, India",
   contact: {
-    email: "developer@anirbanrouth.in",
+    email: "anirban@anirbanrouth.in",
     website: "https://anirbanrouth.in"
   },
-  bio: "Driven Computer Science postgraduate (MCA) with a strong foundation in software development, database management, and system automation. Specialized in building practical software solutions, custom automation scripts, and educational content. Passionate about leveraging tech to build revenue-generating applications and scalable software products."
+  bio: "Driven Computer Application postgraduate (MCA) with a strong foundation in software development, database management, and system automation. Specialized in building practical software solutions and custom automation scripts. Passionate about leveraging tech to build revenue-generating applications and scalable software products."
 };
 `,
 
@@ -46,9 +45,8 @@ const education = [
   },
   {
     degree: "Bachelor of Science in Computer Science",
-    institution: "Annamalai University",
+    institution: "Ananda Chandra College",
     timeline: "Completed March 2025",
-    gpa: "7.66 / 10",
     focus: [
       "Computational Logic",
       "Data Structures",
