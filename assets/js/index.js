@@ -39,19 +39,14 @@ const education = [
     focus: [
       "Advanced Algorithms",
       "Database Mappings",
-      "Theory of Computation",
-      "Discrete Mathematics"
+      "Web Development",
+      "Android Development"
     ]
   },
   {
     degree: "Bachelor of Science in Computer Science",
     institution: "Ananda Chandra College",
     timeline: "Completed March 2025",
-    focus: [
-      "Computational Logic",
-      "Data Structures",
-      "Software Engineering Patterns"
-    ]
   }
 ];
 `,
@@ -192,6 +187,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Switch sidebar sections
       showSidebarSection(activeTabSidebarId);
+
+      // Update URL hash fragment to preserve tab on refresh
+      if (window.location.hash.substring(1) !== targetTab) {
+        window.location.hash = targetTab;
+      }
     });
   });
 
@@ -262,9 +262,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const showAndroid = filterAndroid.checked;
     const showWeb = filterWeb.checked;
 
+    // If no filters are selected, default to showing everything!
+    const showAll = !showAndroid && !showWeb;
+
     projectCards.forEach(card => {
       const category = card.dataset.category;
-      if (category === "app" && !showAndroid) {
+      if (showAll) {
+        card.style.display = "flex";
+      } else if (category === "app" && !showAndroid) {
         card.style.display = "none";
       } else if (category === "web" && !showWeb) {
         card.style.display = "none";
@@ -464,9 +469,31 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Simple SPA hash-based router
+  function handleHashRoute() {
+    const hash = window.location.hash.substring(1);
+    const validTabs = ["hello", "about", "projects", "contact"];
+    if (hash && validTabs.includes(hash)) {
+      const tabElement = document.querySelector(`[data-tab="${hash}"]`);
+      if (tabElement) {
+        tabElement.click();
+      }
+    } else {
+      // Default fallback
+      const tabElement = document.querySelector(`[data-tab="hello"]`);
+      if (tabElement) {
+        tabElement.click();
+      }
+    }
+  }
+
+  window.addEventListener("hashchange", handleHashRoute);
+
   // Initialize Game Loops & Controls
   initSnakeGame();
 
+  // Run routing on initial load
+  handleHashRoute();
 });
 
 // Helper functions for loading about files
