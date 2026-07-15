@@ -4,489 +4,431 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Shayan Sarkar is a web developer and WordPress expert building responsive, SEO-friendly websites, e-commerce experiences, and modern web apps." />
-    <meta name="author" content="Shayan Sarkar" />
-    <meta name="keywords" content="Shayan Sarkar, developer portfolio, web developer, WordPress expert, Bootstrap, JavaScript, freelance developer" />
+    <meta name="description" content="Anirban Routh is a software developer specializing in Android apps, background automation, and network systems." />
+    <meta name="author" content="Anirban Routh" />
+    <meta name="keywords" content="Anirban Routh, developer portfolio, Android developer, Kotlin specialist, App Automation, Linux automation, SaaS builder" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#14A76C" />
+    <meta name="theme-color" content="#01080e" />
 
-    <title>Shayan Sarkar | Developer Portfolio</title>
+    <title>Anirban Routh | Software Developer Portfolio</title>
     <link rel="shortcut icon" href="./images/profile.png" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
 <body>
-    <div class="page-loader" id="pageLoader" aria-label="Loading portfolio">
+    <div class="page-loader" id="pageLoader" aria-label="Loading workspace">
         <div class="loader-orb"></div>
-        <p>Loading portfolio...</p>
+        <p>Loading workspace...</p>
     </div>
 
-    <header class="site-header fixed-top" id="siteHeader">
-        <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
-            <div class="container">
-                <a class="navbar-brand brand-mark" href="#home" aria-label="Shayan Sarkar home">
-                    <img src="./images/node-js_logo.svg" width="34" height="34" alt="Developer logo" />
-                    <span>Shayan</span>
-                </a>
-                <div class="d-flex align-items-center gap-2 order-lg-2">
-                    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
-                        <i class="bi bi-moon-stars"></i>
-                    </button>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+    <div class="ide-window">
+        <!-- Glowing background circles -->
+        <div class="glow-gradient glow-cyan"></div>
+        <div class="glow-gradient glow-purple"></div>
+
+        <!-- Header -->
+        <header class="ide-header" id="siteHeader">
+            <div class="ide-header-logo">
+                <span>anirban-routh</span>
+            </div>
+            <nav class="ide-header-tabs" aria-label="Main Navigation">
+                <div class="ide-tab active" data-tab="hello">_hello</div>
+                <div class="ide-tab" data-tab="about">_about-me</div>
+                <div class="ide-tab" data-tab="projects">_projects</div>
+            </nav>
+            <div class="ide-header-contact" data-tab="contact">_contact-me</div>
+        </header>
+
+        <!-- IDE Body -->
+        <div class="ide-body">
+            <!-- Activity Bar -->
+            <nav class="ide-activity-bar" aria-label="Activity Bar">
+                <div class="activity-icon active" title="Explorer">
+                    <i class="bi bi-files"></i>
                 </div>
-                <div class="collapse navbar-collapse order-lg-1" id="mainNavbar">
-                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-                        <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                <div class="activity-icon" title="Search">
+                    <i class="bi bi-search"></i>
+                </div>
+                <div class="activity-icon" title="Source Control">
+                    <i class="bi bi-git"></i>
+                </div>
+            </nav>
+
+            <!-- Sidebar -->
+            <aside class="ide-sidebar" aria-label="Explorer">
+                <!-- Sidebar for Hello Tab -->
+                <div class="sidebar-section active-sidebar-section" id="sidebarHello">
+                    <div class="sidebar-title" id="titleHello">
+                        <i class="bi bi-chevron-down"></i>
+                        <span>workspace</span>
+                    </div>
+                    <ul class="sidebar-tree">
+                        <li class="active" data-action="go-home">
+                            <i class="bi bi-file-earmark-code file-icon"></i>
+                            <span>welcome.py</span>
+                        </li>
+                        <li data-action="go-github">
+                            <i class="bi bi-github"></i>
+                            <span>github_profile</span>
+                        </li>
                     </ul>
                 </div>
-            </div>
-        </nav>
-    </header>
 
-    <main>
-        <section class="hero-section section-padding" id="home">
-            <div class="hero-glow hero-glow-one"></div>
-            <div class="hero-glow hero-glow-two"></div>
-            <div class="container position-relative">
-                <div class="row align-items-center gy-5">
-                    <div class="col-lg-7" data-aos="fade-right">
-                        <span class="eyebrow">Available for freelance and job opportunities</span>
-                        <h1 class="hero-title">
-                            Hi, I'm <span class="gradient-text">Shayan Sarkar</span>
-                        </h1>
-                        <h2 class="hero-role">
-                            I build as a <span id="typedRole" class="typed-role"></span>
-                        </h2>
-                        <p class="hero-copy">
-                            MCA '27 @ NBU, BCA graduate, web developer, PHP/MySQL and WordPress professional with 15+ months of hands-on experience managing WordPress-based e-commerce websites, SEO, product lifecycle, and web operations.
-                        </p>
-                        <div class="hero-actions">
-                            <a class="btn btn-primary-gradient btn-animated" href="#projects">
-                                View Projects <i class="bi bi-arrow-up-right"></i>
+                <!-- Sidebar for About Tab -->
+                <div class="sidebar-section" id="sidebarAbout">
+                    <div class="sidebar-title" id="titleAboutPersonal">
+                        <i class="bi bi-chevron-down"></i>
+                        <span>personal-info</span>
+                    </div>
+                    <ul class="sidebar-tree" id="treeAboutPersonal">
+                        <li class="active" data-file="bio.js">
+                            <i class="bi bi-folder-fill" style="color: #E28972; margin-right: 8px;"></i>
+                            <span>bio.js</span>
+                        </li>
+                        <li data-file="education.js">
+                            <i class="bi bi-folder-fill" style="color: #3DDC84; margin-right: 8px;"></i>
+                            <span>education.js</span>
+                        </li>
+                        <li data-file="skills.js">
+                            <i class="bi bi-folder-fill" style="color: #4D5BCE; margin-right: 8px;"></i>
+                            <span>skills.js</span>
+                        </li>
+                    </ul>
+                    <div class="sidebar-title" id="titleAboutProfessional">
+                        <i class="bi bi-chevron-down"></i>
+                        <span>professional</span>
+                    </div>
+                    <ul class="sidebar-tree" id="treeAboutProfessional">
+                        <li data-file="experience.js">
+                            <i class="bi bi-file-earmark-text file-icon"></i>
+                            <span>experience.js</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Sidebar for Projects Tab -->
+                <div class="sidebar-section" id="sidebarProjects">
+                    <div class="sidebar-title" id="titleProjectsFilter">
+                        <i class="bi bi-chevron-down"></i>
+                        <span>projects-filter</span>
+                    </div>
+                    <ul class="sidebar-tree">
+                        <li class="checkbox-item">
+                            <input type="checkbox" id="filterAndroid" value="app" checked />
+                            <div class="checkbox-box"></div>
+                            <i class="bi bi-android2" style="color: #3DDC84; margin-right: 8px;"></i>
+                            <span>Android Apps</span>
+                        </li>
+                        <li class="checkbox-item">
+                            <input type="checkbox" id="filterWeb" value="web" checked />
+                            <div class="checkbox-box"></div>
+                            <i class="bi bi-globe" style="color: var(--variable-color); margin-right: 8px;"></i>
+                            <span>Web Systems</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Sidebar for Contact Tab -->
+                <div class="sidebar-section" id="sidebarContact">
+                    <div class="sidebar-title" id="titleContactInfo">
+                        <i class="bi bi-chevron-down"></i>
+                        <span>contacts</span>
+                    </div>
+                    <ul class="sidebar-tree">
+                        <li>
+                            <i class="bi bi-envelope-fill" style="margin-right: 8px;"></i>
+                            <span style="font-size: 11px;">developer@anirbanrouth.in</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone-fill" style="margin-right: 8px;"></i>
+                            <span style="font-size: 11px;">+91-XXXXXXXXXX</span>
+                        </li>
+                    </ul>
+                    <div class="sidebar-title" id="titleContactFindMe">
+                        <i class="bi bi-chevron-down"></i>
+                        <span>find-me-also-in</span>
+                    </div>
+                    <ul class="sidebar-tree">
+                        <li>
+                            <a href="https://linkedin.com/in/anirbanrouth" target="_blank" rel="noopener" style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                                <i class="bi bi-box-arrow-up-right"></i>
+                                <span style="font-size: 11px;">LinkedIn profile</span>
                             </a>
-                            <a class="btn btn-outline-glass btn-animated" href="./Shayan_Sarkar_Resume.pdf" target="_blank" rel="noopener">
-                                Download CV <i class="bi bi-cloud-download"></i>
+                        </li>
+                        <li>
+                            <a href="https://github.com/anirban1011" target="_blank" rel="noopener" style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                                <i class="bi bi-box-arrow-up-right"></i>
+                                <span style="font-size: 11px;">GitHub profile</span>
                             </a>
-                        </div>
-                        <div class="social-links" aria-label="Social profile links">
-                            <a href="https://github.com/Sonff" target="_blank" rel="noopener" aria-label="GitHub">
-                                <i class="bi bi-github"></i>
+                        </li>
+                        <li>
+                            <a href="https://leetcode.com/anirban1011" target="_blank" rel="noopener" style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                                <i class="bi bi-box-arrow-up-right"></i>
+                                <span style="font-size: 11px;">LeetCode profile</span>
                             </a>
-                            <a href="http://www.linkedin.com/in/shayan-sarkar" target="_blank" rel="noopener" aria-label="LinkedIn">
-                                <i class="bi bi-linkedin"></i>
-                            </a>
-                            <a href="https://leetcode.com/u/Shayan_Sarkar/" target="_blank" rel="noopener" aria-label="LeetCode">
-                                <img src="./images/leetcode_logo.svg" width="22" height="22" alt="" />
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-5" data-aos="zoom-in" data-aos-delay="150">
-                        <div class="hero-card glass-card">
-                            <img src="./images/profile.png" class="hero-avatar" fetchpriority="high" alt="Shayan Sarkar profile" />
-                            <div class="hero-card-badge">
-                                <i class="bi bi-stars"></i>
-                                <span>Web Developer</span>
-                            </div>
-                            <div class="hero-stats">
-                                <div>
-                                    <strong>15+</strong>
-                                    <span>Months Experience</span>
-                                </div>
-                                <div>
-                                    <strong>2+</strong>
-                                    <span>Live Websites Managed</span>
-                                </div>
-                                <div>
-                                    <strong>SEO</strong>
-                                    <span>E-commerce Ready</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-padding" id="about">
-            <div class="container">
-                <div class="row align-items-center gy-5">
-                    <div class="col-lg-5" data-aos="fade-up">
-                        <div class="image-panel">
-                            <img src="./images/Hello.avif" loading="lazy" alt="Developer illustration" />
-                        </div>
-                    </div>
-                    <div class="col-lg-7" data-aos="fade-left">
-                        <span class="section-kicker">About Me</span>
-                        <h2 class="section-title">Turning business needs into clean, responsive web experiences.</h2>
-                        <p class="section-text">
-                            I am an MCA student with practical experience in managing WordPress-based e-commerce websites. I enjoy building polished web interfaces, improving SEO, managing product workflows, and supporting business operations through reliable web systems.
-                        </p>
-                        <div class="about-grid">
-                            <div class="info-card">
-                                <i class="bi bi-envelope"></i>
-                                <span>Email</span>
-                                <a href="mailto:sroy52649@gmail.com">sroy52649@gmail.com</a>
-                            </div>
-                            <div class="info-card">
-                                <i class="bi bi-geo-alt"></i>
-                                <span>Location</span>
-                                <p>West Bengal, India - 734010</p>
-                            </div>
-                            <div class="info-card">
-                                <i class="bi bi-briefcase"></i>
-                                <span>Focus</span>
-                                <p>Web, WordPress, SEO, E-commerce</p>
-                            </div>
-                        </div>
-                        <a class="btn btn-primary-gradient btn-animated mt-4" href="#contact">
-                            Hire Me <i class="bi bi-send"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-padding soft-section" id="skills">
-            <div class="container">
-                <div class="section-heading" data-aos="fade-up">
-                    <span class="section-kicker">Skills</span>
-                    <h2 class="section-title">A practical tech stack for modern websites.</h2>
-                    <p class="section-text">Frontend, backend, WordPress, and workflow tools I use to build, maintain, and improve production-ready websites.</p>
+                        </li>
+                    </ul>
                 </div>
 
-                <div class="row g-4 mt-3">
-                    <div class="col-lg-6" data-aos="fade-right">
-                        <div class="glass-card skill-meter-card">
-                            <div class="skill-meter" data-percent="90">
-                                <div class="d-flex justify-content-between">
-                                    <span>HTML, CSS, Bootstrap</span>
-                                    <strong>90%</strong>
-                                </div>
-                                <div class="progress"><div class="progress-bar"></div></div>
+                <!-- Sidebar for Mock Search -->
+                <div class="sidebar-section" id="sidebarSearch" style="display: none;">
+                    <div class="sidebar-title">
+                        <i class="bi bi-chevron-down"></i>
+                        <span>search</span>
+                    </div>
+                    <div style="padding: 15px; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">
+                        <input type="text" placeholder="Search files..." style="width: 100%; background: #011221; border: 1px solid var(--border-color); color: var(--text-white); padding: 6px 10px; border-radius: 4px; outline: none; margin-bottom: 10px;" />
+                        <span>// 0 results found</span>
+                    </div>
+                </div>
+
+                <!-- Sidebar for Mock Source Control -->
+                <div class="sidebar-section" id="sidebarGit" style="display: none;">
+                    <div class="sidebar-title">
+                        <i class="bi bi-chevron-down"></i>
+                        <span>source-control</span>
+                    </div>
+                    <div style="padding: 15px; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); display: flex; flex-direction: column; gap: 8px;">
+                        <span>0 changes in workspace</span>
+                        <span style="color: #3DDC84;">✓ working tree clean</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Workspace Editor Area -->
+            <main class="ide-workspace">
+                <!-- Hello Tab Content -->
+                <section class="tab-view active" id="viewHello">
+                    <div class="hello-layout">
+                        <div class="hello-intro">
+                            <span class="eyebrow">Hi all. I am</span>
+                            <h1>Anirban Routh</h1>
+                            <h2 id="typedRole">&gt; Software Developer</h2>
+                            
+                            <span class="hello-comment">// complete the game to continue</span>
+                            <span class="hello-comment">// or click skip to bypass</span>
+                            <span class="hello-comment">// find my profile on Github:</span>
+                            <div class="hello-code">
+                                <span class="token-keyword">const</span> <span class="token-variable">githubLink</span> = <a href="https://github.com/anirban1011" target="_blank" rel="noopener" class="token-string">"https://github.com/anirban1011"</a>;
                             </div>
-                            <div class="skill-meter" data-percent="84">
-                                <div class="d-flex justify-content-between">
-                                    <span>JavaScript</span>
-                                    <strong>84%</strong>
+                        </div>
+
+                        <!-- Game Block -->
+                        <div class="game-widget">
+                            <!-- Metal Bolts in corners -->
+                            <div class="game-widget-screw-tr"></div>
+                            <div class="game-widget-screw-bl"></div>
+
+                            <div class="game-board">
+                                <canvas id="gameCanvas" width="240" height="380"></canvas>
+                                
+                                <!-- Game States Overlays -->
+                                <div class="game-overlay" id="gameOverlayStart">
+                                    <div class="game-overlay-title">Snake Game</div>
+                                    <button class="game-btn" id="btnStartGame" type="button">start-game</button>
                                 </div>
-                                <div class="progress"><div class="progress-bar"></div></div>
+                                <div class="game-overlay d-none" id="gameOverlayOver">
+                                    <div class="game-overlay-title game-over">GAME OVER!</div>
+                                    <button class="game-btn game-btn-secondary" id="btnRestartGame" type="button">start-again</button>
+                                </div>
+                                <div class="game-overlay d-none" id="gameOverlayWin">
+                                    <div class="game-overlay-title">WELL DONE!</div>
+                                    <button class="game-btn game-btn-secondary" id="btnPlayAgain" type="button">play-again</button>
+                                </div>
                             </div>
-                            <div class="skill-meter" data-percent="82">
-                                <div class="d-flex justify-content-between">
-                                    <span>WordPress and E-commerce</span>
-                                    <strong>82%</strong>
+
+                            <!-- Controls and score indicator -->
+                            <div class="game-controls">
+                                <span class="comment">// use keyboard</span>
+                                <span class="comment">// arrows to play</span>
+                                
+                                <div class="dpad-container" aria-label="Game Controller">
+                                    <button class="dpad-btn dpad-up" id="btnUp" type="button" aria-label="Up"><i class="bi bi-caret-up-fill"></i></button>
+                                    <button class="dpad-btn dpad-left" id="btnLeft" type="button" aria-label="Left"><i class="bi bi-caret-left-fill"></i></button>
+                                    <button class="dpad-btn dpad-down" id="btnDown" type="button" aria-label="Down"><i class="bi bi-caret-down-fill"></i></button>
+                                    <button class="dpad-btn dpad-right" id="btnRight" type="button" aria-label="Right"><i class="bi bi-caret-right-fill"></i></button>
                                 </div>
-                                <div class="progress"><div class="progress-bar"></div></div>
+
+                                <div class="food-counter">
+                                    <span class="comment">// food left</span>
+                                    <div class="food-dots" id="foodDots">
+                                        <div class="food-dot active"></div>
+                                        <div class="food-dot active"></div>
+                                        <div class="food-dot active"></div>
+                                        <div class="food-dot active"></div>
+                                        <div class="food-dot active"></div>
+                                        <div class="food-dot active"></div>
+                                        <div class="food-dot active"></div>
+                                        <div class="food-dot active"></div>
+                                        <div class="food-dot active"></div>
+                                        <div class="food-dot active"></div>
+                                    </div>
+                                </div>
+
+                                <button class="skip-btn" id="btnSkipGame" type="button">skip</button>
                             </div>
-                            <div class="skill-meter" data-percent="76">
-                                <div class="d-flex justify-content-between">
-                                    <span>PHP, MySQL, Node Basics</span>
-                                    <strong>76%</strong>
+
+                            <!-- Hidden Code Snippet Panel on Win/Skip -->
+                            <div class="code-snippets-view d-none" id="codeSnippetsPanel">
+                                <div class="code-snippet-scroller" id="snippetScroller">
+                                    <!-- Scrolling code snippets will be injected here -->
                                 </div>
-                                <div class="progress"><div class="progress-bar"></div></div>
-                            </div>
-                            <div class="skill-meter" data-percent="80">
-                                <div class="d-flex justify-content-between">
-                                    <span>SEO and Web Administration</span>
-                                    <strong>80%</strong>
-                                </div>
-                                <div class="progress"><div class="progress-bar"></div></div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6" data-aos="fade-left">
-                        <div class="skills-cloud">
-                            <div class="skill-icon-card"><img src="./images/react_logo.svg" loading="lazy" alt="React" /><span>React</span></div>
-                            <div class="skill-icon-card"><img src="./images/javascript_logo.svg" loading="lazy" alt="JavaScript" /><span>JavaScript</span></div>
-                            <div class="skill-icon-card"><img src="./images/typescript_logo.svg" loading="lazy" alt="TypeScript" /><span>TypeScript</span></div>
-                            <div class="skill-icon-card"><img src="./images/html_logo.svg" loading="lazy" alt="HTML" /><span>HTML</span></div>
-                            <div class="skill-icon-card"><img src="./images/css_logo.svg" loading="lazy" alt="CSS" /><span>CSS</span></div>
-                            <div class="skill-icon-card"><img src="./images/bootstrap_logo.svg" loading="lazy" alt="Bootstrap" /><span>Bootstrap</span></div>
-                            <div class="skill-icon-card"><img src="./images/wordpress_logo.svg" loading="lazy" alt="WordPress" /><span>WordPress</span></div>
-                            <div class="skill-icon-card"><img src="./images/nodejs_logo.svg" loading="lazy" alt="Node.js" /><span>Node.js</span></div>
-                            <div class="skill-icon-card"><img src="./images/MongoDB_logo.svg" loading="lazy" alt="MongoDB" /><span>MongoDB</span></div>
-                            <div class="skill-icon-card"><img src="./images/git_logo.svg" loading="lazy" alt="Git" /><span>Git</span></div>
-                            <div class="skill-icon-card"><img src="./images/github_logo.svg" loading="lazy" alt="GitHub" /><span>GitHub</span></div>
-                            <div class="skill-icon-card"><img src="./images/figma_logo.svg" loading="lazy" alt="Figma" /><span>Figma</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                </section>
 
-        <section class="section-padding" id="projects">
-            <div class="container">
-                <div class="section-heading" data-aos="fade-up">
-                    <span class="section-kicker">Projects</span>
-                    <h2 class="section-title">Featured work built for real users and business outcomes.</h2>
-                    <p class="section-text">Filter by category, preview the details, and visit live or GitHub links.</p>
-                </div>
-
-                <div class="project-filters" data-aos="fade-up" data-aos-delay="100">
-                    <button class="filter-btn active" type="button" data-filter="all">All</button>
-                    <button class="filter-btn" type="button" data-filter="web">Web</button>
-                    <button class="filter-btn" type="button" data-filter="app">App</button>
-                </div>
-
-                <div class="row g-4 project-grid mt-3">
-                    <div class="col-md-6 col-xl-4 project-item" data-category="web" data-aos="fade-up">
-                        <article class="project-card glass-card">
-                            <div class="project-image">
-                                <img src="./images/gopaldhara.png" loading="lazy" alt="Gopaldhara website preview" />
-                                <span class="project-badge">Live</span>
-                            </div>
-                            <div class="project-body">
-                                <span class="project-type">WordPress / E-commerce</span>
-                                <h3>Website Manager</h3>
-                                <p>Managed two WordPress e-commerce websites, including product listing, SEO, backend order operations, and speed improvements.</p>
-                                <div class="project-actions">
-                                    <a class="btn btn-sm btn-primary-gradient" href="https://gopaldharaindia.com/" target="_blank" rel="noopener">Live Demo</a>
-                                    <button class="btn btn-sm btn-outline-glass" type="button" data-bs-toggle="modal" data-bs-target="#projectGopaldhara">Preview</button>
+                <!-- About Tab Content -->
+                <section class="tab-view" id="viewAbout">
+                    <div class="about-layout">
+                        <!-- Full width editor view -->
+                        <div class="about-pane-left" style="border-right: none;">
+                            <div class="editor-pane">
+                                <div class="editor-file-header">
+                                    <div class="editor-file-tab">
+                                        <span id="editorActiveFileName">bio.js</span>
+                                        <i class="bi bi-x"></i>
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-xl-4 project-item" data-category="app" data-aos="fade-up" data-aos-delay="100">
-                        <article class="project-card glass-card">
-                            <div class="project-image">
-                                <img src="./images/code_speher.png" loading="lazy" alt="Code Sphere project preview" />
-                                <span class="project-badge">Live</span>
-                            </div>
-                            <div class="project-body">
-                                <span class="project-type">HTML / CSS / JavaScript</span>
-                                <h3>Code Sphere</h3>
-                                <p>Online code editor hosted on Vercel that allows users to write, run, and test basic programs in real time.</p>
-                                <div class="project-actions">
-                                    <a class="btn btn-sm btn-outline-glass" href="https://github.com/Sonff/CodeSphere" target="_blank" rel="noopener">GitHub</a>
-                                    <a class="btn btn-sm btn-primary-gradient" href="https://code-sphere-editor.vercel.app/" target="_blank" rel="noopener">Live Demo</a>
-                                    <button class="btn btn-sm btn-outline-glass" type="button" data-bs-toggle="modal" data-bs-target="#projectCodeSphere">Preview</button>
+                                <div class="editor-content-wrapper">
+                                    <div class="editor-gutter" id="editorGutter">
+                                        <!-- Line numbers will be injected by JS -->
+                                    </div>
+                                    <div class="editor-text" id="editorTextContainer">
+                                        <!-- File contents will be injected by JS -->
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="col-md-6 col-xl-4 project-item" data-category="web" data-aos="fade-up" data-aos-delay="200">
-                        <article class="project-card glass-card">
-                            <div class="project-image">
-                                <img src="./images/javascriptproject.avif" loading="lazy" alt="JavaScript project preview" />
-                                <span class="project-badge">Portfolio</span>
-                            </div>
-                            <div class="project-body">
-                                <span class="project-type">Frontend UI</span>
-                                <h3>Interactive Portfolio UI</h3>
-                                <p>A responsive portfolio interface with modern layout sections, animations, smooth interactions, and conversion-focused contact flow.</p>
-                                <div class="project-actions">
-                                    <a class="btn btn-sm btn-outline-glass" href="https://github.com/Sonff" target="_blank" rel="noopener">GitHub</a>
-                                    <button class="btn btn-sm btn-primary-gradient" type="button" data-bs-toggle="modal" data-bs-target="#projectPortfolio">Preview</button>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-padding soft-section" id="experience">
-            <div class="container">
-                <div class="section-heading" data-aos="fade-up">
-                    <span class="section-kicker">Experience</span>
-                    <h2 class="section-title">A timeline of hands-on website and e-commerce work.</h2>
-                </div>
-
-                <div class="timeline" data-aos="fade-up" data-aos-delay="100">
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-card glass-card">
-                            <div class="timeline-meta">
-                                <span>November 2024 - February 2025</span>
-                                <a href="https://gopaldharaindia.com/" target="_blank" rel="noopener" aria-label="Visit Gopaldhara website"><i class="bi bi-box-arrow-up-right"></i></a>
-                            </div>
-                            <h3>E-commerce Executive and Website Manager</h3>
-                            <p>Gopaldhara Tea Co Pvt. Ltd. | Siliguri, West Bengal</p>
-                            <ul>
-                                <li>Managed WordPress e-commerce websites for international and domestic tea sales.</li>
-                                <li>Handled order processing, shipping backend, product listing, and client coordination.</li>
-                                <li>Worked on SEO, product updates, speed optimization, plugin setup, and theme configuration.</li>
-                                <li>Built a practical understanding of inventory, product lifecycle, and B2B/B2C digital sales workflows.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-padding" id="contact">
-            <div class="container">
-                <div class="section-heading" data-aos="fade-up">
-                    <span class="section-kicker">Contact</span>
-                    <h2 class="section-title">Let's build something polished and useful.</h2>
-                    <p class="section-text">Send a message for job opportunities, freelance work, collaboration, or website support.</p>
-                </div>
-
-                <div class="row align-items-center gy-5 mt-3">
-                    <div class="col-lg-5" data-aos="fade-right">
-                        <div class="image-panel contact-panel">
-                            <img src="./images/customer-support.avif" loading="lazy" alt="Contact illustration" />
-                            <div class="contact-info-card glass-card">
-                                <a href="tel:9382013911"><i class="bi bi-telephone"></i> +91 93820-13911</a>
-                                <a href="mailto:sroy52649@gmail.com"><i class="bi bi-envelope"></i> sroy52649@gmail.com</a>
-                                <span><i class="bi bi-geo-alt"></i> Siliguri, West Bengal</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-7" data-aos="fade-left">
-                        <form class="contact-form glass-card needs-validation" id="contactForm" novalidate>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label class="form-label" for="nameInput">Your Name</label>
-                                    <input type="text" class="form-control" id="nameInput" name="name" placeholder="Enter your name" minlength="2" required />
-                                    <div class="invalid-feedback">Please enter at least 2 characters.</div>
+                </section>
+
+                <!-- Projects Tab Content -->
+                <section class="tab-view" id="viewProjects">
+                    <div class="projects-pane">
+                        <!-- Path Active Filters Bar -->
+                        <div class="projects-filter-bar">
+                            <div class="active-tags-list" id="activeFilterTags">
+                                <span>// projects / </span>
+                                <!-- Checked tags will be injected here -->
+                            </div>
+                            <div class="filter-bar-clear" id="filterBarClearAll" style="display: none;">
+                                <span>clear-all</span>
+                                <i class="bi bi-x"></i>
+                            </div>
+                        </div>
+
+                        <div class="projects-layout" id="projectsGrid">
+                            <!-- Project Card 1 -->
+                            <div class="project-card-ide" data-category="app">
+                                <div class="project-card-header">
+                                    <span>Project 1 // _sms-forwarder</span>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label" for="emailInput">Email Address</label>
-                                    <input type="email" class="form-control" id="emailInput" name="email" placeholder="you@example.com" required />
-                                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                                <div class="project-card-image">
+                                    <img src="./images/sms_forwarder.png" loading="lazy" alt="SMS Forwarder preview" />
+                                    <span class="project-card-badge">Active</span>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label" for="phoneInput">Phone Number</label>
-                                    <input type="tel" class="form-control" id="phoneInput" name="phone" placeholder="+91 98765 43210" pattern="[0-9+\-\s]{7,15}" required />
-                                    <div class="invalid-feedback">Please enter a valid phone number.</div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label" for="subjectInput">Subject</label>
-                                    <input type="text" class="form-control" id="subjectInput" name="subject" placeholder="Project enquiry" required />
-                                    <div class="invalid-feedback">Please add a subject.</div>
-                                </div>
-                                <div class="col-12">
-                                    <label class="form-label" for="messageInput">Message</label>
-                                    <textarea class="form-control" id="messageInput" name="message" rows="5" placeholder="Tell me about your project or opportunity" minlength="10" required></textarea>
-                                    <div class="invalid-feedback">Please write at least 10 characters.</div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-primary-gradient btn-animated" type="submit" id="contactSubmit">
-                                        Send Message <i class="bi bi-send"></i>
-                                    </button>
-                                    <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+                                <div class="project-card-body">
+                                    <h3>SMS Forwarder v3.4</h3>
+                                    <p>A high-performance Android automation utility designed to synchronize and forward incoming SMS alerts to webhooks, email servers, or other phones.</p>
+                                    <div class="project-card-tags">
+                                        <span>// kotlin // room-db // drive-api</span>
+                                    </div>
+                                    <a class="project-card-btn" href="https://github.com/anirban1011/sms-forwarder" target="_blank" rel="noopener">view-project</a>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </section>
-    </main>
+                </section>
 
-    <footer class="site-footer">
-        <div class="container">
-            <div class="row gy-4">
-                <div class="col-lg-6">
-                    <h2>Shayan Portfolio</h2>
-                    <p>Thank you for visiting my personal portfolio website. Connect with me for freelance projects, job opportunities, and website support.</p>
-                    <div class="social-links footer-social">
-                        <a href="https://github.com/Sonff" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
-                        <a href="http://www.linkedin.com/in/shayan-sarkar" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                        <a href="https://leetcode.com/u/Shayan_Sarkar/" target="_blank" rel="noopener" aria-label="LeetCode"><img src="./images/leetcode_logo.svg" width="22" height="22" alt="" /></a>
+                <!-- Contact Tab Content -->
+                <section class="tab-view" id="viewContact">
+                    <div class="contact-layout">
+                        <!-- Left pane: Form or Success -->
+                        <div class="contact-pane-left">
+                            <div id="contactFormContainer">
+                                <form class="contact-form-ide" id="contactForm" novalidate>
+                                    <div class="form-group-ide" id="nameGroup">
+                                        <label for="nameInput">_name:</label>
+                                        <input type="text" id="nameInput" name="name" placeholder="Anirban Routh" required />
+                                    </div>
+                                    <div class="form-group-ide" id="emailGroup">
+                                        <label for="emailInput">_email:</label>
+                                        <div class="input-wrapper-ide">
+                                            <input type="email" id="emailInput" name="email" placeholder="developer@anirbanrouth.in" required />
+                                            <i class="bi bi-exclamation-circle-fill input-error-icon"></i>
+                                        </div>
+                                        <span class="error-message">Wrong email address</span>
+                                    </div>
+                                    <div class="form-group-ide" id="messageGroup">
+                                        <label for="messageInput">_message:</label>
+                                        <textarea id="messageInput" name="message" rows="6" placeholder="Hi! I want to talk about a project..." required></textarea>
+                                    </div>
+                                    <button class="form-btn-ide" type="submit" id="sendBtn">submit-message</button>
+                                    <p class="form-status" id="formStatus" role="status" aria-live="polite" style="margin-top: 10px; font-family: var(--font-mono); font-size: 13px; font-weight: bold;"></p>
+                                </form>
+                            </div>
+
+                            <!-- Success Display Pane -->
+                            <div class="contact-success-pane" id="contactSuccessContainer" style="display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 100%; gap: 15px; font-family: var(--font-mono);">
+                                <h3 style="font-size: 24px; color: var(--text-white); margin-bottom: 10px;">Thank you! 🤘</h3>
+                                <p style="font-size: 14px; color: var(--text-muted); max-width: 320px; line-height: 1.6; margin-bottom: 25px;">Your message has been accepted. You will receive answer soon!</p>
+                                <button class="form-btn-ide" id="btnSendNewMessage" type="button">send-new-message</button>
+                            </div>
+                        </div>
+                        <div class="contact-pane-right">
+                            <div class="live-preview-box">
+                                <div class="live-preview-gutter">
+                                    1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12
+                                </div>
+                                <div class="live-preview-code"><span class="token-keyword">const</span> <span class="token-variable">button</span> = document.querySelector(<span class="token-string">'#sendBtn'</span>);<br><br><span class="token-keyword">const</span> <span class="token-variable">message</span> = {<br>&nbsp;&nbsp;name: <span class="token-string" id="previewName">""</span>,<br>&nbsp;&nbsp;email: <span class="token-string" id="previewEmail">""</span>,<br>&nbsp;&nbsp;message: <span class="token-string" id="previewMessage">""</span>,<br>&nbsp;&nbsp;date: <span class="token-string" id="previewDate">""</span><br>};<br><br>button.addEventListener(<span class="token-string">'click'</span>, () =&gt; {<br>&nbsp;&nbsp;form.send(message);<br>});</div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3">
-                    <h3>Navigation</h3>
-                    <a href="#about">About</a>
-                    <a href="#skills">Skills</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                <div class="col-lg-3">
-                    <h3>Contact Info</h3>
-                    <a href="tel:9382013911">+91 93820-13911</a>
-                    <a href="mailto:sroy52649@gmail.com">sroy52649@gmail.com</a>
-                    <span>Siliguri, West Bengal, India</span>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>Designed with care by Shayan Sarkar.</p>
-            </div>
+                </section>
+            </main>
         </div>
-    </footer>
 
-    <a class="whatsapp-float" href="https://wa.me/+919382013911?abid=username&text=Hi%20Shayan!%20I'd%20like%20to%20know%20more%20about%20you." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-        <img src="./images/whatsapp_logo.svg" width="52" height="52" alt="" />
-    </a>
-
-    <button class="scroll-top" id="scrollTopBtn" type="button" aria-label="Scroll to top">
-        <i class="bi bi-arrow-up"></i>
-    </button>
-
-    <div class="modal fade project-modal" id="projectGopaldhara" tabindex="-1" aria-labelledby="projectGopaldharaLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title fs-4" id="projectGopaldharaLabel">Website Manager</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <!-- Footer -->
+        <footer class="ide-footer">
+            <div class="footer-left">
+                <span class="footer-left-label">find me in:</span>
+                <div class="footer-social-icons">
+                    <a href="https://linkedin.com/in/anirbanrouth" target="_blank" rel="noopener" class="footer-icon-link" aria-label="LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="https://anirbanrouth.in" target="_blank" rel="noopener" class="footer-icon-link" aria-label="Website">
+                        <i class="bi bi-globe"></i>
+                    </a>
                 </div>
-                <div class="modal-body">
-                    <img src="./images/gopaldhara.png" loading="lazy" alt="Gopaldhara website preview" />
-                    <p>Managed WordPress e-commerce websites for domestic and international tea sales, with work across order workflows, product listings, SEO, speed improvements, and website administration.</p>
-                    <div class="modal-actions">
-                        <a class="btn btn-primary-gradient" href="https://gopaldharaindia.com/" target="_blank" rel="noopener">Visit Live</a>
-                    </div>
-                </div>
+            </div>
+            <div class="footer-right">
+                <a href="https://github.com/anirban1011" target="_blank" rel="noopener" class="footer-right-handle">
+                    <span>@anirban1011</span>
+                    <i class="bi bi-github"></i>
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Generic Modal for non-git projects details -->
+    <div class="modal fade project-modal d-none" id="customProjectModal" tabindex="-1" style="position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px;">
+        <div class="glass-card" style="max-width: 600px; width: 100%; border: 1px solid var(--border-color); background-color: var(--bg-sidebar); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column;">
+            <div class="project-card-header" style="justify-content: space-between;">
+                <span id="modalProjectTitle">Project Details</span>
+                <i class="bi bi-x" style="cursor: pointer; font-size: 20px; color: var(--text-white);" onclick="closeProjectModal()"></i>
+            </div>
+            <div style="padding: 25px; font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: var(--text-muted);">
+                <p id="modalProjectDesc"></p>
+                <button class="project-card-btn" style="margin-top: 25px; width: 100%;" onclick="closeProjectModal()">close-window</button>
             </div>
         </div>
     </div>
 
-    <div class="modal fade project-modal" id="projectCodeSphere" tabindex="-1" aria-labelledby="projectCodeSphereLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title fs-4" id="projectCodeSphereLabel">Code Sphere</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <img src="./images/code_speher.png" loading="lazy" alt="Code Sphere project preview" />
-                    <p>Code Sphere is an online code editor built with HTML, CSS, and JavaScript, hosted on Vercel for real-time writing, running, and testing of basic programs.</p>
-                    <div class="modal-actions">
-                        <a class="btn btn-outline-glass" href="https://github.com/Sonff/CodeSphere" target="_blank" rel="noopener">GitHub</a>
-                        <a class="btn btn-primary-gradient" href="https://code-sphere-editor.vercel.app/" target="_blank" rel="noopener">Live Demo</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade project-modal" id="projectPortfolio" tabindex="-1" aria-labelledby="projectPortfolioLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title fs-4" id="projectPortfolioLabel">Interactive Portfolio UI</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <img src="./images/javascriptproject.avif" loading="lazy" alt="Portfolio UI preview" />
-                    <p>A modern developer portfolio concept focused on responsive design, premium sections, animation, filtering, modal previews, validation, dark mode, and performance-minded asset loading.</p>
-                    <div class="modal-actions">
-                        <a class="btn btn-primary-gradient" href="https://github.com/Sonff" target="_blank" rel="noopener">GitHub</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="./assets/js/bootstrap.bundle.min.js" defer></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
     <script src="./assets/js/index.js" defer></script>
 </body>
