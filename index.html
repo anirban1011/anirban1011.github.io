@@ -1,110 +1,494 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anirban Routh | Portfolio</title>
-  <meta name="description" content="Portfolio of Anirban Routh" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Shayan Sarkar is a web developer and WordPress expert building responsive, SEO-friendly websites, e-commerce experiences, and modern web apps." />
+    <meta name="author" content="Shayan Sarkar" />
+    <meta name="keywords" content="Shayan Sarkar, developer portfolio, web developer, WordPress expert, Bootstrap, JavaScript, freelance developer" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#14A76C" />
+
+    <title>Shayan Sarkar | Developer Portfolio</title>
+    <link rel="shortcut icon" href="./images/profile.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
+
 <body>
-  <header class="header">
-    <nav class="nav container">
-      <a href="#" class="logo">Anirban Routh</a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
-    </nav>
-  </header>
+    <div class="page-loader" id="pageLoader" aria-label="Loading portfolio">
+        <div class="loader-orb"></div>
+        <p>Loading portfolio...</p>
+    </div>
 
-  <main>
-    <section class="hero container">
-      <div class="hero-content">
-        <span class="badge">Open to opportunities</span>
-        <h1>Hi, I’m <span>Anirban Routh</span></h1>
-        <p>
-          I build modern, fast, and user-friendly web experiences.
-          I enjoy turning ideas into practical digital products.
-        </p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#projects">View Projects</a>
-          <a class="btn ghost" href="#contact">Contact Me</a>
+    <header class="site-header fixed-top" id="siteHeader">
+        <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
+            <div class="container">
+                <a class="navbar-brand brand-mark" href="#home" aria-label="Shayan Sarkar home">
+                    <img src="./images/node-js_logo.svg" width="34" height="34" alt="Developer logo" />
+                    <span>Shayan</span>
+                </a>
+                <div class="d-flex align-items-center gap-2 order-lg-2">
+                    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
+                        <i class="bi bi-moon-stars"></i>
+                    </button>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse order-lg-1" id="mainNavbar">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                        <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section section-padding" id="home">
+            <div class="hero-glow hero-glow-one"></div>
+            <div class="hero-glow hero-glow-two"></div>
+            <div class="container position-relative">
+                <div class="row align-items-center gy-5">
+                    <div class="col-lg-7" data-aos="fade-right">
+                        <span class="eyebrow">Available for freelance and job opportunities</span>
+                        <h1 class="hero-title">
+                            Hi, I'm <span class="gradient-text">Shayan Sarkar</span>
+                        </h1>
+                        <h2 class="hero-role">
+                            I build as a <span id="typedRole" class="typed-role"></span>
+                        </h2>
+                        <p class="hero-copy">
+                            MCA '27 @ NBU, BCA graduate, web developer, PHP/MySQL and WordPress professional with 15+ months of hands-on experience managing WordPress-based e-commerce websites, SEO, product lifecycle, and web operations.
+                        </p>
+                        <div class="hero-actions">
+                            <a class="btn btn-primary-gradient btn-animated" href="#projects">
+                                View Projects <i class="bi bi-arrow-up-right"></i>
+                            </a>
+                            <a class="btn btn-outline-glass btn-animated" href="./Shayan_Sarkar_Resume.pdf" target="_blank" rel="noopener">
+                                Download CV <i class="bi bi-cloud-download"></i>
+                            </a>
+                        </div>
+                        <div class="social-links" aria-label="Social profile links">
+                            <a href="https://github.com/Sonff" target="_blank" rel="noopener" aria-label="GitHub">
+                                <i class="bi bi-github"></i>
+                            </a>
+                            <a href="http://www.linkedin.com/in/shayan-sarkar" target="_blank" rel="noopener" aria-label="LinkedIn">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                            <a href="https://leetcode.com/u/Shayan_Sarkar/" target="_blank" rel="noopener" aria-label="LeetCode">
+                                <img src="./images/leetcode_logo.svg" width="22" height="22" alt="" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5" data-aos="zoom-in" data-aos-delay="150">
+                        <div class="hero-card glass-card">
+                            <img src="./images/profile.png" class="hero-avatar" fetchpriority="high" alt="Shayan Sarkar profile" />
+                            <div class="hero-card-badge">
+                                <i class="bi bi-stars"></i>
+                                <span>Web Developer</span>
+                            </div>
+                            <div class="hero-stats">
+                                <div>
+                                    <strong>15+</strong>
+                                    <span>Months Experience</span>
+                                </div>
+                                <div>
+                                    <strong>2+</strong>
+                                    <span>Live Websites Managed</span>
+                                </div>
+                                <div>
+                                    <strong>SEO</strong>
+                                    <span>E-commerce Ready</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding" id="about">
+            <div class="container">
+                <div class="row align-items-center gy-5">
+                    <div class="col-lg-5" data-aos="fade-up">
+                        <div class="image-panel">
+                            <img src="./images/Hello.avif" loading="lazy" alt="Developer illustration" />
+                        </div>
+                    </div>
+                    <div class="col-lg-7" data-aos="fade-left">
+                        <span class="section-kicker">About Me</span>
+                        <h2 class="section-title">Turning business needs into clean, responsive web experiences.</h2>
+                        <p class="section-text">
+                            I am an MCA student with practical experience in managing WordPress-based e-commerce websites. I enjoy building polished web interfaces, improving SEO, managing product workflows, and supporting business operations through reliable web systems.
+                        </p>
+                        <div class="about-grid">
+                            <div class="info-card">
+                                <i class="bi bi-envelope"></i>
+                                <span>Email</span>
+                                <a href="mailto:sroy52649@gmail.com">sroy52649@gmail.com</a>
+                            </div>
+                            <div class="info-card">
+                                <i class="bi bi-geo-alt"></i>
+                                <span>Location</span>
+                                <p>West Bengal, India - 734010</p>
+                            </div>
+                            <div class="info-card">
+                                <i class="bi bi-briefcase"></i>
+                                <span>Focus</span>
+                                <p>Web, WordPress, SEO, E-commerce</p>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary-gradient btn-animated mt-4" href="#contact">
+                            Hire Me <i class="bi bi-send"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding soft-section" id="skills">
+            <div class="container">
+                <div class="section-heading" data-aos="fade-up">
+                    <span class="section-kicker">Skills</span>
+                    <h2 class="section-title">A practical tech stack for modern websites.</h2>
+                    <p class="section-text">Frontend, backend, WordPress, and workflow tools I use to build, maintain, and improve production-ready websites.</p>
+                </div>
+
+                <div class="row g-4 mt-3">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <div class="glass-card skill-meter-card">
+                            <div class="skill-meter" data-percent="90">
+                                <div class="d-flex justify-content-between">
+                                    <span>HTML, CSS, Bootstrap</span>
+                                    <strong>90%</strong>
+                                </div>
+                                <div class="progress"><div class="progress-bar"></div></div>
+                            </div>
+                            <div class="skill-meter" data-percent="84">
+                                <div class="d-flex justify-content-between">
+                                    <span>JavaScript</span>
+                                    <strong>84%</strong>
+                                </div>
+                                <div class="progress"><div class="progress-bar"></div></div>
+                            </div>
+                            <div class="skill-meter" data-percent="82">
+                                <div class="d-flex justify-content-between">
+                                    <span>WordPress and E-commerce</span>
+                                    <strong>82%</strong>
+                                </div>
+                                <div class="progress"><div class="progress-bar"></div></div>
+                            </div>
+                            <div class="skill-meter" data-percent="76">
+                                <div class="d-flex justify-content-between">
+                                    <span>PHP, MySQL, Node Basics</span>
+                                    <strong>76%</strong>
+                                </div>
+                                <div class="progress"><div class="progress-bar"></div></div>
+                            </div>
+                            <div class="skill-meter" data-percent="80">
+                                <div class="d-flex justify-content-between">
+                                    <span>SEO and Web Administration</span>
+                                    <strong>80%</strong>
+                                </div>
+                                <div class="progress"><div class="progress-bar"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <div class="skills-cloud">
+                            <div class="skill-icon-card"><img src="./images/react_logo.svg" loading="lazy" alt="React" /><span>React</span></div>
+                            <div class="skill-icon-card"><img src="./images/javascript_logo.svg" loading="lazy" alt="JavaScript" /><span>JavaScript</span></div>
+                            <div class="skill-icon-card"><img src="./images/typescript_logo.svg" loading="lazy" alt="TypeScript" /><span>TypeScript</span></div>
+                            <div class="skill-icon-card"><img src="./images/html_logo.svg" loading="lazy" alt="HTML" /><span>HTML</span></div>
+                            <div class="skill-icon-card"><img src="./images/css_logo.svg" loading="lazy" alt="CSS" /><span>CSS</span></div>
+                            <div class="skill-icon-card"><img src="./images/bootstrap_logo.svg" loading="lazy" alt="Bootstrap" /><span>Bootstrap</span></div>
+                            <div class="skill-icon-card"><img src="./images/wordpress_logo.svg" loading="lazy" alt="WordPress" /><span>WordPress</span></div>
+                            <div class="skill-icon-card"><img src="./images/nodejs_logo.svg" loading="lazy" alt="Node.js" /><span>Node.js</span></div>
+                            <div class="skill-icon-card"><img src="./images/MongoDB_logo.svg" loading="lazy" alt="MongoDB" /><span>MongoDB</span></div>
+                            <div class="skill-icon-card"><img src="./images/git_logo.svg" loading="lazy" alt="Git" /><span>Git</span></div>
+                            <div class="skill-icon-card"><img src="./images/github_logo.svg" loading="lazy" alt="GitHub" /><span>GitHub</span></div>
+                            <div class="skill-icon-card"><img src="./images/figma_logo.svg" loading="lazy" alt="Figma" /><span>Figma</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding" id="projects">
+            <div class="container">
+                <div class="section-heading" data-aos="fade-up">
+                    <span class="section-kicker">Projects</span>
+                    <h2 class="section-title">Featured work built for real users and business outcomes.</h2>
+                    <p class="section-text">Filter by category, preview the details, and visit live or GitHub links.</p>
+                </div>
+
+                <div class="project-filters" data-aos="fade-up" data-aos-delay="100">
+                    <button class="filter-btn active" type="button" data-filter="all">All</button>
+                    <button class="filter-btn" type="button" data-filter="web">Web</button>
+                    <button class="filter-btn" type="button" data-filter="app">App</button>
+                </div>
+
+                <div class="row g-4 project-grid mt-3">
+                    <div class="col-md-6 col-xl-4 project-item" data-category="web" data-aos="fade-up">
+                        <article class="project-card glass-card">
+                            <div class="project-image">
+                                <img src="./images/gopaldhara.png" loading="lazy" alt="Gopaldhara website preview" />
+                                <span class="project-badge">Live</span>
+                            </div>
+                            <div class="project-body">
+                                <span class="project-type">WordPress / E-commerce</span>
+                                <h3>Website Manager</h3>
+                                <p>Managed two WordPress e-commerce websites, including product listing, SEO, backend order operations, and speed improvements.</p>
+                                <div class="project-actions">
+                                    <a class="btn btn-sm btn-primary-gradient" href="https://gopaldharaindia.com/" target="_blank" rel="noopener">Live Demo</a>
+                                    <button class="btn btn-sm btn-outline-glass" type="button" data-bs-toggle="modal" data-bs-target="#projectGopaldhara">Preview</button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="col-md-6 col-xl-4 project-item" data-category="app" data-aos="fade-up" data-aos-delay="100">
+                        <article class="project-card glass-card">
+                            <div class="project-image">
+                                <img src="./images/code_speher.png" loading="lazy" alt="Code Sphere project preview" />
+                                <span class="project-badge">Live</span>
+                            </div>
+                            <div class="project-body">
+                                <span class="project-type">HTML / CSS / JavaScript</span>
+                                <h3>Code Sphere</h3>
+                                <p>Online code editor hosted on Vercel that allows users to write, run, and test basic programs in real time.</p>
+                                <div class="project-actions">
+                                    <a class="btn btn-sm btn-outline-glass" href="https://github.com/Sonff/CodeSphere" target="_blank" rel="noopener">GitHub</a>
+                                    <a class="btn btn-sm btn-primary-gradient" href="https://code-sphere-editor.vercel.app/" target="_blank" rel="noopener">Live Demo</a>
+                                    <button class="btn btn-sm btn-outline-glass" type="button" data-bs-toggle="modal" data-bs-target="#projectCodeSphere">Preview</button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="col-md-6 col-xl-4 project-item" data-category="web" data-aos="fade-up" data-aos-delay="200">
+                        <article class="project-card glass-card">
+                            <div class="project-image">
+                                <img src="./images/javascriptproject.avif" loading="lazy" alt="JavaScript project preview" />
+                                <span class="project-badge">Portfolio</span>
+                            </div>
+                            <div class="project-body">
+                                <span class="project-type">Frontend UI</span>
+                                <h3>Interactive Portfolio UI</h3>
+                                <p>A responsive portfolio interface with modern layout sections, animations, smooth interactions, and conversion-focused contact flow.</p>
+                                <div class="project-actions">
+                                    <a class="btn btn-sm btn-outline-glass" href="https://github.com/Sonff" target="_blank" rel="noopener">GitHub</a>
+                                    <button class="btn btn-sm btn-primary-gradient" type="button" data-bs-toggle="modal" data-bs-target="#projectPortfolio">Preview</button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding soft-section" id="experience">
+            <div class="container">
+                <div class="section-heading" data-aos="fade-up">
+                    <span class="section-kicker">Experience</span>
+                    <h2 class="section-title">A timeline of hands-on website and e-commerce work.</h2>
+                </div>
+
+                <div class="timeline" data-aos="fade-up" data-aos-delay="100">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card glass-card">
+                            <div class="timeline-meta">
+                                <span>November 2024 - February 2025</span>
+                                <a href="https://gopaldharaindia.com/" target="_blank" rel="noopener" aria-label="Visit Gopaldhara website"><i class="bi bi-box-arrow-up-right"></i></a>
+                            </div>
+                            <h3>E-commerce Executive and Website Manager</h3>
+                            <p>Gopaldhara Tea Co Pvt. Ltd. | Siliguri, West Bengal</p>
+                            <ul>
+                                <li>Managed WordPress e-commerce websites for international and domestic tea sales.</li>
+                                <li>Handled order processing, shipping backend, product listing, and client coordination.</li>
+                                <li>Worked on SEO, product updates, speed optimization, plugin setup, and theme configuration.</li>
+                                <li>Built a practical understanding of inventory, product lifecycle, and B2B/B2C digital sales workflows.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding" id="contact">
+            <div class="container">
+                <div class="section-heading" data-aos="fade-up">
+                    <span class="section-kicker">Contact</span>
+                    <h2 class="section-title">Let's build something polished and useful.</h2>
+                    <p class="section-text">Send a message for job opportunities, freelance work, collaboration, or website support.</p>
+                </div>
+
+                <div class="row align-items-center gy-5 mt-3">
+                    <div class="col-lg-5" data-aos="fade-right">
+                        <div class="image-panel contact-panel">
+                            <img src="./images/customer-support.avif" loading="lazy" alt="Contact illustration" />
+                            <div class="contact-info-card glass-card">
+                                <a href="tel:9382013911"><i class="bi bi-telephone"></i> +91 93820-13911</a>
+                                <a href="mailto:sroy52649@gmail.com"><i class="bi bi-envelope"></i> sroy52649@gmail.com</a>
+                                <span><i class="bi bi-geo-alt"></i> Siliguri, West Bengal</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7" data-aos="fade-left">
+                        <form class="contact-form glass-card needs-validation" id="contactForm" novalidate>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="nameInput">Your Name</label>
+                                    <input type="text" class="form-control" id="nameInput" name="name" placeholder="Enter your name" minlength="2" required />
+                                    <div class="invalid-feedback">Please enter at least 2 characters.</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="emailInput">Email Address</label>
+                                    <input type="email" class="form-control" id="emailInput" name="email" placeholder="you@example.com" required />
+                                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="phoneInput">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phoneInput" name="phone" placeholder="+91 98765 43210" pattern="[0-9+\-\s]{7,15}" required />
+                                    <div class="invalid-feedback">Please enter a valid phone number.</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="subjectInput">Subject</label>
+                                    <input type="text" class="form-control" id="subjectInput" name="subject" placeholder="Project enquiry" required />
+                                    <div class="invalid-feedback">Please add a subject.</div>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label" for="messageInput">Message</label>
+                                    <textarea class="form-control" id="messageInput" name="message" rows="5" placeholder="Tell me about your project or opportunity" minlength="10" required></textarea>
+                                    <div class="invalid-feedback">Please write at least 10 characters.</div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary-gradient btn-animated" type="submit" id="contactSubmit">
+                                        Send Message <i class="bi bi-send"></i>
+                                    </button>
+                                    <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-6">
+                    <h2>Shayan Portfolio</h2>
+                    <p>Thank you for visiting my personal portfolio website. Connect with me for freelance projects, job opportunities, and website support.</p>
+                    <div class="social-links footer-social">
+                        <a href="https://github.com/Sonff" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                        <a href="http://www.linkedin.com/in/shayan-sarkar" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://leetcode.com/u/Shayan_Sarkar/" target="_blank" rel="noopener" aria-label="LeetCode"><img src="./images/leetcode_logo.svg" width="22" height="22" alt="" /></a>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <h3>Navigation</h3>
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="col-lg-3">
+                    <h3>Contact Info</h3>
+                    <a href="tel:9382013911">+91 93820-13911</a>
+                    <a href="mailto:sroy52649@gmail.com">sroy52649@gmail.com</a>
+                    <span>Siliguri, West Bengal, India</span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Designed with care by Shayan Sarkar.</p>
+            </div>
         </div>
-      </div>
+    </footer>
 
-      <div class="hero-card">
-        <h3>Quick Info</h3>
-        <ul>
-          <li><strong>Name:</strong> Anirban Routh</li>
-          <li><strong>Role:</strong> Web Developer</li>
-          <li><strong>GitHub:</strong> @anirban1011</li>
-          <li><strong>Website:</strong> anirban1011.github.io</li>
-        </ul>
-      </div>
-    </section>
+    <a class="whatsapp-float" href="https://wa.me/+919382013911?abid=username&text=Hi%20Shayan!%20I'd%20like%20to%20know%20more%20about%20you." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+        <img src="./images/whatsapp_logo.svg" width="52" height="52" alt="" />
+    </a>
 
-    <section id="about" class="section container">
-      <h2>About</h2>
-      <p>
-        I am Anirban Routh, a developer focused on building clean interfaces,
-        responsive layouts, and useful products that solve real-world problems.
-      </p>
-    </section>
+    <button class="scroll-top" id="scrollTopBtn" type="button" aria-label="Scroll to top">
+        <i class="bi bi-arrow-up"></i>
+    </button>
 
-    <section id="projects" class="section container">
-      <h2>Projects</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>Portfolio Website</h3>
-          <p>Personal website hosted on GitHub Pages.</p>
-          <a href="https://anirban1011.github.io" target="_blank" rel="noreferrer">Live Demo ↗</a>
-        </article>
-        <article class="card">
-          <h3>Project Two</h3>
-          <p>Add your second project details and link here.</p>
-          <a href="#" target="_blank" rel="noreferrer">View Project ↗</a>
-        </article>
-        <article class="card">
-          <h3>Project Three</h3>
-          <p>Add another project with short impact-focused description.</p>
-          <a href="#" target="_blank" rel="noreferrer">View Project ↗</a>
-        </article>
-      </div>
-    </section>
+    <div class="modal fade project-modal" id="projectGopaldhara" tabindex="-1" aria-labelledby="projectGopaldharaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-4" id="projectGopaldharaLabel">Website Manager</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="./images/gopaldhara.png" loading="lazy" alt="Gopaldhara website preview" />
+                    <p>Managed WordPress e-commerce websites for domestic and international tea sales, with work across order workflows, product listings, SEO, speed improvements, and website administration.</p>
+                    <div class="modal-actions">
+                        <a class="btn btn-primary-gradient" href="https://gopaldharaindia.com/" target="_blank" rel="noopener">Visit Live</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <section id="skills" class="section container">
-      <h2>Skills</h2>
-      <div class="chips">
-        <span>HTML</span>
-        <span>CSS</span>
-        <span>JavaScript</span>
-        <span>React</span>
-        <span>Node.js</span>
-        <span>Git & GitHub</span>
-      </div>
-    </section>
+    <div class="modal fade project-modal" id="projectCodeSphere" tabindex="-1" aria-labelledby="projectCodeSphereLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-4" id="projectCodeSphereLabel">Code Sphere</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="./images/code_speher.png" loading="lazy" alt="Code Sphere project preview" />
+                    <p>Code Sphere is an online code editor built with HTML, CSS, and JavaScript, hosted on Vercel for real-time writing, running, and testing of basic programs.</p>
+                    <div class="modal-actions">
+                        <a class="btn btn-outline-glass" href="https://github.com/Sonff/CodeSphere" target="_blank" rel="noopener">GitHub</a>
+                        <a class="btn btn-primary-gradient" href="https://code-sphere-editor.vercel.app/" target="_blank" rel="noopener">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <section id="contact" class="section container">
-      <h2>Contact</h2>
-      <ul class="contact-list">
-        <li>Email: <a href="mailto:you@example.com">you@example.com</a></li>
-        <li>GitHub: <a href="https://github.com/anirban1011" target="_blank" rel="noreferrer">@anirban1011</a></li>
-        <li>LinkedIn: <a href="#" target="_blank" rel="noreferrer">Add your LinkedIn profile</a></li>
-      </ul>
-    </section>
-  </main>
+    <div class="modal fade project-modal" id="projectPortfolio" tabindex="-1" aria-labelledby="projectPortfolioLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-4" id="projectPortfolioLabel">Interactive Portfolio UI</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="./images/javascriptproject.avif" loading="lazy" alt="Portfolio UI preview" />
+                    <p>A modern developer portfolio concept focused on responsive design, premium sections, animation, filtering, modal previews, validation, dark mode, and performance-minded asset loading.</p>
+                    <div class="modal-actions">
+                        <a class="btn btn-primary-gradient" href="https://github.com/Sonff" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <footer class="footer">
-    <p>© <span id="year"></span> Anirban Routh. All rights reserved.</p>
-  </footer>
-
-  <script src="script.js"></script>
+    <script src="./assets/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+    <script src="./assets/js/index.js" defer></script>
 </body>
+
 </html>
