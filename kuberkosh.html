@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta -->
+    <title>KuberKosh Portfolio Project | Secure Web-Based Digital Wallet Showcase</title>
+    <meta name="description" content="Deep dive into KuberKosh, a secure cloud-hosted digital wallet built using PHP, Docker, and AWS. Features localized TOTP MFA, AJAX microtransactions, and smart expense tracking charts." />
+    <meta name="author" content="Anirban Routh" />
+    <meta name="keywords" content="Digital Wallet Project, PHP Portfolio, Full Stack Developer, Docker AWS Hosting, TOTP Authentication, Spend Analysis System, Web App Case Study" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="theme-color" content="#01080e" />
+    <link rel="canonical" href="https://anirbanrouth.in/kuberkosh.html" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://anirbanrouth.in/kuberkosh.html" />
+    <meta property="og:title" content="KuberKosh Portfolio Project | Secure Web-Based Digital Wallet Showcase" />
+    <meta property="og:description" content="Deep dive into KuberKosh, a secure cloud-hosted digital wallet built using PHP, Docker, and AWS. Features localized TOTP MFA, AJAX microtransactions, and smart expense tracking charts." />
+    <meta property="og:image" content="https://anirbanrouth.in/images/kuberkosh_dashboard.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="KuberKosh Digital Wallet Interface Screenshot" />
+    <meta property="og:site_name" content="Anirban Routh Portfolio" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="KuberKosh Portfolio Project | Secure Web-Based Digital Wallet Showcase" />
+    <meta name="twitter:description" content="Deep dive into KuberKosh, a secure cloud-hosted digital wallet built using PHP, Docker, and AWS. Features localized TOTP MFA, AJAX microtransactions, and smart expense tracking charts." />
+    <meta name="twitter:image" content="https://anirbanrouth.in/images/kuberkosh_dashboard.jpg" />
+    <meta name="twitter:image:alt" content="KuberKosh Wallet Dashboard" />
+
+    <!-- JSON-LD: SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "KuberKosh",
+      "operatingSystem": "Web",
+      "applicationCategory": "FinanceApplication",
+      "url": "https://github.com/anirban1011/KuberKosh",
+      "author": {
+        "@type": "Person",
+        "name": "Anirban Routh",
+        "url": "https://anirbanrouth.in"
+      },
+      "description": "Deep dive into KuberKosh, a secure cloud-hosted digital wallet built using PHP, Docker, and AWS. Features localized TOTP MFA, AJAX microtransactions, and smart expense tracking charts.",
+      "programmingLanguage": "PHP",
+      "screenshot": "https://anirbanrouth.in/images/kuberkosh_dashboard.jpg"
+    }
+    </script>
+
+    <!-- JSON-LD: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://anirbanrouth.in/index.html"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Projects",
+        "item": "https://anirbanrouth.in/projects.html"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "KuberKosh Wallet",
+        "item": "https://anirbanrouth.in/kuberkosh.html"
+      }]
+    }
+    </script>
+
+    <!-- JSON-LD: HowTo (Run KuberKosh locally via Docker) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to deploy KuberKosh locally with Docker Compose",
+      "description": "Step-by-step instructions to run the KuberKosh digital wallet application on your local development machine using Docker.",
+      "step": [{
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Clone the KuberKosh repository",
+        "text": "Clone the repository from GitHub: git clone https://github.com/anirban1011/KuberKosh.git"
+      },{
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Set up environment variables",
+        "text": "Create a copy of the .env.example file, rename it to .env, and fill in your database credentials and Google OAuth keys."
+      },{
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Start the containers",
+        "text": "Run the command 'docker-compose up -d --build' in your terminal to compile the PHP dependencies and launch the Apache, PHP, and MariaDB containers."
+      },{
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Access the wallet dashboard",
+        "text": "Open your web browser and navigate to http://localhost:8080 to access the KuberKosh sign-in screen."
+      }]
+    }
+    </script>
+
+    <!-- JSON-LD: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does KuberKosh handle user passwords securely?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because user authentication passes securely through official Google OAuth2 validation layers, KuberKosh never reads, parses, or tracks password credentials locally on its application instances."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does the wallet ask for an authentication PIN if it's already guarded by TOTP?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TOTP forms a barrier during standard session validation phases to prevent account takeovers. The six-digit wallet PIN exists as an independent authorization step designed explicitly to sign actual transaction properties."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do the microtransactions protect my primary bank logs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When loading cash into KuberKosh, your banking ledger registers only a single bulk record. All subsequent small transactions occur cleanly inside the separate wallet environment."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens if a transfer is initiated during a sudden network interruption?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Before any balance is modified, a unique, deterministic transaction ID is generated via a SHA3-256 hash using the transaction parameters. If a failure occurs mid-execution, the database engine rolls back the operations, and the transaction is logged in the transaction_logs table with a status of 'Failed' and corresponding details for auditing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why was MariaDB selected over other options like MongoDB or PostgreSQL?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Relational integrity and financial accounting precision require absolute ACID compliance. MariaDB provides a robust, high-performance relational database management system structured in a 3rd Normal Form (3NF) normalized database schema. This architecture ensures complete data integrity, prevents duplicate transaction redundancy, and handles standard sub-queries and table joins far more efficiently than NoSQL alternatives."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the application prevent cross-site scripting (XSS) and SQL injection vulnerabilities?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "KuberKosh follows OWASP core security guidelines to safeguard the data pipeline. For database communication, the backend relies completely on prepared statements via mysqli ($stmt->prepare) and parameterized data binding ($stmt->bind_param), rendering SQL injection vectors impossible. Furthermore, strict server-side and client-side parameter sanitization filters are implemented to clean incoming integer inputs and block potential payload insertions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the QR Code request system securely transmit data to the payer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The application does not store temporary request sessions on the server for standard request links. Instead, when a user creates a payment request, all query parameters—including the target wallet address, amount, purpose, and remarks—are natively encoded directly into URL parameters processed via QRCode.js on the client side. When scanned by the payer, the system decodes the string and dynamically pre-fills the standard 'Send Money' form securely, keeping the handshake lightweight and fast."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What testing strategy was used to validate the core financial logic?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The testing phase utilized a multi-tier framework consisting of unit testing, integration testing, and automated vulnerability scanning. Individual functional components were validated via unit tests, while systemic module handshakes were targeted via integration tests. To guarantee security testing across raw HTTP data boundaries, BurpSuite was deployed as an intercepting proxy to capture, parse, and analyze traffic requests between the browser viewport and server endpoints—allowing the verification of edge cases like character-injected transaction values and negative amount limits."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="./images/profile.png" type="image/x-icon" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/kuberkosh.css" />
+</head>
+
+<body>
+    <a href="#mainContent" class="skip-link">Skip to main content</a>
+
+    <div class="page-loader" id="pageLoader" aria-label="Loading workspace" role="status">
+        <div class="loader-orb"></div>
+        <p>Loading workspace...</p>
+    </div>
+
+    <div class="ide-window">
+        <div class="glow-gradient glow-cyan" aria-hidden="true"></div>
+        <div class="glow-gradient glow-purple" aria-hidden="true"></div>
+
+        <!-- Header -->
+        <header class="ide-header" id="siteHeader">
+            <div class="ide-header-logo">
+                <span>anirban-routh</span>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navWrapper">
+                <i class="bi bi-list" aria-hidden="true"></i>
+            </button>
+            <div class="ide-header-nav-wrapper" id="navWrapper">
+                <nav class="ide-header-tabs" aria-label="Main navigation">
+                    <a href="./index.html" class="ide-tab">_hello</a>
+                    <a href="./about.html" class="ide-tab">_about-me</a>
+                    <a href="./projects.html" class="ide-tab active" aria-current="page">_projects</a>
+                </nav>
+                <a href="./contact.html" class="ide-header-contact">_contact-me</a>
+            </div>
+        </header>
+
+        <!-- IDE Body -->
+        <div class="ide-body">
+            <!-- Activity Bar -->
+            <nav class="ide-activity-bar" aria-label="Activity bar">
+                <div class="activity-icon active" title="Explorer" aria-label="Explorer">
+                    <i class="bi bi-files" aria-hidden="true"></i>
+                </div>
+                <div class="activity-icon" title="Search" aria-label="Search">
+                    <i class="bi bi-search" aria-hidden="true"></i>
+                </div>
+                <div class="activity-icon" title="Source Control" aria-label="Source Control">
+                    <i class="bi bi-git" aria-hidden="true"></i>
+                </div>
+            </nav>
+
+            <!-- Sidebar -->
+            <aside class="ide-sidebar" aria-label="Explorer">
+                <div class="sidebar-section active-sidebar-section" id="sidebarProject">
+                    <div class="sidebar-title">
+                        <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                        <span>kuberkosh</span>
+                    </div>
+                    <ul class="sidebar-tree" role="list">
+                        <li class="active" role="listitem">
+                            <i class="bi bi-file-earmark-code file-icon" aria-hidden="true"></i>
+                            <span>overview.md</span>
+                        </li>
+                        <li role="listitem" onclick="scrollToSection('usecasesSection')" style="cursor:pointer;">
+                            <i class="bi bi-file-earmark-code file-icon" aria-hidden="true"></i>
+                            <span>problem-solution.md</span>
+                        </li>
+                        <li role="listitem" onclick="scrollToSection('featuresSection')" style="cursor:pointer;">
+                            <i class="bi bi-file-earmark-code file-icon" aria-hidden="true"></i>
+                            <span>features.md</span>
+                        </li>
+                        <li role="listitem" onclick="scrollToSection('techSection')" style="cursor:pointer;">
+                            <i class="bi bi-file-earmark-code file-icon" aria-hidden="true"></i>
+                            <span>tech-stack.md</span>
+                        </li>
+                        <li role="listitem" onclick="scrollToSection('securitySection')" style="cursor:pointer;">
+                            <i class="bi bi-file-earmark-code file-icon" aria-hidden="true"></i>
+                            <span>edge-cases.md</span>
+                        </li>
+                        <li role="listitem" onclick="scrollToSection('futureSection')" style="cursor:pointer;">
+                            <i class="bi bi-file-earmark-code file-icon" aria-hidden="true"></i>
+                            <span>future-scope.md</span>
+                        </li>
+                        <li role="listitem" onclick="scrollToSection('faqSection')" style="cursor:pointer;">
+                            <i class="bi bi-file-earmark-code file-icon" aria-hidden="true"></i>
+                            <span>faq.md</span>
+                        </li>
+                        <li role="listitem" onclick="scrollToSection('runSection')" style="cursor:pointer;">
+                            <i class="bi bi-file-earmark-code file-icon" aria-hidden="true"></i>
+                            <span>run-local.md</span>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Workspace -->
+            <main class="ide-workspace sms-fw-workspace" id="mainContent">
+                <!-- Breadcrumb -->
+                <nav class="sms-fw-breadcrumb" aria-label="Breadcrumb">
+                    <ol role="list">
+                        <li><a href="./index.html">home</a></li>
+                        <li aria-hidden="true">/</li>
+                        <li><a href="./projects.html">projects</a></li>
+                        <li aria-hidden="true">/</li>
+                        <li aria-current="page">kuberkosh</li>
+                    </ol>
+                </nav>
+
+                <article class="sms-fw-article" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <meta itemprop="name" content="KuberKosh Wallet" />
+                    <meta itemprop="operatingSystem" content="Web" />
+                    <meta itemprop="applicationCategory" content="FinanceApplication" />
+                    <meta itemprop="softwareVersion" content="1.0" />
+                    <meta itemprop="isAccessibleForFree" content="true" />
+
+                    <!-- ══ HERO ══════════════════════════════════════ -->
+                    <section class="sms-fw-hero">
+                        <div>
+                            <div class="sms-fw-badge-row">
+                                <span class="sms-fw-badge badge-blue">
+                                    <i class="bi bi-globe" aria-hidden="true"></i> Web Wallet
+                                </span>
+                                <span class="sms-fw-badge badge-green">
+                                    <i class="bi bi-shield-check" aria-hidden="true"></i> Completed
+                                </span>
+                                <span class="sms-fw-badge badge-orange">
+                                    <i class="bi bi-box-seam" aria-hidden="true"></i> Docker Compose
+                                </span>
+                            </div>
+                            <h1>KuberKosh</h1>
+                            <p class="sms-fw-tagline">Simple and Secure Digital Wallet</p>
+                            <p class="sms-fw-desc">
+                                KuberKosh is a modern, web-based digital wallet application optimized for seamless, convenient peer-to-peer microtransactions and smart expense tracking. By enabling users to top up their wallet from linked bank accounts, KuberKosh eliminates the chaos of micro-payments cluttering up official bank statements. It pairs ultra-fast transaction steps with an institutional-grade security framework and powerful financial visualization tools.
+                            </p>
+                            <div class="sms-fw-desc-meta" style="margin-top: 15px; font-family: var(--font-mono); font-size: 13px; color: var(--text-muted);">
+                                <div style="margin-bottom: 5px;"><strong style="color: var(--text-white);">Role:</strong> Lead Designer &amp; Full-Stack Developer</div>
+                                <div style="margin-bottom: 5px;"><strong style="color: var(--text-white);">Context:</strong> B.Sc. Computer Science Capstone Project (University of North Bengal)</div>
+                                <div><strong style="color: var(--text-white);">Live Demo:</strong> <a href="https://kuberkosh.anirbanrouth.in" target="_blank" rel="noopener noreferrer" style="color: var(--variable-color); text-decoration: none;">kuberkosh.anirbanrouth.in</a></div>
+                            </div>
+                            <div class="sms-fw-cta-row" style="margin-top: 25px;">
+                                <a class="sms-fw-btn sms-fw-btn-primary" href="https://github.com/anirban1011/KuberKosh" target="_blank" rel="noopener noreferrer" aria-label="View source code on GitHub">
+                                    <i class="bi bi-github" aria-hidden="true"></i> View Code
+                                </a>
+                                <a class="sms-fw-btn sms-fw-btn-secondary" href="https://www.linkedin.com/posts/anirbanrouth_excited-to-share-my-latest-project-kuberkosh-ugcPost-7225437888010665984-fwiT" target="_blank" rel="noopener noreferrer" aria-label="Read LinkedIn launch post for KuberKosh">
+                                    <i class="bi bi-linkedin" aria-hidden="true"></i> LinkedIn Post
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Showcase Grid -->
+                        <div class="kuberkosh-showcase-grid" aria-label="KuberKosh screenshots">
+                            <div class="showcase-main">
+                                <img src="./images/kuberkosh_dashboard.jpg" alt="KuberKosh wallet dashboard displaying wallet balance, recent transactions, spend analysis pie chart, and balance trends" />
+                            </div>
+                            <div class="showcase-side">
+                                <div class="showcase-side-item">
+                                    <img src="./images/kuberkosh_home.jpg" alt="KuberKosh portal homepage displaying transaction tagline" />
+                                </div>
+                                <div class="showcase-side-item">
+                                    <img src="./images/kuberkosh_receipt.jpg" alt="KuberKosh transaction successful confirmation receipt window" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ══ STATS ROW ═════════════════════════════════ -->
+                    <div class="sms-fw-stat-chips" aria-label="Key stats">
+                        <div class="stat-chip"><strong>&lt; 2s</strong><span>Transaction confirmation</span></div>
+                        <div class="stat-chip"><strong>SHA-256</strong><span>PIN encryption &amp; secure hashes</span></div>
+                        <div class="stat-chip"><strong>Google / TOTP</strong><span>Authentication mechanisms</span></div>
+                        <div class="stat-chip"><strong>AWS Deployed</strong><span>Cloud Docker container stack</span></div>
+                    </div>
+
+                    <!-- ══ PROBLEM & SOLUTION ════════════════════════ -->
+                    <section class="sms-fw-section" id="usecasesSection">
+                        <h2><span class="token-comment">// </span>problem-solution.md</h2>
+                        <div class="sms-fw-usecase-grid">
+                            <div class="sms-fw-usecase-card">
+                                <i class="bi bi-exclamation-triangle-fill feature-icon" aria-hidden="true" style="color: var(--accent-orange);"></i>
+                                <h3>The Core Challenges</h3>
+                                <p style="font-size: 13px; line-height: 1.6; color: var(--text-muted); margin-bottom: 0;">
+                                    <strong>Vulnerable Logins &amp; Interceptions:</strong> Simple web apps frequently transmit unhashed credentials or expose session variables to interception.<br/><br/>
+                                    <strong>Cluttered Bank Statements:</strong> Buying snacks, street food, or paying minor utility bills fills bank logs with dozens of tiny entries.<br/><br/>
+                                    <strong>Financial Blind Spots:</strong> Most everyday payment tools provide no immediate summary of lifestyle category spends.
+                                </p>
+                            </div>
+                            <div class="sms-fw-usecase-card" style="grid-column: span 2;">
+                                <i class="bi bi-lightbulb-fill feature-icon" aria-hidden="true" style="color: #3DDC84;"></i>
+                                <h3>The KuberKosh Fix</h3>
+                                <p style="font-size: 13px; line-height: 1.6; color: var(--text-muted); margin-bottom: 0;">
+                                    <strong>Cryptographic Vault Access:</strong> Implements a three-layered guard—Google OAuth2, localized TOTP Multi-Factor Authentication, and zero-plaintext client-side SHA-256 PIN hashing.<br/><br/>
+                                    <strong>Isolated Wallet Architecture:</strong> Moves everyday micro-payments off bank servers into a secure relational database sandbox, grouping funding and withdrawal records cleanly.<br/><br/>
+                                    <strong>Instant Analytics Engine:</strong> Dynamically renders real-time budget category percentages and multi-timeframe balance trends right on the primary viewport.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ══ FEATURES ══════════════════════════════════ -->
+                    <section class="sms-fw-section" id="featuresSection">
+                        <h2><span class="token-comment">// </span>features.md</h2>
+                        <div class="sms-fw-features-grid">
+                            <div class="sms-fw-feature-card">
+                                <i class="bi bi-graph-up feature-icon" aria-hidden="true"></i>
+                                <h3>Unified Analytics Dashboard</h3>
+                                <ul style="padding-left: 15px; color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-top: 10px;" role="list">
+                                    <li style="margin-bottom: 6px;"><strong>Visibility Toggle:</strong> Obfuscate sensitive balances instantly with a visibility toggle icon in public areas.</li>
+                                    <li style="margin-bottom: 6px;"><strong>Spend Analysis Ring:</strong> JavaScript donut chart detailing category expenditures (Education, Party, Travel, Movie).</li>
+                                    <li><strong>Balance Trend Metric:</strong> Bar chart mapping wallet equity changes over custom periods (1 Week, 1 Month).</li>
+                                </ul>
+                            </div>
+                            <div class="sms-fw-feature-card">
+                                <i class="bi bi-cash-stack feature-icon" aria-hidden="true"></i>
+                                <h3>Secure Funds Routing</h3>
+                                <ul style="padding-left: 15px; color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-top: 10px;" role="list">
+                                    <li style="margin-bottom: 6px;"><strong>Pre-Validated Linking:</strong> Pairs bank accounts to the wallet using explicit confirmation prompts.</li>
+                                    <li><strong>Secure Cash-Out:</strong> Withdrawals to primary bank accounts trigger modals requiring SHA-256 PIN verification.</li>
+                                </ul>
+                            </div>
+                            <div class="sms-fw-feature-card">
+                                <i class="bi bi-arrow-left-right feature-icon" aria-hidden="true"></i>
+                                <h3>Smart Peer-to-Peer Transfers</h3>
+                                <ul style="padding-left: 15px; color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-top: 10px;" role="list">
+                                    <li style="margin-bottom: 6px;"><strong>Zero-Reload Verification:</strong> Asynchronous AJAX queries resolve and verify receiver wallets to prevent user entry errors.</li>
+                                    <li><strong>Encrypted PDF Receipts:</strong> Generates downloadable PDF transaction records with SHA3-256 vouchers.</li>
+                                </ul>
+                            </div>
+                            <div class="sms-fw-feature-card">
+                                <i class="bi bi-qr-code feature-icon" aria-hidden="true"></i>
+                                <h3>Interactive Request Engines</h3>
+                                <ul style="padding-left: 15px; color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-top: 10px;" role="list">
+                                    <li><strong>Dynamic QR Generation:</strong> Encodes specific billing amounts and descriptions into QRCodes, autofilling sender portals upon scanning.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ══ TECH STACK ════════════════════════════════ -->
+                    <section class="sms-fw-section" id="techSection">
+                        <h2><span class="token-comment">// </span>tech-stack.md</h2>
+                        <div style="overflow-x: auto; margin-top: 20px;">
+                            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; color: var(--text-muted); border: 1px solid var(--border-color);" aria-label="KuberKosh Technology Stack">
+                                <thead>
+                                    <tr style="background-color: rgba(255,255,255,0.02); border-bottom: 1px solid var(--border-color); font-family: var(--font-mono); color: var(--text-white);">
+                                        <th style="padding: 12px 15px;">Component</th>
+                                        <th style="padding: 12px 15px;">Technology Selected</th>
+                                        <th style="padding: 12px 15px;">Purpose &amp; Justification</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom: 1px solid var(--border-color);">
+                                        <td style="padding: 12px 15px; font-weight: 500; color: var(--text-white);">Backend Architecture</td>
+                                        <td style="padding: 12px 15px; font-family: var(--font-mono); color: var(--variable-color);">PHP (Server-side core)</td>
+                                        <td style="padding: 12px 15px;">Highly reliable request handling, native session protection, and smooth relational database connectivity.</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid var(--border-color);">
+                                        <td style="padding: 12px 15px; font-weight: 500; color: var(--text-white);">Database System</td>
+                                        <td style="padding: 12px 15px; font-family: var(--font-mono); color: var(--variable-color);">MariaDB + phpMyAdmin</td>
+                                        <td style="padding: 12px 15px;">High-performance relational indexing structured in 3rd Normal Form (3NF) to protect data records against collision or latency.</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid var(--border-color);">
+                                        <td style="padding: 12px 15px; font-weight: 500; color: var(--text-white);">Frontend Foundation</td>
+                                        <td style="padding: 12px 15px; font-family: var(--font-mono); color: var(--variable-color);">HTML5, SCSS, JavaScript</td>
+                                        <td style="padding: 12px 15px;">Implements fluid layouts compiled using Webpack and automated via Gulp workflows.</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid var(--border-color);">
+                                        <td style="padding: 12px 15px; font-weight: 500; color: var(--text-white);">UI Framework</td>
+                                        <td style="padding: 12px 15px; font-family: var(--font-mono); color: var(--variable-color);">Bootstrap 5</td>
+                                        <td style="padding: 12px 15px;">Built from the ground up for dynamic responsiveness across desktop and mobile devices.</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid var(--border-color);">
+                                        <td style="padding: 12px 15px; font-weight: 500; color: var(--text-white);">Security Layer</td>
+                                        <td style="padding: 12px 15px; font-family: var(--font-mono); color: var(--variable-color);">Google OAuth, TOTP, SHA-256</td>
+                                        <td style="padding: 12px 15px;">Two-factor protection leveraging RFC 6238 time-aligned authenticator keys alongside end-to-end HTTPS.</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid var(--border-color);">
+                                        <td style="padding: 12px 15px; font-weight: 500; color: var(--text-white);">Infrastructure &amp; Cloud</td>
+                                        <td style="padding: 12px 15px; font-family: var(--font-mono); color: var(--variable-color);">Docker, AWS EC2, Cloudflare</td>
+                                        <td style="padding: 12px 15px;">Containerised microservices hosted on stable cloud environments with built-in proxy edge protection against layer-7 DDoS traffic.</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 12px 15px; font-weight: 500; color: var(--text-white);">Dynamic Engines</td>
+                                        <td style="padding: 12px 15px; font-family: var(--font-mono); color: var(--variable-color);">TCPDF, QRCode.js</td>
+                                        <td style="padding: 12px 15px;">Direct runtime PDF compilation for transaction vouchers alongside client-rendered base-64 string QR patterns.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- ══ SECURITY & HARDENING ═════════════════════ -->
+                    <section class="sms-fw-section" id="securitySection">
+                        <h2><span class="token-comment">// </span>edge-cases.md</h2>
+                        <p style="font-size:13px; color:var(--text-muted); margin-bottom:20px; font-family:var(--font-mono);">
+                            <span class="token-comment">// Client- and server-side data verification rules for absolute reliability</span>
+                        </p>
+                        <div class="sms-fw-perms-grid">
+                            <div class="perm-item">
+                                <code>Zero-Value</code>
+                                <span><strong>Zero-Value Submissions:</strong> Prevents structural mutations by actively testing transfers for values &le; 0, outputting descriptive toast notifications.</span>
+                            </div>
+                            <div class="perm-item">
+                                <code>Sanitization</code>
+                                <span><strong>Character Injection:</strong> Standardizes strict integer parsing validations on incoming values to trap alphanumeric manipulation cleanly.</span>
+                            </div>
+                            <div class="perm-item">
+                                <code>Boundaries</code>
+                                <span><strong>Balance Boundaries:</strong> Queries current database logs before updating rows to prevent balance overruns or accounts slipping into debt.</span>
+                            </div>
+                            <div class="perm-item">
+                                <code>Clock Shift</code>
+                                <span><strong>MFA Clock Shifts:</strong> Integrates synchronization safety nets within time-aligned code properties to account for device-server clock differences.</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ══ FUTURE SCOPE ═════════════════════════════ -->
+                    <section class="sms-fw-section" id="futureSection">
+                        <h2><span class="token-comment">// </span>future-scope.md</h2>
+                        <div class="sms-fw-features-grid">
+                            <div class="sms-fw-feature-card">
+                                <i class="bi bi-cpu feature-icon" aria-hidden="true"></i>
+                                <h3>AI Financial Guidance</h3>
+                                <p>Integrating machine learning layers to scan transaction properties over time, providing users with proactive budgeting advice and optimization strategies.</p>
+                            </div>
+                            <div class="sms-fw-feature-card">
+                                <i class="bi bi-shield-network feature-icon" aria-hidden="true"></i>
+                                <h3>Anomaly Defense Matrices</h3>
+                                <p>Incorporating AI-driven risk scoring profiles to recognize sudden geographic shifts or unusual transaction velocity pattern variations dynamically.</p>
+                            </div>
+                            <div class="sms-fw-feature-card">
+                                <i class="bi bi-link-45deg feature-icon" aria-hidden="true"></i>
+                                <h3>Distributed Ledgers</h3>
+                                <p>Investigating transition mechanisms toward cryptographic verification protocols to create decentralized, tamper-proof transaction logs.</p>
+                            </div>
+                            <div class="sms-fw-feature-card">
+                                <i class="bi bi-puzzle feature-icon" aria-hidden="true"></i>
+                                <h3>Comprehensive Third-Party APIs</h3>
+                                <p>Deploying extensive, open-access developer API modules so external applications can natively interface with and accept KuberKosh transactions.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ══ FAQ SECTION ═══════════════════════════════ -->
+                    <section class="sms-fw-section" id="faqSection">
+                        <h2><span class="token-comment">// </span>faq.md</h2>
+                        <div class="faq-container">
+                            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                                <button class="faq-header faq-toggle" aria-expanded="false" type="button">
+                                    <span itemprop="name">How does KuberKosh handle user passwords securely?</span>
+                                    <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                                </button>
+                                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                    <div itemprop="text">
+                                        Because user authentication passes securely through official Google OAuth2 validation layers, KuberKosh never reads, parses, or tracks password credentials locally on its application instances.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                                <button class="faq-header faq-toggle" aria-expanded="false" type="button">
+                                    <span itemprop="name">Why does the wallet ask for an authentication PIN if it's already guarded by TOTP?</span>
+                                    <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                                </button>
+                                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                    <div itemprop="text">
+                                        TOTP forms a barrier during standard session validation phases to prevent account takeovers. The six-digit wallet PIN exists as an independent authorization step designed explicitly to sign actual transaction properties.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                                <button class="faq-header faq-toggle" aria-expanded="false" type="button">
+                                    <span itemprop="name">How do the microtransactions protect my primary bank logs?</span>
+                                    <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                                </button>
+                                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                    <div itemprop="text">
+                                        When loading cash into KuberKosh, your banking ledger registers only a single bulk record. All subsequent small transactions occur cleanly inside the separate wallet environment, preventing statement clutter.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                                <button class="faq-header faq-toggle" aria-expanded="false" type="button">
+                                    <span itemprop="name">What happens if a transfer is initiated during a sudden network interruption?</span>
+                                    <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                                </button>
+                                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                    <div itemprop="text">
+                                        The system handles transaction logs systematically. Before any balance is modified, a unique, deterministic transaction ID is generated via a SHA3-256 hash using the sender, receiver, amount, and timestamp metrics. If a system failure or network dropout occurs mid-execution, the database engine rolls back the operations, and the transaction is logged in the <code>transaction_logs</code> table with a status of "Failed" and the corresponding error details for auditing.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                                <button class="faq-header faq-toggle" aria-expanded="false" type="button">
+                                    <span itemprop="name">Why was MariaDB selected over other options like MongoDB or PostgreSQL?</span>
+                                    <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                                </button>
+                                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                    <div itemprop="text">
+                                        Relational integrity and financial accounting precision require absolute ACID compliance. MariaDB provides a robust, high-performance relational database management system structured in a 3rd Normal Form (3NF) normalized database schema. This architecture ensures complete data integrity, prevents duplicate transaction redundancy, and handles standard sub-queries and table joins far more efficiently than NoSQL alternatives.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                                <button class="faq-header faq-toggle" aria-expanded="false" type="button">
+                                    <span itemprop="name">How does the application prevent cross-site scripting (XSS) and SQL injection vulnerabilities?</span>
+                                    <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                                </button>
+                                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                    <div itemprop="text">
+                                        KuberKosh follows OWASP core security guidelines to safeguard the data pipeline. For database communication, the backend relies completely on prepared statements via mysqli (<code>$stmt->prepare</code>) and parameterized data binding (<code>$stmt->bind_param</code>), rendering SQL injection vectors impossible. Furthermore, strict server-side and client-side parameter sanitization filters are implemented to clean incoming integer inputs and block potential payload insertions.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                                <button class="faq-header faq-toggle" aria-expanded="false" type="button">
+                                    <span itemprop="name">How does the QR Code request system securely transmit data to the payer?</span>
+                                    <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                                </button>
+                                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                    <div itemprop="text">
+                                        The application does not store temporary request sessions on the server for standard request links. Instead, when a user creates a payment request, all query parameters—including the target wallet address, amount, purpose, and remarks—are natively encoded directly into URL parameters processed via <code>QRCode.js</code> on the client side. When scanned by the payer, the system decodes the string and dynamically pre-fills the standard "Send Money" form securely, keeping the handshake lightweight and fast.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                                <button class="faq-header faq-toggle" aria-expanded="false" type="button">
+                                    <span itemprop="name">What testing strategy was used to validate the core financial logic?</span>
+                                    <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                                </button>
+                                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                    <div itemprop="text">
+                                        The testing phase utilized a multi-tier framework consisting of unit testing, integration testing, and automated vulnerability scanning. Individual functional components were validated via unit tests, while systemic module handshakes were targeted via integration tests. To guarantee security testing across raw HTTP data boundaries, BurpSuite was deployed as an intercepting proxy to capture, parse, and analyze traffic requests between the browser viewport and server endpoints—allowing the verification of edge cases like character-injected transaction values and negative amount limits.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ══ RUN GUIDE ════════════════════════════════ -->
+                    <section class="sms-fw-section sms-fw-download" id="runSection" aria-label="Run KuberKosh locally via Docker">
+                        <h2><span class="token-comment">// </span>run-local.md &mdash; <span style="font-size:13px; color:var(--text-muted);">Launch container environment and tooling</span></h2>
+                        <div class="sms-fw-download-card">
+                            <div class="download-card-left">
+                                <div class="sms-fw-badge badge-orange" style="width: fit-content; margin-bottom: 12px;">
+                                    <i class="bi bi-box-seam" aria-hidden="true"></i> Docker Stack
+                                </div>
+                                <h3>Local Deployment</h3>
+                                <p>Standard PHP/Apache2 container network environment</p>
+                                <ul class="download-requirements" aria-label="System requirements">
+                                    <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i> Requires Node.js &amp; npm installed locally</li>
+                                    <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i> Gulp SCSS/sass compilation pipeline toolchain</li>
+                                    <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i> Docker CLI &amp; Docker Compose container engines</li>
+                                    <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i> GPG &amp; Pass Password Store for credentials vault</li>
+                                </ul>
+                                <div class="sms-fw-cta-row" style="margin-top: 24px;">
+                                    <a href="https://github.com/anirban1011/KuberKosh"
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                       class="sms-fw-btn sms-fw-btn-primary"
+                                       style="background-color: var(--accent-orange); color: var(--bg-dark);"
+                                       aria-label="Clone KuberKosh code repository on GitHub">
+                                        <i class="bi bi-git" aria-hidden="true"></i>
+                                        GitHub Repository
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="download-card-right" aria-label="Quick setup guide">
+                                <p class="token-comment">// Quick launch commands</p>
+                                <ol style="padding-left: 0; list-style: none;">
+                                    <li style="margin-bottom: 16px;">
+                                        <span class="token-number" style="color: var(--accent-orange); font-family: var(--font-mono); font-size: 11px; margin-right: 6px;">1.</span>
+                                        Clone &amp; enter repository:
+                                        <pre style="margin-top: 6px; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; border: 1px solid var(--border-color);"><code style="font-size: 11px; color: var(--variable-color);">git clone https://github.com/anirban1011/KuberKosh.git
+cd KuberKosh</code></pre>
+                                    </li>
+                                    <li style="margin-bottom: 16px;">
+                                        <span class="token-number" style="color: var(--accent-orange); font-family: var(--font-mono); font-size: 11px; margin-right: 6px;">2.</span>
+                                        Install dependencies &amp; SCSS:
+                                        <pre style="margin-top: 6px; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; border: 1px solid var(--border-color);"><code style="font-size: 11px; color: var(--variable-color);">npm install
+npm install --save-dev gulp-sass sass
+npm start</code></pre>
+                                    </li>
+                                    <li style="margin-bottom: 16px;">
+                                        <span class="token-number" style="color: var(--accent-orange); font-family: var(--font-mono); font-size: 11px; margin-right: 6px;">3.</span>
+                                        Initialize credentials vault:
+                                        <pre style="margin-top: 6px; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; border: 1px solid var(--border-color);"><code style="font-size: 11px; color: var(--variable-color);">gpg --generate-key
+pass init &lt;gpg-key-id&gt;</code></pre>
+                                    </li>
+                                    <li style="margin-bottom: 16px;">
+                                        <span class="token-number" style="color: var(--accent-orange); font-family: var(--font-mono); font-size: 11px; margin-right: 6px;">4.</span>
+                                        Launch containers:
+                                        <pre style="margin-top: 6px; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; border: 1px solid var(--border-color);"><code style="font-size: 11px; color: var(--variable-color);">docker-compose up -d --build</code></pre>
+                                    </li>
+                                    <li>
+                                        <span class="token-number" style="color: var(--accent-orange); font-family: var(--font-mono); font-size: 11px; margin-right: 6px;">5.</span>
+                                        Access dashboard:
+                                        <p style="margin: 4px 0 0 16px; font-size: 12px; color: var(--text-muted);">Navigate browser to <code>http://localhost:8080</code></p>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ══ AUTHOR CARD ══════════════════════════════ -->
+                    <section class="sms-fw-section">
+                        <h2><span class="token-comment">// </span>author.md</h2>
+                        <div class="sms-fw-author-card">
+                            <img src="./images/profile.png"
+                                 alt="Anirban Routh — Android developer and builder"
+                                 width="64" height="64" loading="lazy" class="author-avatar" />
+                            <div class="author-info">
+                                <p class="author-name">Built by <strong>Anirban Routh</strong></p>
+                                <p class="author-bio">Kotlin &amp; Android developer specialising in background automation, app development, and privacy-first app design. MCA student at University of North Bengal. <a href="./projects.html" style="color:var(--variable-color); text-decoration:none;">See all projects →</a></p>
+                                <div class="author-links">
+                                    <a href="./about.html" aria-label="About Anirban Routh">_about-me</a>
+                                    <a href="https://github.com/anirban1011" target="_blank" rel="noopener noreferrer" aria-label="Anirban Routh on GitHub">GitHub</a>
+                                    <a href="https://linkedin.com/in/anirbanrouth" target="_blank" rel="noopener noreferrer" aria-label="Anirban Routh on LinkedIn">LinkedIn</a>
+                                    <a href="./contact.html" aria-label="Hire Anirban Routh">_contact</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer class="ide-footer">
+            <div class="footer-left">
+                <span>find-me-on:</span>
+                <div class="footer-social-links" role="list">
+                    <a href="https://github.com/anirban1011" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" role="listitem"><i class="bi bi-github" aria-hidden="true"></i></a>
+                    <a href="https://linkedin.com/in/anirbanrouth" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" role="listitem"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="footer-right">
+                <a href="https://github.com/anirban1011/Portfolio" target="_blank" rel="noopener noreferrer" class="footer-git-link" aria-label="View source repository on GitHub">
+                    <span>main*</span>
+                    <i class="bi bi-git" aria-hidden="true"></i>
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="./assets/js/shared.js" defer></script>
+    <script src="./assets/js/kuberkosh.js" defer></script>
+</body>
+
+</html>

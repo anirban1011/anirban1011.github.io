@@ -233,6 +233,7 @@ a {
 /* Sidebar */
 .ide-sidebar {
   width: 260px;
+  flex-shrink: 0;
   border-right: 1px solid var(--border-color);
   background-color: var(--bg-sidebar);
   display: flex;
@@ -638,6 +639,7 @@ a {
   flex-direction: column;
   align-items: center;
   width: 55px;
+  flex-shrink: 0;
   background-color: #010c15;
   border-right: 1px solid var(--border-color);
   height: 100%;
@@ -932,11 +934,41 @@ a {
   display: flex;
   flex-direction: column;
   transition: transform var(--transition), border-color var(--transition);
-  height: max-content;
+  height: 100%;
 }
 .project-card-ide:hover {
   transform: translateY(-5px);
   border-color: var(--text-muted);
+}
+
+/* Clickable card variant */
+.project-card-clickable {
+  position: relative;
+  cursor: pointer;
+}
+.project-card-clickable:hover {
+  border-color: var(--variable-color);
+}
+.project-card-overlay-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.project-card-image-link {
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+.project-card-clickable .project-card-header {
+  justify-content: space-between;
+}
+.project-card-clickable .project-card-body {
+  position: relative;
+  z-index: 2;
+}
+.project-card-clickable .project-card-actions {
+  position: relative;
+  z-index: 3;
 }
 .project-card-header {
   height: 36px;
@@ -1222,11 +1254,15 @@ a {
 @media (max-width: 991.98px) {
   .hello-layout {
     grid-template-columns: 1fr;
-    padding: 30px;
+    padding: 40px 20px;
     gap: 30px;
-    overflow-y: auto;
-    height: 100%;
     align-items: start;
+    height: auto;
+  }
+  .hello-code {
+    white-space: normal;
+    word-break: break-all;
+    font-size: 13px;
   }
   .about-layout {
     grid-template-columns: 1fr;
@@ -1243,7 +1279,7 @@ a {
   .hello-intro h1 {
     margin-top: 20px;
   }
-  .hello-intro h2 {
+  .hello-subtitle {
     margin-bottom: 25px;
   }
   .game-widget {

@@ -107,8 +107,16 @@ function initSnakeGame() {
   let isPlaying = false;
 
   const foodDots = document.querySelectorAll("#foodDots .food-dot");
-  const btnSkip = document.getElementById("btnSkipGame");
-  if (btnSkip) btnSkip.addEventListener("click", skipGame);
+  const overlay = document.getElementById("gameOverlay");
+  const overlayTitle = document.getElementById("gameOverlayTitle");
+  const btnStart = document.getElementById("btnStartGame");
+
+  if (btnStart) {
+    btnStart.addEventListener("click", () => {
+      startGame();
+      if (overlay) overlay.style.display = "none";
+    });
+  }
 
   document.getElementById("btnUp")?.addEventListener("click", () => changeDirection(0, -1));
   document.getElementById("btnLeft")?.addEventListener("click", () => changeDirection(-1, 0));
@@ -171,9 +179,7 @@ function initSnakeGame() {
     }
     snake.forEach((seg, idx) => {
       ctx.fillStyle = idx === 0 ? "#43d9ad" : "#32a584";
-      ctx.beginPath();
-      ctx.roundRect(seg.x * gridCellSize + 2, seg.y * gridCellSize + 2, gridCellSize - 4, gridCellSize - 4, 4);
-      ctx.fill();
+      ctx.fillRect(seg.x * gridCellSize + 2, seg.y * gridCellSize + 2, gridCellSize - 4, gridCellSize - 4);
       if (idx === 0) {
         ctx.fillStyle = "#fff";
         ctx.beginPath();
@@ -212,39 +218,25 @@ function initSnakeGame() {
   function gameOver() {
     isPlaying = false;
     clearInterval(gameInterval);
-    // redraw final state
     drawGame();
+    if (overlayTitle) {
+      overlayTitle.textContent = "GAME OVER!";
+      overlayTitle.classList.add("game-over");
+    }
+    if (btnStart) btnStart.textContent = "play-again";
+    if (overlay) overlay.style.display = "flex";
   }
 
   function gameWin() {
     isPlaying = false;
     clearInterval(gameInterval);
-    skipGame();
-  }
-
-  function skipGame() {
-    isPlaying = false;
-    clearInterval(gameInterval);
-
-    const board = document.querySelector(".game-board");
-    const dpad = document.querySelector(".dpad-container");
-    if (board) board.style.display = "none";
-    if (dpad) dpad.style.display = "none";
-
-    const snippetsPanel = document.getElementById("codeSnippetsPanel");
-    if (snippetsPanel) {
-      snippetsPanel.classList.remove("d-none");
-      snippetsPanel.removeAttribute("aria-hidden");
-      snippetsPanel.style.display = "block";
-      const scroller = document.getElementById("snippetScroller");
-      if (scroller) {
-        let content = "";
-        for (let i = 0; i < 5; i++) {
-          content += `<pre style="color: var(--text-muted); margin-bottom: 20px;">${codeSnippets}</pre>`;
-        }
-        scroller.innerHTML = content;
-      }
+    drawGame();
+    if (overlayTitle) {
+      overlayTitle.textContent = "YOU WIN!";
+      overlayTitle.classList.remove("game-over");
     }
+    if (btnStart) btnStart.textContent = "play-again";
+    if (overlay) overlay.style.display = "flex";
   }
 
   // Initial draw (paused)

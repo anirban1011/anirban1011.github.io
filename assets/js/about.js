@@ -83,16 +83,6 @@ const skills = {
  */
 const experience = [
   {
-    role: "Founder & Lead Instructor",
-    company: "CodeCraft Computer Academy | Maynaguri",
-    period: "March 2026 - Present",
-    keyDeliverables: [
-      "Established independent computer academy training programming basics",
-      "Instruct fundamental OOP languages (C, C++, Java, Python)",
-      "Designed curriculum mapping compiler fundamentals to terminal tasks"
-    ]
-  },
-  {
     role: "Lead Software Developer / Freelancer",
     company: "Self-Directed SaaS & Automation | Remote",
     period: "2013 - Present",

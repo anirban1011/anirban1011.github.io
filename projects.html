@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary Meta -->
-    <title>Projects — Anirban Routh's Android &amp; Dev Work</title>
-    <meta name="description" content="Explore Anirban Routh's apps including SMS Forwarder v3.4, a high-performance Android automation tool built with Kotlin, Room DB, and Google Drive API." />
+    <title>Projects — Anirban Routh's Android &amp; Web Systems</title>
+    <meta name="description" content="Explore Anirban Routh's software projects including SMS Forwarder v3.4, an Android automation tool, and KuberKosh, a secure digital wallet for micro-transactions." />
     <meta name="author" content="Anirban Routh" />
-    <meta name="keywords" content="SMS Forwarder Android app, Kotlin app, Anirban Routh projects, Android automation app, developer portfolio projects" />
+    <meta name="keywords" content="SMS Forwarder Android, KuberKosh, KuberKosh wallet, digital wallet PHP, Android automation app, developer portfolio projects, PHP MariaDB Docker AWS" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="theme-color" content="#01080e" />
     <link rel="canonical" href="https://anirbanrouth.in/projects.html" />
@@ -17,23 +17,23 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://anirbanrouth.in/projects.html" />
-    <meta property="og:title" content="Projects — Anirban Routh Android &amp; Dev Work" />
-    <meta property="og:description" content="SMS Forwarder v3.4 — a high-performance Android automation utility to forward SMS to webhooks, email servers, or other phones. Built with Kotlin." />
+    <meta property="og:title" content="Projects — Anirban Routh's Android &amp; Web Systems" />
+    <meta property="og:description" content="Explore Anirban Routh's software systems, including SMS Forwarder v3.4 (Android utility) and KuberKosh (secure micro-transaction web wallet)." />
     <meta property="og:image" content="https://anirbanrouth.in/images/og-card.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Anirban Routh — Android Developer portfolio card" />
+    <meta property="og:image:alt" content="Anirban Routh — Developer portfolio card" />
     <meta property="og:site_name" content="Anirban Routh Portfolio" />
     <meta property="og:locale" content="en_IN" />
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Projects — Anirban Routh Android Dev Work" />
-    <meta name="twitter:description" content="SMS Forwarder v3.4 — Android automation to forward SMS to webhooks. Built with Kotlin." />
+    <meta name="twitter:title" content="Projects — Anirban Routh Android &amp; Web Work" />
+    <meta name="twitter:description" content="Explore Anirban Routh's software projects including SMS Forwarder v3.4 and KuberKosh wallet." />
     <meta name="twitter:image" content="https://anirbanrouth.in/images/og-card.png" />
     <meta name="twitter:image:alt" content="Anirban Routh portfolio card" />
 
-    <!-- JSON-LD: SoftwareApplication -->
+    <!-- JSON-LD: SMS Forwarder -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -42,7 +42,7 @@
       "operatingSystem": "Android",
       "applicationCategory": "UtilitiesApplication",
       "url": "https://github.com/anirban1011/SMS_Forwarder",
-      "downloadUrl": "https://github.com/anirban1011/SMS_Forwarder/releases/download/v3.4/SMS_Forwarder_v3.4.0.apk",
+      "downloadUrl": "https://github.com/anirban1011/SMS_Forwarder/releases/download/3.4.0/SMS_Forwarder_v3.4.0.apk",
       "softwareVersion": "3.4",
       "author": {
         "@type": "Person",
@@ -52,6 +52,26 @@
       "description": "A high-performance Android automation utility designed to synchronise and forward incoming SMS alerts to webhooks, email servers, or other phones.",
       "programmingLanguage": "Kotlin",
       "screenshot": "https://anirbanrouth.in/images/sms_forwarder.png"
+    }
+    </script>
+
+    <!-- JSON-LD: KuberKosh -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "KuberKosh",
+      "operatingSystem": "Web",
+      "applicationCategory": "FinanceApplication",
+      "url": "https://github.com/anirban1011/KuberKosh",
+      "author": {
+        "@type": "Person",
+        "name": "Anirban Routh",
+        "url": "https://anirbanrouth.in"
+      },
+      "description": "A secure digital wallet designed to make micro-transactions easy and secure. Features secure login with Google OAuth and TOTP, SHA256 hashed PIN storage, and Cloudflare DDoS protection.",
+      "programmingLanguage": "PHP",
+      "screenshot": "https://anirbanrouth.in/images/kuberkosh_dashboard.jpg"
     }
     </script>
 
@@ -188,33 +208,87 @@
                         <!-- Projects Grid -->
                         <div class="projects-layout" id="projectsGrid" role="list" aria-label="Projects list">
                             <!-- SMS Forwarder -->
-                            <article class="project-card-ide" data-category="app" role="listitem" aria-label="SMS Forwarder v3.4 project">
+                            <article class="project-card-ide project-card-clickable" data-category="app" role="listitem" aria-label="SMS Forwarder v3.4 project — click to view details">
+                                <!-- Clickable overlay link for the whole card -->
+                                <a href="./sms-forwarder.html"
+                                   class="project-card-overlay-link"
+                                   aria-label="Open SMS Forwarder project page"
+                                   tabindex="-1"
+                                   aria-hidden="true"></a>
                                 <div class="project-card-header">
                                     <span>Project 1 // _sms-forwarder</span>
+                                    <i class="bi bi-arrow-up-right-circle" style="font-size: 14px; color: var(--text-muted);" aria-hidden="true"></i>
                                 </div>
-                                <div class="project-card-image">
-                                    <img src="./images/sms_forwarder.png" loading="lazy" alt="SMS Forwarder v3.4 — Android app screenshot showing SMS forwarding to webhook dashboard" width="400" height="225" />
-                                    <span class="project-card-badge">Active</span>
-                                </div>
+                                <a href="./sms-forwarder.html" class="project-card-image-link" aria-label="View SMS Forwarder details" tabindex="-1">
+                                    <div class="project-card-image">
+                                        <img src="./images/sms_forwarder.png" loading="lazy" alt="SMS Forwarder v3.4 — Android app screenshot showing SMS forwarding to webhook dashboard" width="400" height="225" />
+                                        <span class="project-card-badge">Active</span>
+                                    </div>
+                                </a>
                                 <div class="project-card-body">
-                                    <h2>SMS Forwarder v3.4</h2>
+                                    <h2>
+                                        <a href="./sms-forwarder.html" style="color: inherit; text-decoration: none;" aria-label="Read more about SMS Forwarder v3.4">
+                                            SMS Forwarder v3.4
+                                        </a>
+                                    </h2>
                                     <p>A high-performance Android automation utility designed to synchronise and forward incoming SMS alerts to webhooks, email servers, or other phones.</p>
                                     <div class="project-card-tags">
                                         <span>// kotlin // room-db // drive-api</span>
                                     </div>
                                     <div class="project-card-actions" style="display: flex; gap: 12px; width: 100%;">
                                         <a class="project-card-btn"
-                                           href="https://github.com/anirban1011/SMS_Forwarder"
-                                           target="_blank"
-                                           rel="noopener noreferrer"
+                                           href="./sms-forwarder.html"
                                            style="flex: 1; text-align: center; text-decoration: none;"
-                                           aria-label="View SMS Forwarder source code on GitHub">view-project</a>
+                                           aria-label="Read more about SMS Forwarder v3.4">read-more</a>
                                         <a class="project-card-btn"
-                                           href="https://github.com/anirban1011/SMS_Forwarder/releases/download/v3.4/SMS_Forwarder_v3.4.0.apk"
+                                           href="https://github.com/anirban1011/SMS_Forwarder/releases/download/3.4.0/SMS_Forwarder_v3.4.0.apk"
                                            target="_blank"
                                            rel="noopener noreferrer"
                                            style="flex: 1; text-align: center; text-decoration: none; background-color: var(--accent-orange); color: var(--bg-dark); font-weight: 500;"
                                            aria-label="Download SMS Forwarder v3.4 APK">download-app</a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- KuberKosh -->
+                            <article class="project-card-ide project-card-clickable" data-category="web" role="listitem" aria-label="KuberKosh project — click to view details">
+                                <!-- Clickable overlay link for the whole card -->
+                                <a href="./kuberkosh.html"
+                                   class="project-card-overlay-link"
+                                   aria-label="Open KuberKosh project page"
+                                   tabindex="-1"
+                                   aria-hidden="true"></a>
+                                <div class="project-card-header">
+                                    <span>Project 2 // _kuberkosh</span>
+                                    <i class="bi bi-arrow-up-right-circle" style="font-size: 14px; color: var(--text-muted);" aria-hidden="true"></i>
+                                </div>
+                                <a href="./kuberkosh.html" class="project-card-image-link" aria-label="View KuberKosh details" tabindex="-1">
+                                    <div class="project-card-image">
+                                        <img src="./images/kuberkosh_dashboard.jpg" loading="lazy" alt="KuberKosh — Secure digital wallet dashboard UI screenshot showing account details and statistics" width="400" height="225" />
+                                        <span class="project-card-badge" style="background-color: #43d9ad; color: var(--bg-dark);">Completed</span>
+                                    </div>
+                                </a>
+                                <div class="project-card-body">
+                                    <h2>
+                                        <a href="./kuberkosh.html" style="color: inherit; text-decoration: none;" aria-label="Read more about KuberKosh">
+                                            KuberKosh Wallet
+                                        </a>
+                                    </h2>
+                                    <p>A secure, containerised digital wallet application designed to make micro-transactions and user-to-user money transfers easy and protected.</p>
+                                    <div class="project-card-tags">
+                                        <span>// php // mariadb // bootstrap // docker</span>
+                                    </div>
+                                    <div class="project-card-actions" style="display: flex; gap: 12px; width: 100%;">
+                                        <a class="project-card-btn"
+                                           href="./kuberkosh.html"
+                                           style="flex: 1; text-align: center; text-decoration: none;"
+                                           aria-label="Read more about KuberKosh">read-more</a>
+                                        <a class="project-card-btn"
+                                           href="https://github.com/anirban1011/KuberKosh"
+                                           target="_blank"
+                                           rel="noopener noreferrer"
+                                           style="flex: 1; text-align: center; text-decoration: none; background-color: var(--accent-orange); color: var(--bg-dark); font-weight: 500;"
+                                           aria-label="View KuberKosh source code on GitHub">view-code</a>
                                     </div>
                                 </div>
                             </article>
