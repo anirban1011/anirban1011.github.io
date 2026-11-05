@@ -18,8 +18,6 @@ Open `index.html` and modify:
 - Contact details (phone, email, WhatsApp link) in the `#contact` section.
 - Copyright footer text.
 
-### 2. Replace Resume PDF
-Replace `Shayan_Sarkar_Resume.pdf` in the root folder with your own resume PDF, ensuring the file name matches exactly or update the link in `index.html` (line 88).
 
 ### 3. Configure Contact Form (EmailJS)
 The contact form uses **EmailJS** to send form submissions directly to your email box.
