@@ -32,7 +32,7 @@
     <nav aria-label="Main"><ul id="navList"><li><a href="./index.html">Home</a></li><li><a href="./about.html">About</a></li><li><a href="./projects.html" aria-current="page">Projects</a></li><li><a href="./contact.html">Contact</a></li></ul></nav>
   </div>
 </header>
-<main id="main">
+<main id="main" class="detail">
 
 <section class="page-hero">
   <div class="wrap">
@@ -57,20 +57,12 @@
   </div>
 </section>
 <section style="padding:24px 0 0"><div class="wrap"><div class="stats"><div class="stat"><b>< 2s</b><span>Transaction confirmation</span></div><div class="stat"><b>SHA-256</b><span>PIN encryption & secure hashes</span></div><div class="stat"><b>Google / TOTP</b><span>Authentication mechanisms</span></div><div class="stat"><b>AWS Deployed</b><span>Cloud Docker container stack</span></div></div></div></section>
-<section id="problem-solution"><div class="wrap"><div class="section-head"><p class="eyebrow">Why it exists</p><h2>The problem and the solution</h2></div><div class="grid g2"><div class="card"><h3>The Core Challenges</h3>
-<p>
-<strong>Vulnerable Logins &amp; Interceptions:</strong> Simple web apps frequently transmit unhashed credentials or expose session variables to interception.<br><br>
-<strong>Cluttered Bank Statements:</strong> Buying snacks, street food, or paying minor utility bills fills bank logs with dozens of tiny entries.<br><br>
-<strong>Financial Blind Spots:</strong> Most everyday payment tools provide no immediate summary of lifestyle category spends.
-                                </p>
+<nav class="jump" aria-label="On this page"><div class="wrap"><ul><li><a href="#problem-solution">Problem & solution</a></li><li><a href="#features">Features</a></li><li><a href="#tech">Tech stack</a></li><li><a href="#edge-cases">Edge cases</a></li><li><a href="#future">Future scope</a></li><li><a href="#faq">FAQ</a></li><li><a href="#run">Run locally</a></li></ul></div></nav><section id="problem-solution"><div class="wrap"><div class="section-head"><p class="eyebrow">Why it exists</p><h2>The problem and the solution</h2></div><div class="grid g2 ps"><div class="card"><h3>The Core Challenges</h3>
+<ul class="pts"><li><strong>Vulnerable Logins &amp; Interceptions:</strong> Simple web apps frequently transmit unhashed credentials or expose session variables to interception.</li><li><strong>Cluttered Bank Statements:</strong> Buying snacks, street food, or paying minor utility bills fills bank logs with dozens of tiny entries.</li><li><strong>Financial Blind Spots:</strong> Most everyday payment tools provide no immediate summary of lifestyle category spends.</li></ul>
 </div><div class="card"><h3>The KuberKosh Fix</h3>
-<p>
-<strong>Cryptographic Vault Access:</strong> Implements a three-layered guard—Google OAuth2, localized TOTP Multi-Factor Authentication, and zero-plaintext client-side SHA-256 PIN hashing.<br><br>
-<strong>Isolated Wallet Architecture:</strong> Moves everyday micro-payments off bank servers into a secure relational database sandbox, grouping funding and withdrawal records cleanly.<br><br>
-<strong>Instant Analytics Engine:</strong> Dynamically renders real-time budget category percentages and multi-timeframe balance trends right on the primary viewport.
-                                </p>
+<ul class="pts"><li><strong>Cryptographic Vault Access:</strong> Implements a three-layered guard—Google OAuth2, localized TOTP Multi-Factor Authentication, and zero-plaintext client-side SHA-256 PIN hashing.</li><li><strong>Isolated Wallet Architecture:</strong> Moves everyday micro-payments off bank servers into a secure relational database sandbox, grouping funding and withdrawal records cleanly.</li><li><strong>Instant Analytics Engine:</strong> Dynamically renders real-time budget category percentages and multi-timeframe balance trends right on the primary viewport.</li></ul>
 </div></div></div></section>
-<section id="features"><div class="wrap"><div class="section-head"><p class="eyebrow">Features</p><h2>Features</h2></div><div class="grid g2"><div class="card"><h3>Unified Analytics Dashboard</h3>
+<section id="features"><div class="wrap"><div class="section-head"><p class="eyebrow">Features</p><h2>Features</h2></div><div class="grid g2 feat"><div class="card"><h3>Unified Analytics Dashboard</h3>
 <ul>
 <li><strong>Visibility Toggle:</strong> Obfuscate sensitive balances instantly with a visibility toggle icon in public areas.</li>
 <li><strong>Spend Analysis Ring:</strong> JavaScript donut chart detailing category expenditures (Education, Party, Travel, Movie).</li>
@@ -137,7 +129,7 @@
 </tr>
 </tbody>
 </table></div></div></section>
-<section><div class="wrap"><div class="section-head"><p class="eyebrow">Reliability</p><h2>Edge cases</h2><p>Client- and server-side data verification rules for absolute reliability.</p></div><div class="grid g2 perms"><div class="perm"><code>Zero-Value</code><div>
+<section id="edge-cases"><div class="wrap"><div class="section-head"><p class="eyebrow">Reliability</p><h2>Edge cases</h2><p>Client- and server-side data verification rules for absolute reliability.</p></div><div class="grid g2 perms"><div class="perm"><code>Zero-Value</code><div>
 <strong>Zero-Value Submissions:</strong> Prevents structural mutations by actively testing transfers for values ≤ 0, outputting descriptive toast notifications.
 </div></div><div class="perm"><code>Sanitization</code><div>
 <strong>Character Injection:</strong> Standardizes strict integer parsing validations on incoming values to trap alphanumeric manipulation cleanly.
@@ -146,7 +138,7 @@
 </div></div><div class="perm"><code>Clock Shift</code><div>
 <strong>MFA Clock Shifts:</strong> Integrates synchronization safety nets within time-aligned code properties to account for device-server clock differences.
 </div></div></div></div></section>
-<section><div class="wrap"><div class="section-head"><p class="eyebrow">What's next</p><h2>Future scope</h2></div><div class="grid g2"><div class="card"><h3>AI Financial Guidance</h3>
+<section id="future"><div class="wrap"><div class="section-head"><p class="eyebrow">What's next</p><h2>Future scope</h2></div><div class="grid g2 feat"><div class="card"><h3>AI Financial Guidance</h3>
 <p>Integrating machine learning layers to scan transaction properties over time, providing users with proactive budgeting advice and optimization strategies.</p>
 </div><div class="card"><h3>Anomaly Defense Matrices</h3>
 <p>Incorporating AI-driven risk scoring profiles to recognize sudden geographic shifts or unusual transaction velocity pattern variations dynamically.</p>

@@ -257,3 +257,85 @@ pre code { overflow-wrap: normal; }
 .steps li, .ticks li { min-width: 0; }
 .steps pre { max-width: 100%; }
 .steps pre { white-space: pre-wrap; word-break: break-word; }
+
+/* ═══ Detail pages: colour & readability pass ═══ */
+:root { --hl: #8ee6cb; --red: #e28972; }
+section { scroll-margin-top: 130px; }
+.detail strong { color: var(--hl); font-weight: 600; }
+.detail code { color: var(--orange); background: rgba(254,161,95,.09); }
+.detail pre code { background: none; color: var(--text); }
+.detail .lead strong, .detail .prose strong { color: var(--hl); }
+.detail .eyebrow { display: inline-flex; align-items: center; gap: 10px; }
+.detail .eyebrow::before { content: ""; width: 22px; height: 2px; background: var(--orange); border-radius: 2px; }
+.detail h2 { font-size: 1.8rem; }
+.detail .section-head p { color: var(--muted); }
+
+/* Jump menu */
+.jump { position: sticky; top: 68px; z-index: 40; background: rgba(1,8,14,.92); backdrop-filter: blur(10px); border-block: 1px solid var(--border); }
+.jump ul { list-style: none; display: flex; gap: 6px; overflow-x: auto; padding: 10px 0; scrollbar-width: none; }
+.jump ul::-webkit-scrollbar { display: none; }
+.jump a { display: block; white-space: nowrap; padding: 6px 14px; border-radius: 999px; font-size: 14px; font-weight: 500; color: var(--muted); border: 1px solid var(--border); }
+.jump a:hover { color: var(--text); border-color: var(--teal); text-decoration: none; }
+
+/* Card families */
+.feat, .uc, .usp, .ps { counter-reset: n; }
+.feat .card, .uc .card, .usp .card { position: relative; padding-top: 52px; border-top: 3px solid var(--teal); counter-increment: n; }
+.feat .card::before, .uc .card::before, .usp .card::before {
+  content: counter(n, decimal-leading-zero); position: absolute; top: 16px; left: 24px;
+  font: 600 13px "Fira Code", ui-monospace, monospace; color: var(--teal); background: rgba(67,217,173,.1); padding: 2px 8px; border-radius: 6px; }
+.feat .card:nth-child(3n+2), .uc .card:nth-child(3n+2) { border-top-color: var(--blue); }
+.feat .card:nth-child(3n+2)::before, .uc .card:nth-child(3n+2)::before { color: var(--blue); background: rgba(60,157,255,.1); }
+.feat .card:nth-child(3n), .uc .card:nth-child(3n) { border-top-color: var(--orange); }
+.feat .card:nth-child(3n)::before, .uc .card:nth-child(3n)::before { color: var(--orange); background: rgba(254,161,95,.1); }
+.usp .card:nth-child(1) { border-top-color: var(--red); } .usp .card:nth-child(1)::before { color: var(--red); background: rgba(226,137,114,.1); }
+.usp .card:nth-child(3) { border-top-color: var(--blue); } .usp .card:nth-child(3)::before { color: var(--blue); background: rgba(60,157,255,.1); }
+.usp .card:nth-child(2) { border-top-color: var(--teal); }
+.ps .card { border-top: 3px solid var(--orange); } .ps .card:nth-child(2) { border-top-color: var(--teal); }
+.ps .card h3 { font-size: 1.2rem; }
+.kw { display: inline-block; margin-top: 14px; padding: 3px 10px; border-radius: 6px; background: rgba(60,157,255,.1); color: #8cc4ff; font-size: 13px; }
+.pts { list-style: none; display: grid; gap: 12px; margin-top: 8px; }
+.pts li { padding-left: 22px; position: relative; font-size: 16px; }
+.pts li::before { content: ""; position: absolute; left: 4px; top: .7em; width: 7px; height: 7px; border-radius: 50%; background: var(--teal); }
+.ps .card:first-child .pts li::before { background: var(--orange); }
+.pts strong { display: block; color: var(--text); }
+.detail .pts strong { color: var(--hl); }
+
+/* Stats */
+.stats .stat { border-left: 3px solid var(--teal); }
+.stats .stat:nth-child(2n) { border-left-color: var(--blue); }
+.stats .stat:nth-child(3n) { border-left-color: var(--orange); }
+.stats .stat b { font-size: 1.6rem; }
+.stats .stat:nth-child(2n) b { color: var(--blue); }
+.stats .stat:nth-child(3n) b { color: var(--orange); }
+.stats { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+.prose p { font-size: 1.05rem; }
+
+/* Dependencies */
+.info-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 18px; }
+.info-tiles div { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; }
+.info-tiles small { display: block; color: var(--orange); font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
+.info-tiles b { color: var(--text); font-weight: 600; font-size: 15px; word-break: break-word; }
+.dep-card h3 { color: var(--teal); font-size: 1rem; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.dep { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px dashed var(--border); }
+.dep:last-child { border-bottom: 0; padding-bottom: 0; }
+.dep b { display: block; color: var(--text); font-size: 15px; font-weight: 600; word-break: break-word; }
+.dep small { display: block; color: var(--muted); font: 12px "Fira Code", ui-monospace, monospace; word-break: break-all; }
+.dep-note { display: block; font-size: 12px; color: var(--blue); font-style: normal; margin-top: 2px; }
+.ver { flex: none; font: 500 13px "Fira Code", ui-monospace, monospace; color: var(--orange); background: rgba(254,161,95,.1); border: 1px solid rgba(254,161,95,.3); padding: 3px 9px; border-radius: 999px; }
+
+/* Tables, flow, permissions, FAQ */
+table.spec td:first-child { color: var(--teal); font-weight: 600; white-space: nowrap; }
+table.spec thead th { color: var(--orange); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+.flow .num { color: #012; background: var(--teal); border: 0; }
+.flow li:nth-child(3n+2) .num { background: var(--blue); }
+.flow li:nth-child(3n) .num { background: var(--orange); }
+.flow h3 { font-size: 1.1rem; }
+.perm { border-left: 3px solid var(--teal); }
+.perm:nth-child(3n+2) { border-left-color: var(--blue); } .perm:nth-child(3n) { border-left-color: var(--orange); }
+.detail details summary { font-size: 1.02rem; }
+.detail details[open] { border-color: var(--teal); }
+.detail details[open] summary { color: var(--hl); }
+.callout { border-left-color: var(--orange); background: rgba(254,161,95,.06); }
+.callout strong { color: var(--orange) !important; }
+.detail .chips .chip.accent { background: rgba(67,217,173,.08); }
+@media (max-width: 860px) { .jump { top: 68px; } .detail h2 { font-size: 1.5rem; } }
