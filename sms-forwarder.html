@@ -21,7 +21,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./assets/css/style.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "SMS Forwarder", "operatingSystem": "Android 10+", "applicationCategory": "UtilitiesApplication", "description": "Free Android app that automatically forwards incoming SMS to a webhook, an email address or another phone. On-device processing, no root required.", "url": "https://anirbanrouth.in/sms-forwarder.html", "downloadUrl": "https://github.com/anirban1011/SMS_Forwarder/releases/download/3.4.0/SMS_Forwarder_v3.4.0.apk", "softwareVersion": "3.4.0", "screenshot": "https://anirbanrouth.in/images/sms_forwarder.jpg", "author": {"@type": "Person", "name": "Anirban Routh", "url": "https://anirbanrouth.in"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}, "isAccessibleForFree": true}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is it really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. SMS Forwarder is free to download and use, with no ads, no subscription and no account. The app itself is closed-source and is shared as a ready-to-install APK on GitHub."}}, {"@type": "Question", "name": "Why isn't it on the Google Play Store?", "acceptedAnswer": {"@type": "Answer", "text": "Google Play places strict limits on apps that read text messages, so I share it directly from GitHub Releases. Your phone may show a Play Protect warning when installing, which is common for apps from outside the Play Store."}}, {"@type": "Question", "name": "Are my messages sent to your servers?", "acceptedAnswer": {"@type": "Answer", "text": "No. Everything happens on your phone. Messages go only to the destinations you set up, and nothing is sent to me or to any third party. The optional Google Drive backup saves only your rule settings, in your own Drive."}}, {"@type": "Question", "name": "Will it keep working when the screen is off?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It runs as a background service with a small permanent notification, restarts after the phone reboots, and asks you to switch off battery optimisation so Android doesn't stop it."}}, {"@type": "Question", "name": "Does it work with two SIM cards?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Each rule can apply to any SIM, only SIM 1 or only SIM 2, and you can choose which SIM sends forwarded messages."}}, {"@type": "Question", "name": "Do I need to root my phone?", "acceptedAnswer": {"@type": "Answer", "text": "No. It uses only standard Android features and works on Android 10 or newer."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is an SMS Forwarder app for Android?", "acceptedAnswer": {"@type": "Answer", "text": "An SMS Forwarder is an Android app that automatically intercepts incoming text messages and relays them to another destination — such as a webhook URL, email inbox, or another phone number — without any manual action. SMS Forwarder v3.4 uses a high-priority BroadcastReceiver (priority 999) and a persistent ForegroundService , ensuring zero missed messages even with the screen off. No root required."}}, {"@type": "Question", "name": "How do I forward SMS to a webhook URL on Android?", "acceptedAnswer": {"@type": "Answer", "text": "Download the free APK, install it, tap + (FAB) to add a rule, choose Webhook as destination, paste your URL (n8n Production URL, Zapier Catch Hook, Make.com webhook, your own REST API), set any sender/keyword filter, and toggle ON. Enable Expert Mode to customise the JSON payload shape and add HTTP headers like Authorization: Bearer TOKEN . The app POSTs {sender, body, timestamp} and any extracted values."}}, {"@type": "Question", "name": "How do I automatically forward OTP codes to email?", "acceptedAnswer": {"@type": "Answer", "text": "Go to Settings → SMTP Configuration and enter your mail server details (host, port, username, password). Then add a rule: choose Email destination, enter your email address. Set sender filter to your bank's ID (e.g. \"HDFC\") or keyword \"OTP\". Enable Auto-OTP extraction mode. The {OTP} placeholder will contain the extracted code. Every matching SMS is forwarded to your inbox within seconds — completely automatically, even when your phone is locked."}}, {"@type": "Question", "name": "How do I forward SMS to n8n or Zapier from Android?", "acceptedAnswer": {"@type": "Answer", "text": "In n8n : create a Webhook node → copy the Production URL. In Zapier : Webhooks by Zapier → Catch Hook → copy the URL. In Make.com : add a Custom Webhook module → copy the URL. Then in SMS Forwarder: add a rule, choose Webhook, paste the URL. Enable Expert Mode to add Authorization headers or customise the JSON template to match your automation platform's expected format. The app will trigger your workflow on every matching SMS in real time."}}, {"@type": "Question", "name": "Does SMS Forwarder work in the background on Android 10, 11, 12, 13, 14, 15?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. ForwardingService is a ForegroundService with a persistent status bar notification — Android cannot kill it automatically. BootReceiver restarts it after reboots. START_STICKY tells Android to recreate it if killed by memory pressure. The app prompts you to disable battery optimisation on first launch via Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS . Additionally, SmsReceiver (priority 999) intercepts messages independently of the service state."}}, {"@type": "Question", "name": "Does SMS Forwarder support Dual-SIM phones?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The app reads the Subscription ID from the incoming SMS intent to identify which SIM received it. Each forwarding rule can independently target Any SIM , SIM 1 only , or SIM 2 only . When forwarding to another phone number, you can also choose which SIM to use for sending the outgoing message."}}, {"@type": "Question", "name": "Is SMS Forwarder private? Are my messages stored on a server?", "acceptedAnswer": {"@type": "Answer", "text": "SMS Forwarder is 100% privacy-first . All SMS processing happens locally on your device — no messages, no metadata, no rule data is ever sent to the developer or any third-party server. There is no analytics, no telemetry, no ads. The optional Google Drive backup uses DriveScopes.DRIVE_FILE (restricted scope — the app can only access files it created) and saves only your rule configurations to your own Drive — completely inaccessible to the developer."}}, {"@type": "Question", "name": "Does SMS Forwarder require root?", "acceptedAnswer": {"@type": "Answer", "text": "No. SMS Forwarder uses only standard Android APIs — the SMS_RECEIVED broadcast intent and SmsManager . It works on any non-rooted Android 10+ device from any manufacturer (Samsung, Xiaomi, OnePlus, Realme, Vivo, Oppo, stock Android). No modifications to the system partition are needed or made."}}, {"@type": "Question", "name": "What is Loop Protection and why is it important?", "acceptedAnswer": {"@type": "Answer", "text": "Without loop detection, if Phone A (running SMS Forwarder) forwards to Phone B (also running SMS Forwarder), and Phone B has a rule that forwards back to Phone A, you get an infinite SMS chain that can generate hundreds of messages per minute. RuleValidator detects these circular graphs before execution and blocks the forward. Affected rules are marked with a red warning indicator in the MainActivity card list so you can fix the configuration."}}, {"@type": "Question", "name": "How does the Regex extraction feature work?", "acceptedAnswer": {"@type": "Answer", "text": "In AddEditRuleActivity , choose \"Regex\" as the extraction mode and enter a regular expression with capture groups. SMS Forwarder applies it to every matching message body and exposes the captured groups as template variables. Useful for extracting: transaction amounts from bank alerts, order IDs from delivery SMS, custom OTP formats that Auto-OTP doesn't detect, or any structured data from a specific SMS format."}}, {"@type": "Question", "name": "Is SMS Forwarder free? What is the pricing?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, SMS Forwarder v3.4.0 is completely free to download and use — with no in-app purchases, no ads, no subscriptions, and no accounts required. The app is proprietary, closed-source, and distributed directly on GitHub as a pre-compiled APK."}}, {"@type": "Question", "name": "Is SMS Forwarder available on the Google Play Store?", "acceptedAnswer": {"@type": "Answer", "text": "SMS Forwarder is distributed as a direct APK download from GitHub , not through the Google Play Store. This is common for SMS-reading apps because Google Play has strict restrictions on apps that access SMS content. Download the APK directly from the GitHub Releases page . Google Play Protect may warn you — this is a standard false positive for SMS-permission apps from trusted repositories on GitHub."}}, {"@type": "Question", "name": "What Android version is required?", "acceptedAnswer": {"@type": "Answer", "text": "SMS Forwarder v3.4.0 requires Android 10 (API 29) or higher. It targets Android 15 (API 36). Tested and confirmed working on Android 10, 11, 12, 13, 14, and 15. Compatible with all major Android OEM skins: One UI (Samsung), MIUI/HyperOS (Xiaomi), OxygenOS (OnePlus), Realme UI, ColorOS (Oppo), OriginOS (Vivo), and stock Android."}}]}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -39,118 +39,214 @@
     <p class="crumbs"><a href="./projects.html">← All projects</a></p>
     <p class="eyebrow">Android app</p>
     <h1>SMS Forwarder</h1>
-    <p class="lead">An Android app that automatically sends your incoming text messages to an email address, a web service or another phone — so you never miss an important code or alert.</p>
-    <ul class="chips"><li class="chip accent">Free</li><li class="chip accent">No root needed</li><li class="chip accent">Android 10 or newer</li><li class="chip accent">No ads or tracking</li><li class="chip">Version 3.4.0</li></ul>
-    <div class="btn-row"><a class="btn primary" href="https://github.com/anirban1011/SMS_Forwarder/releases/download/3.4.0/SMS_Forwarder_v3.4.0.apk">Download free APK</a><a class="btn" href="https://github.com/anirban1011/SMS_Forwarder" rel="noopener">View on GitHub</a></div>
+    <p class="role">Auto-Forward Android SMS to Webhook, Email &amp; Phone</p>
+    <p class="lead">
+                                A free Android app built in <strong>Kotlin</strong> that automatically forwards incoming SMS messages to your webhook, email server, or another phone — with <strong>Auto-OTP extraction</strong>, <strong>Dual-SIM support</strong>, <strong>Regex rules</strong>, and real-time <strong>Loop Protection</strong>. All processing is local. No cloud, no ads, no root required. Works on Android 10 through 15.
+                            </p>
+    <ul class="chips"><li class="chip accent">Active</li><li class="chip accent">v3.4.0 — versionCode 7</li><li class="chip accent">Free to Use (Proprietary)</li><li class="chip accent">No Root Required</li></ul>
+    <div class="btn-row"><a class="btn primary" href="https://github.com/anirban1011/SMS_Forwarder/releases/download/3.4.0/SMS_Forwarder_v3.4.0.apk" rel="noopener">Download Free APK</a><a class="btn" href="https://github.com/anirban1011/SMS_Forwarder" rel="noopener">GitHub Releases</a></div>
+    <ul class="chips"><li class="chip">Kotlin</li><li class="chip">Room 2.8.4</li><li class="chip">OkHttp 4.12.0</li><li class="chip">Drive API v3</li><li class="chip">javax.mail SMTP</li><li class="chip">Coroutines</li><li class="chip">ForegroundService</li><li class="chip">Material 3</li><li class="chip">minSdk 29</li><li class="chip">No Root</li></ul>
+    <div class="callout"><strong>In plain words:</strong> the app watches for new text messages on your Android phone and automatically sends a copy to an email address, a web service or another phone — based on rules you choose. It keeps everything on your phone.</div>
   </div>
 </section>
+<section style="padding-top:8px"><div class="wrap"><div class="shot"><img src="./images/sms_forwarder.jpg" alt="SMS Forwarder v3.4 Android app — main screen showing rule cards with toggle switches, warning indicators, and a button to add forwarding rules" width="1400" height="1004"></div></div></section>
+<section><div class="wrap"><div class="section-head"><p class="eyebrow">Overview</p><h2>What is SMS Forwarder?</h2></div><div class="prose"><p>
+<strong>SMS Forwarder</strong> is a free Android app that runs silently in the background and <strong>automatically forwards every incoming SMS</strong> to a destination you configure — a <strong>webhook URL</strong> (HTTP POST), an <strong>email inbox</strong> (via your own SMTP server), or <strong>another phone number</strong>. Unlike other SMS gateway apps, it requires <strong>no account, no subscription, no cloud server, and no root access</strong>.
+                                </p><p>
+                                    It is particularly popular for <strong>automating OTP and 2FA code delivery</strong>, building <strong>SMS-to-webhook pipelines</strong> for tools like n8n, Zapier, and Make.com, and <strong>forwarding bank alerts</strong> from a secondary SIM card. Because all processing is on-device, your messages never leave your phone — making it the most privacy-respecting SMS automation tool available.
+                                </p></div><div class="stats"><div class="stat"><b>3</b><span>Forwarding Destinations</span></div><div class="stat"><b>10+</b><span>Filtering Options</span></div><div class="stat"><b>150+</b><span>Countries (Picker)</span></div><div class="stat"><b>0</b><span>Servers / Cloud Used</span></div><div class="stat"><b>Free</b><span>Free to Use</span></div><div class="stat"><b>No Root</b><span>Standard Android APIs</span></div></div></div></section>
+<section id="use-cases"><div class="wrap"><div class="section-head"><p class="eyebrow">Use cases</p><h2>Use cases</h2></div><div class="grid g2"><div class="card"><h3>Forward OTP &amp; 2FA Codes to Email</h3>
+<p>Auto-detect 4–8 digit codes with the <strong>Auto-OTP</strong> feature. Route them to your inbox via SMTP for automated 2FA workflows or remote access — useful when your primary phone is unavailable.</p>
+→ "forward OTP to email Android"
+</div><div class="card"><h3>SMS to n8n / Zapier / Make Webhook</h3>
+<p>Turn your Android into an <strong>SMS gateway</strong>. POST any SMS as a JSON payload to your n8n workflow, Zapier Zap, or custom API. Use Expert Mode to customise payload shape and auth headers.</p>
+→ "forward SMS to webhook Android"
+</div><div class="card"><h3>Forward Bank &amp; Alert SMS</h3>
+<p>Create sender-specific rules to match your bank's alphanumeric sender ID (e.g. "HDFC", "VM-AMAZON"). Extract amounts or account numbers using <strong>Regex</strong> and route them anywhere.</p>
+→ "forward bank SMS automatically Android"
+</div><div class="card"><h3>Dual-SIM Separation &amp; Routing</h3>
+<p>Run a business SIM and personal SIM on the same phone. Forward all messages from SIM 2 to your work email, and SIM 1 to a personal webhook — with <strong>SIM-specific rules</strong>.</p>
+→ "dual SIM SMS forwarder Android"
+</div><div class="card"><h3>SMS-Driven Home Automation</h3>
+<p>Trigger Home Assistant, Node-RED, or any local server by forwarding a specific SMS to your webhook. Parse the message with Regex to extract commands and pass them to your automation pipeline.</p>
+→ "SMS automation Android no cloud"
+</div><div class="card"><h3>Private Monitoring — Zero Cloud</h3>
+<p>Monitor an elderly family member's or employee's device for specific alert SMS — completely privately. No messages are stored on any server. All data stays on your device.</p>
+→ "SMS forwarder no cloud storage Android"
+</div></div></div></section>
+<section id="features"><div class="wrap"><div class="section-head"><p class="eyebrow">Features</p><h2>Features</h2></div><div class="grid g2"><div class="card"><h3>3-Way Forwarding Destinations</h3>
+<p>Route SMS to <strong>Webhook URL</strong> (JSON POST via OkHttp), <strong>Email</strong> (built-in SMTP — no relay), or <strong>Phone Number</strong> (via SmsManager). Mix and match — create one rule per destination type.</p>
+</div><div class="card"><h3>Auto-OTP Extraction</h3>
+<p>Detects any 4–8 digit numeric code automatically. Exposed as <code>{OTP}</code> placeholder in your message template — no regex needed for standard OTP formats.</p>
+</div><div class="card"><h3>Regex Data Extraction</h3>
+<p>Write custom regex to extract any pattern — amounts, order IDs, account numbers. Extracted groups available as template variables in webhook JSON or email body.</p>
+</div><div class="card"><h3>Advanced Sender &amp; Keyword Filtering</h3>
+<p>Match by <strong>sender address</strong> (exact or partial — supports alphanumeric IDs like "HDFC", "VM-AMAZON") and/or <strong>keyword</strong> (case-insensitive body search). Multiple independent rules supported.</p>
+</div><div class="card"><h3>Dual-SIM Support</h3>
+<p>Per-rule SIM targeting: <strong>Any SIM</strong>, <strong>SIM 1 only</strong>, or <strong>SIM 2 only</strong>. Reads Subscription ID from incoming intents. Choose sending SIM for SMS forwards.</p>
+</div><div class="card"><h3>Real-Time Loop Protection</h3>
+<p><code>RuleValidator</code> analyses the rule graph before every forward to detect infinite chains. Blocks loops instantly. Flags affected rules with a red warning in the UI.</p>
+</div><div class="card"><h3>Built-in SMTP Email Client</h3>
+<p>No third-party relay. Uses <code>android-mail 1.6.8</code> (javax.mail). Configure any SMTP server with SSL/TLS. Supports Gmail App Passwords, Outlook, Proton Bridge.</p>
+</div><div class="card"><h3>Webhook + Expert Mode</h3>
+<p>POST JSON to any endpoint — n8n, Zapier, Make, your own API, IFTTT. <strong>Expert Mode</strong> unlocks full JSON template customisation and custom HTTP headers (Bearer tokens, API keys).</p>
+</div><div class="card"><h3>International Country Picker</h3>
+<p>Emoji-flag searchable picker for 150+ countries. Understands regional names — searching "India" also surfaces "Bharat". Built into the split-field phone number UI in the rule editor.</p>
+</div><div class="card"><h3>Private Google Drive Backup</h3>
+<p>Serialises your entire rule list to <code>sms_forwarder_rules.json</code> in your own Drive using <code>DRIVE_FILE</code> scope (app-private). Restore rules on new devices instantly. Zero developer-side storage.</p>
+</div><div class="card"><h3>Battery-Resilient Background Service</h3>
+<p><code>ForwardingService</code> as ForegroundService + <code>BootReceiver</code> for reboot persistence + <code>START_STICKY</code> + battery optimisation exemption request = runs 24/7 reliably.</p>
+</div></div></div></section>
+<section id="tech"><div class="wrap"><div class="section-head"><p class="eyebrow">For developers</p><h2>Tech stack</h2></div><pre class="code">/**
+ * @project  SMS Forwarder v3.4.0 (versionCode 7)
+ * @author   Anirban Routh — github.com/anirban1011
+ * @license  Proprietary / Free to Use | minSdk 29 (Android 10) → targetSdk 36 (Android 15)
+ */
+const dependencies = {
+  // Core
+  core:         "androidx.core:core-ktx:1.10.1",
+  appcompat:    "androidx.appcompat:appcompat:1.6.1",
+  material:     "com.google.android.material:material:1.10.0",
+  activity:     "androidx.activity:activity-ktx:1.13.0",
 
-<section style="padding-top:8px">
-  <div class="wrap"><div class="shot"><img src="./images/sms_forwarder.jpg" alt="SMS Forwarder main screen showing forwarding rules with on/off switches" width="1400" height="1004"></div></div>
-</section>
+  // Persistence
+  room:         "androidx.room:room-runtime:2.8.4",  // + room-ktx + kapt
+// Lifecycle
+  viewmodel:    "lifecycle-viewmodel-ktx:2.10.0",
+  livedata:     "lifecycle-livedata-ktx:2.10.0",
 
-<section>
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Overview</p><h2>What it does</h2>
-      <p>SMS Forwarder runs quietly in the background. Whenever a text message arrives, it checks your rules and passes the message on to the place you chose. You decide which messages to forward, for example only those from your bank or only those containing the word "OTP".</p></div>
-    <div class="grid g3">
-      <div class="card"><h3>To an email inbox</h3><p>Messages arrive in your email using your own mail account. No middleman service.</p></div>
-      <div class="card"><h3>To a web service</h3><p>Send each message to a web address (a "webhook"), for example to connect with tools like n8n, Zapier or Make.</p></div>
-      <div class="card"><h3>To another phone</h3><p>Forward messages as a normal text to another number, choosing which SIM sends it.</p></div>
-    </div>
-  </div>
-</section>
+  // Networking
+  okhttp:       "com.squareup.okhttp3:okhttp:4.12.0",
 
-<section>
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Use cases</p><h2>How people use it</h2></div>
-    <div class="grid g2">
-      <div class="card"><h3>Get one-time codes by email</h3><p>The app spots 4–8 digit codes automatically and can send them to your inbox when your main phone isn't with you.</p></div>
-      <div class="card"><h3>Connect texts to automation tools</h3><p>Turn a message into a trigger for a workflow, such as logging an alert or switching something on at home.</p></div>
-      <div class="card"><h3>Keep track of bank alerts</h3><p>Forward only messages from your bank's sender name and pull out the amount or account number.</p></div>
-      <div class="card"><h3>Separate work and personal SIMs</h3><p>On a dual-SIM phone, send work-SIM messages to a work email and personal ones elsewhere.</p></div>
-    </div>
-  </div>
-</section>
+  // Email (SMTP)
+  mail:         "com.sun.mail:android-mail:1.6.8",
+  activation:   "com.sun.mail:android-activation:1.6.8",
 
-<section>
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Features</p><h2>Main features</h2></div>
-    <div class="card"><ul class="ticks">
-      <li><strong>Three destinations</strong> — email, web service or phone number.</li>
-      <li><strong>Automatic code detection</strong> — finds one-time codes without any setup.</li>
-      <li><strong>Smart filters</strong> — match by sender, by keyword or by SIM card, with as many rules as you like.</li>
-      <li><strong>Data extraction</strong> — pick out amounts, order numbers or other details using patterns (regex).</li>
-      <li><strong>Loop protection</strong> — stops two phones from forwarding to each other endlessly and warns you in red on the rule.</li>
-      <li><strong>Clear warnings</strong> — a yellow warning shows when something isn't set up, such as email details.</li>
-      <li><strong>Private backup</strong> — optionally save your rules to your own Google Drive and restore them on a new phone.</li>
-      <li><strong>Always on</strong> — keeps running with the screen off and restarts after a reboot.</li>
-      <li><strong>Advanced mode</strong> — customise the data sent to a web service, including extra headers for secure connections.</li>
-    </ul></div>
-  </div>
-</section>
+  // Google Drive Backup
+  auth:         "play-services-auth:21.3.0",
+  driveClient:  "google-api-client-android:2.7.2",
+  driveApi:     "google-api-services-drive:v3-rev20241027-2.0.0",
 
-<section>
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Privacy</p><h2>Your messages stay with you</h2>
-      <p>There is no account, no analytics and no server run by me. All processing happens on your phone. The optional Google Drive backup can only see the files the app creates, and it holds only your rule settings.</p></div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Install</p><h2>Set it up in about two minutes</h2></div>
-    <div class="card"><ol class="steps">
-      <li>Download <strong>SMS_Forwarder_v3.4.0.apk</strong> on your Android phone using the button above.</li>
-      <li>Open the file and allow "Install from unknown sources" if your phone asks.</li>
-      <li>Grant the SMS, internet and notification permissions the app requests.</li>
-      <li>When asked, switch off battery optimisation for the app so it keeps running.</li>
-      <li>Tap the <strong>+</strong> button, choose a destination, add a filter if you want one, and switch the rule on.</li>
-    </ol>
-    <div class="btn-row"><a class="btn primary" href="https://github.com/anirban1011/SMS_Forwarder/releases/download/3.4.0/SMS_Forwarder_v3.4.0.apk">Download free APK</a></div></div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">For developers</p><h2>Technical details</h2></div>
-    <details><summary>Technology used</summary><div class="inner">
-      <div class="table-wrap"><table>
-        <tr><th>Language &amp; platform</th><td>Kotlin, Android (minSdk 29 / Android 10, targets SDK 36 / Android 15), Material 3</td></tr>
-        <tr><th>Database</th><td>Room 2.8.4 (SQLite)</td></tr>
-        <tr><th>Networking</th><td>OkHttp 4.12.0 for webhooks, javax.mail (android-mail 1.6.8) for SMTP email</td></tr>
-        <tr><th>Backup</th><td>Google Drive API v3 with the app-private DRIVE_FILE scope</td></tr>
-        <tr><th>Other</th><td>Kotlin Coroutines, Lifecycle (ViewModel, LiveData), Gson, ForegroundService</td></tr>
-      </table></div></div></details>
-    <details><summary>How a message is processed</summary><div class="inner"><ol class="steps">
-      <li><strong>Receive</strong> — a high-priority <code>BroadcastReceiver</code> catches the incoming SMS and uses <code>goAsync()</code> to avoid blocking the main thread.</li>
-      <li><strong>Parse</strong> — sender, body and SIM subscription ID are read from the raw message; multi-part messages are joined.</li>
-      <li><strong>Load rules</strong> — enabled rules are read from Room on <code>Dispatchers.IO</code>.</li>
-      <li><strong>Filter</strong> — each rule checks sender, keyword and SIM; all must match.</li>
-      <li><strong>Validate</strong> — <code>RuleValidator</code> detects circular forwarding chains and blocks them.</li>
-      <li><strong>Format</strong> — placeholders such as <code>{sender}</code>, <code>{body}</code>, <code>{OTP}</code> and regex groups are filled in.</li>
-      <li><strong>Send</strong> — dispatched to the SMS, email or webhook forwarder.</li>
-    </ol></div></details>
-    <details><summary>Permissions the app asks for, and why</summary><div class="inner"><div class="table-wrap"><table>
-      <tr><th>RECEIVE_SMS, READ_SMS</th><td>Detect new messages and read them to apply your rules</td></tr>
-      <tr><th>SEND_SMS</th><td>Forward to another phone number</td></tr>
-      <tr><th>READ_PHONE_STATE</th><td>Tell which SIM received the message (dual-SIM)</td></tr>
-      <tr><th>INTERNET, ACCESS_NETWORK_STATE</th><td>Send to web services and email; check connectivity first</td></tr>
-      <tr><th>RECEIVE_BOOT_COMPLETED</th><td>Restart the service after the phone reboots</td></tr>
-      <tr><th>FOREGROUND_SERVICE (+ remote messaging type)</th><td>Keep the background service running</td></tr>
-      <tr><th>POST_NOTIFICATIONS</th><td>Show the service's notification</td></tr>
-      <tr><th>REQUEST_IGNORE_BATTERY_OPTIMIZATIONS</th><td>Ask Android not to stop the service to save power</td></tr>
-    </table></div></div></details>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">FAQ</p><h2>Common questions</h2></div>
-    <details><summary>Is it really free?</summary><div class='inner'><p>Yes. SMS Forwarder is free to download and use, with no ads, no subscription and no account. The app itself is closed-source and is shared as a ready-to-install APK on GitHub.</p></div></details><details><summary>Why isn't it on the Google Play Store?</summary><div class='inner'><p>Google Play places strict limits on apps that read text messages, so I share it directly from <a href='https://github.com/anirban1011/SMS_Forwarder/releases' rel='noopener'>GitHub Releases</a>. Your phone may show a Play Protect warning when installing, which is common for apps from outside the Play Store.</p></div></details><details><summary>Are my messages sent to your servers?</summary><div class='inner'><p>No. Everything happens on your phone. Messages go only to the destinations you set up, and nothing is sent to me or to any third party. The optional Google Drive backup saves only your rule settings, in your own Drive.</p></div></details><details><summary>Will it keep working when the screen is off?</summary><div class='inner'><p>Yes. It runs as a background service with a small permanent notification, restarts after the phone reboots, and asks you to switch off battery optimisation so Android doesn't stop it.</p></div></details><details><summary>Does it work with two SIM cards?</summary><div class='inner'><p>Yes. Each rule can apply to any SIM, only SIM 1 or only SIM 2, and you can choose which SIM sends forwarded messages.</p></div></details><details><summary>Do I need to root my phone?</summary><div class='inner'><p>No. It uses only standard Android features and works on Android 10 or newer.</p></div></details>
-  </div>
-</section>
-
+  // Serialisation
+  gson:         "com.google.code.gson:gson:2.11.0"
+};</pre></div></section>
+<section><div class="wrap"><div class="section-head"><p class="eyebrow">Technical flow</p><h2>Technical message flow</h2><p>SMS received → forwarded, step by step</p></div><ol class="flow"><li><span class="num">01</span><div><h3>Detection — <code>SmsReceiver</code> (priority 999)</h3>
+<p>A high-priority <code>BroadcastReceiver</code> registered for <code>android.provider.Telephony.SMS_RECEIVED</code> intercepts every incoming SMS before other apps. Calls <code>goAsync()</code> to avoid ANR on the main thread, buying 10 seconds of background processing time.</p>
+</div></li><li><span class="num">02</span><div><h3>Extraction — <code>getMessagesFromIntent()</code></h3>
+<p>Uses <code>Telephony.Sms.Intents.getMessagesFromIntent()</code> to parse raw PDU data and extract sender address, message body, and Subscription ID (for Dual-SIM identification). Multi-part messages are concatenated automatically.</p>
+</div></li><li><span class="num">03</span><div><h3>Rule Loading — <code>RuleRepository</code> on <code>Dispatchers.IO</code></h3>
+<p>A Kotlin Coroutine on <code>Dispatchers.IO</code> queries <code>RuleDao</code> (Room 2.8.4) for all enabled <code>ForwardingRule</code> entities. No main thread blocking. Results are filtered in-memory.</p>
+</div></li><li><span class="num">04</span><div><h3>Filtering — <code>processMessage()</code></h3>
+<p>Each rule is evaluated: <code>senderMatches()</code> (exact/partial), <code>keywordMatches()</code> (case-insensitive body search), <code>simMatches()</code> (Subscription ID). All three must pass. A rule with no sender/keyword filter matches all messages.</p>
+</div></li><li><span class="num">05</span><div><h3>Loop Validation — <code>RuleValidator</code></h3>
+<p><code>RuleValidator</code> analyses the rule graph to detect circular forwarding chains (A→B→A). If a loop is found, the forward is blocked, the rule is flagged red in the database, and <code>LiveData</code> propagates the warning to the UI instantly.</p>
+</div></li><li><span class="num">06</span><div><h3>Template Formatting — <code>formatMessage()</code></h3>
+<p>Resolves placeholders: <code>{sender}</code> → originating number/ID, <code>{body}</code> → full message, <code>{OTP}</code> → auto-detected 4–8 digit code, <code>{regex_group_N}</code> → custom Regex capture. Webhook JSON templates are also rendered here.</p>
+</div></li><li><span class="num">07</span><div><h3>Execution — <code>Forwarder</code> interface dispatch</h3>
+<p>Rule destination type dispatches to the concrete implementation: <code>SmsForwarder</code> → <code>SmsManager.sendTextMessage()</code>. <code>EmailForwarder</code> → <code>javax.mail</code> SMTP session. <code>WebhookForwarder</code> → OkHttp 4.12.0 POST with JSON body and optional custom headers.</p>
+</div></li></ol></div></section>
+<section id="compare"><div class="wrap"><div class="section-head"><p class="eyebrow">Comparison</p><h2>Comparison with other apps</h2><p>SMS Forwarder vs competitors</p></div><div class="table-wrap"><table class="cmp">
+<thead>
+<tr>
+<th>Feature</th>
+<th class="hl">SMS Forwarder<br><small>(Anirban Routh)</small></th>
+<th>httpSMS</th>
+<th>pppscn/SmsForwarder</th>
+<th>SMS Auto Forwarder</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Price</td>
+<td class="hl"><span class="yes">Free to Use</span></td>
+<td><span class="yes">Free tier</span></td>
+<td><span class="yes">Free (MIT)</span></td>
+<td><span class="warn">Freemium</span></td>
+</tr>
+<tr>
+<td>No Account Required</td>
+<td class="hl"><span class="yes">✓ Zero signup</span></td>
+<td><span class="no">✗ Account needed</span></td>
+<td><span class="yes">✓</span></td>
+<td><span class="no">✗ Account needed</span></td>
+</tr>
+<tr>
+<td>Webhook Support</td>
+<td class="hl"><span class="yes">✓ + Expert Mode</span></td>
+<td><span class="yes">✓</span></td>
+<td><span class="yes">✓</span></td>
+<td><span class="yes">✓</span></td>
+</tr>
+<tr>
+<td>Built-in SMTP Email</td>
+<td class="hl"><span class="yes">✓ javax.mail</span></td>
+<td><span class="no">✗</span></td>
+<td><span class="warn">Partial</span></td>
+<td><span class="yes">✓</span></td>
+</tr>
+<tr>
+<td>Auto-OTP Extraction</td>
+<td class="hl"><span class="yes">✓ Built-in</span></td>
+<td><span class="no">✗</span></td>
+<td><span class="no">✗</span></td>
+<td><span class="warn">Partial</span></td>
+</tr>
+<tr>
+<td>Regex Extraction</td>
+<td class="hl"><span class="yes">✓</span></td>
+<td><span class="no">✗</span></td>
+<td><span class="yes">✓</span></td>
+<td><span class="no">✗</span></td>
+</tr>
+<tr>
+<td>Dual-SIM Support</td>
+<td class="hl"><span class="yes">✓ Per-rule</span></td>
+<td><span class="no">✗</span></td>
+<td><span class="warn">Limited</span></td>
+<td><span class="warn">Limited</span></td>
+</tr>
+<tr>
+<td>Loop Protection</td>
+<td class="hl"><span class="yes">✓ Real-time</span></td>
+<td><span class="no">✗</span></td>
+<td><span class="no">✗</span></td>
+<td><span class="no">✗</span></td>
+</tr>
+<tr>
+<td>No Cloud / Privacy-first</td>
+<td class="hl"><span class="yes">✓ 100% local</span></td>
+<td><span class="no">✗ Server relay</span></td>
+<td><span class="yes">✓</span></td>
+<td><span class="no">✗ Cloud sync</span></td>
+</tr>
+<tr>
+<td>No Root Required</td>
+<td class="hl"><span class="yes">✓</span></td>
+<td><span class="yes">✓</span></td>
+<td><span class="yes">✓</span></td>
+<td><span class="yes">✓</span></td>
+</tr>
+</tbody>
+</table></div></div></section>
+<section><div class="wrap"><div class="section-head"><p class="eyebrow">Highlights</p><h2>Highlights</h2></div><div class="grid g3"><div class="card"><h3>Visual Safety System</h3>
+<p><strong>Red warning</strong> on loop-detected rules. <strong>Yellow warning</strong> for config issues (e.g. SMTP not configured). No digging through logs — problems are visible at a glance on the rule card.</p>
+</div><div class="card"><h3>100% Privacy-First</h3>
+<p>Zero telemetry. Zero ads. All SMS processing is on-device only. Drive backup uses <code>DRIVE_FILE</code> scope — even the developer cannot read your rules file. No account, no tracking, no server dependency of any kind.</p>
+</div><div class="card"><h3>Developer Expert Mode</h3>
+<p>Custom JSON payload templates with any structure you need. Inject HTTP headers per rule (Bearer tokens, X-API-Key). Ideal for integrating with n8n, Zapier, Make.com, Home Assistant webhooks, or internal APIs.</p>
+</div></div></div></section>
+<section><div class="wrap"><div class="section-head"><p class="eyebrow">Permissions</p><h2>Permissions</h2><p>// All permissions are declared in AndroidManifest.xml with clear purpose</p></div><div class="grid g2 perms"><div class="perm"><code>RECEIVE_SMS</code><div>Triggers the app when a new message arrives via BroadcastReceiver</div></div><div class="perm"><code>READ_SMS</code><div>Reads message body and sender for rule filtering</div></div><div class="perm"><code>SEND_SMS</code><div>Forwards matched messages to other phone numbers via SmsManager</div></div><div class="perm"><code>READ_PHONE_STATE</code><div>Identifies which SIM card received the SMS — required for Dual-SIM support</div></div><div class="perm"><code>INTERNET</code><div>Required for Webhook HTTP POST (OkHttp) and SMTP email sending</div></div><div class="perm"><code>ACCESS_NETWORK_STATE</code><div>Checks connectivity before attempting network forwards</div></div><div class="perm"><code>RECEIVE_BOOT_COMPLETED</code><div>BootReceiver restarts ForwardingService after device reboot</div></div><div class="perm"><code>FOREGROUND_SERVICE</code><div>Allows ForwardingService to run as a ForegroundService on Android 10+</div></div><div class="perm"><code>FOREGROUND_SERVICE_REMOTE_MESSAGING</code><div>Declares the service type for remote messaging (Android 14+)</div></div><div class="perm"><code>POST_NOTIFICATIONS</code><div>Shows the persistent service notification badge (Android 13+)</div></div><div class="perm"><code>REQUEST_IGNORE_BATTERY_OPTIMIZATIONS</code><div>Requests exemption to prevent OS from killing the background service</div></div></div></div></section>
+<section id="faq"><div class="wrap"><div class="section-head"><p class="eyebrow">FAQ</p><h2>Frequently asked questions</h2><p>13 questions — click to expand.</p></div><details><summary>What is an SMS Forwarder app for Android?</summary><div class='inner'><p>An <strong>SMS Forwarder</strong> is an Android app that automatically intercepts incoming text messages and relays them to another destination — such as a webhook URL, email inbox, or another phone number — without any manual action. SMS Forwarder v3.4 uses a high-priority <code>BroadcastReceiver</code> (priority 999) and a persistent <code>ForegroundService</code>, ensuring zero missed messages even with the screen off. No root required.</p></div></details><details><summary>How do I forward SMS to a webhook URL on Android?</summary><div class='inner'><p>Download the free APK, install it, tap <strong>+ (FAB)</strong> to add a rule, choose <strong>Webhook</strong> as destination, paste your URL (n8n Production URL, Zapier Catch Hook, Make.com webhook, your own REST API), set any sender/keyword filter, and toggle ON. Enable <strong>Expert Mode</strong> to customise the JSON payload shape and add HTTP headers like <code>Authorization: Bearer TOKEN</code>. The app POSTs <code>{sender, body, timestamp}</code> and any extracted values.</p></div></details><details><summary>How do I automatically forward OTP codes to email?</summary><div class='inner'><p>Go to <strong>Settings → SMTP Configuration</strong> and enter your mail server details (host, port, username, password). Then add a rule: choose <strong>Email</strong> destination, enter your email address. Set sender filter to your bank's ID (e.g. "HDFC") or keyword "OTP". Enable <strong>Auto-OTP</strong> extraction mode. The <code>{OTP}</code> placeholder will contain the extracted code. Every matching SMS is forwarded to your inbox within seconds — completely automatically, even when your phone is locked.</p></div></details><details><summary>How do I forward SMS to n8n or Zapier from Android?</summary><div class='inner'><p>In <strong>n8n</strong>: create a Webhook node → copy the Production URL. In <strong>Zapier</strong>: Webhooks by Zapier → Catch Hook → copy the URL. In <strong>Make.com</strong>: add a Custom Webhook module → copy the URL. Then in SMS Forwarder: add a rule, choose Webhook, paste the URL. Enable Expert Mode to add <code>Authorization</code> headers or customise the JSON template to match your automation platform's expected format. The app will trigger your workflow on every matching SMS in real time.</p></div></details><details><summary>Does SMS Forwarder work in the background on Android 10, 11, 12, 13, 14, 15?</summary><div class='inner'><p>Yes. <code>ForwardingService</code> is a <code>ForegroundService</code> with a persistent status bar notification — Android cannot kill it automatically. <code>BootReceiver</code> restarts it after reboots. <code>START_STICKY</code> tells Android to recreate it if killed by memory pressure. The app prompts you to disable battery optimisation on first launch via <code>Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS</code>. Additionally, <code>SmsReceiver</code> (priority 999) intercepts messages independently of the service state.</p></div></details><details><summary>Does SMS Forwarder support Dual-SIM phones?</summary><div class='inner'><p>Yes. The app reads the Subscription ID from the incoming SMS intent to identify which SIM received it. Each forwarding rule can independently target <strong>Any SIM</strong>, <strong>SIM 1 only</strong>, or <strong>SIM 2 only</strong>. When forwarding to another phone number, you can also choose which SIM to use for sending the outgoing message.</p></div></details><details><summary>Is SMS Forwarder private? Are my messages stored on a server?</summary><div class='inner'><p>SMS Forwarder is <strong>100% privacy-first</strong>. All SMS processing happens locally on your device — no messages, no metadata, no rule data is ever sent to the developer or any third-party server. There is no analytics, no telemetry, no ads. The optional Google Drive backup uses <code>DriveScopes.DRIVE_FILE</code> (restricted scope — the app can only access files it created) and saves only your rule configurations to your own Drive — completely inaccessible to the developer.</p></div></details><details><summary>Does SMS Forwarder require root?</summary><div class='inner'><p>No. SMS Forwarder uses only standard Android APIs — the <code>SMS_RECEIVED</code> broadcast intent and <code>SmsManager</code>. It works on any non-rooted Android 10+ device from any manufacturer (Samsung, Xiaomi, OnePlus, Realme, Vivo, Oppo, stock Android). No modifications to the system partition are needed or made.</p></div></details><details><summary>What is Loop Protection and why is it important?</summary><div class='inner'><p>Without loop detection, if Phone A (running SMS Forwarder) forwards to Phone B (also running SMS Forwarder), and Phone B has a rule that forwards back to Phone A, you get an infinite SMS chain that can generate hundreds of messages per minute. <code>RuleValidator</code> detects these circular graphs before execution and blocks the forward. Affected rules are marked with a <strong>red warning indicator</strong> in the MainActivity card list so you can fix the configuration.</p></div></details><details><summary>How does the Regex extraction feature work?</summary><div class='inner'><p>In <strong>AddEditRuleActivity</strong>, choose "Regex" as the extraction mode and enter a regular expression with capture groups. SMS Forwarder applies it to every matching message body and exposes the captured groups as template variables. Useful for extracting: transaction amounts from bank alerts, order IDs from delivery SMS, custom OTP formats that Auto-OTP doesn't detect, or any structured data from a specific SMS format.</p></div></details><details><summary>Is SMS Forwarder free? What is the pricing?</summary><div class='inner'><p>Yes, SMS Forwarder v3.4.0 is completely free to download and use — with no in-app purchases, no ads, no subscriptions, and no accounts required. The app is proprietary, closed-source, and distributed directly on GitHub as a pre-compiled APK.</p></div></details><details><summary>Is SMS Forwarder available on the Google Play Store?</summary><div class='inner'><p>SMS Forwarder is distributed as a <strong>direct APK download from GitHub</strong>, not through the Google Play Store. This is common for SMS-reading apps because Google Play has strict restrictions on apps that access SMS content. Download the APK directly from the <a href="https://github.com/anirban1011/SMS_Forwarder/releases" rel="noopener">GitHub Releases page</a>. Google Play Protect may warn you — this is a standard false positive for SMS-permission apps from trusted repositories on GitHub.</p></div></details><details><summary>What Android version is required?</summary><div class='inner'><p>SMS Forwarder v3.4.0 requires <strong>Android 10 (API 29)</strong> or higher. It targets Android 15 (API 36). Tested and confirmed working on Android 10, 11, 12, 13, 14, and 15. Compatible with all major Android OEM skins: One UI (Samsung), MIUI/HyperOS (Xiaomi), OxygenOS (OnePlus), Realme UI, ColorOS (Oppo), OriginOS (Vivo), and stock Android.</p></div></details></div></section>
+<section id="install"><div class="wrap"><div class="section-head"><p class="eyebrow">Install</p><h2>Download &amp; install</h2><p>Free APK — no Play Store, no account, no root.</p></div><div class="grid g2 install">
+  <div class="card"><span class="status">Latest Release</span><h3>SMS Forwarder v3.4.0</h3><p>Free Android APK — no Play Store, no account required</p><ul class="ticks" style="margin-top:14px"><li> Android 10+ (API 29+), targets Android 15 (API 36)</li><li> No root required — standard Android APIs only</li><li> Free to Use — no hidden costs, no ads</li><li> No ads, no telemetry, no account, no cloud</li><li> Works on all Dual-SIM Android phones</li></ul><div class="btn-row"><a class="btn primary" href="https://github.com/anirban1011/SMS_Forwarder/releases/download/3.4.0/SMS_Forwarder_v3.4.0.apk" rel="noopener">Download Free APK</a><a class="btn" href="https://github.com/anirban1011/SMS_Forwarder" rel="noopener">GitHub Releases</a></div></div>
+  <div class="card"><h3>Quick install — takes ~2 minutes</h3><ol class="steps" style="margin-top:14px"><li> Download <code>SMS_Forwarder_v3.4.0.apk</code></li><li> Open on Android 10+ phone</li><li> Allow "Install from unknown sources"</li><li> Grant SMS, Internet &amp; Notification perms</li><li> Disable battery optimisation when prompted</li><li> Tap FAB (+) → Add rule → Done ✓</li></ol></div>
+</div></div></section>
+<section><div class="wrap"><div class="card author">
+  <img src="./images/profile.svg" alt="" width="72" height="72">
+  <div><h3>Built by Anirban Routh</h3>
+  <p>Full-stack developer building web apps, Android apps and automation tools. MCA student at the University of North Bengal.</p>
+  <div class="btn-row" style="margin-top:14px"><a class="btn" href="./projects.html">All projects</a><a class="btn" href="./about.html">About me</a><a class="btn" href="https://github.com/anirban1011" rel="noopener">GitHub</a><a class="btn" href="https://linkedin.com/in/anirbanrouth" rel="noopener">LinkedIn</a><a class="btn" href="./contact.html">Contact</a></div></div>
+</div></div></section>
 </main>
 <footer class="site-footer">
   <div class="wrap foot">

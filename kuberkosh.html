@@ -21,7 +21,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./assets/css/style.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "KuberKosh", "operatingSystem": "Web", "applicationCategory": "FinanceApplication", "url": "https://anirbanrouth.in/kuberkosh.html", "sameAs": "https://github.com/anirban1011/KuberKosh", "screenshot": "https://anirbanrouth.in/images/kuberkosh_dashboard.jpg", "programmingLanguage": "PHP", "description": "A secure web-based digital wallet for micro-payments with Google OAuth, TOTP two-step login, PIN-approved transactions and spending analytics.", "author": {"@type": "Person", "name": "Anirban Routh", "url": "https://anirbanrouth.in"}}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How does KuberKosh handle passwords?", "acceptedAnswer": {"@type": "Answer", "text": "Sign-in goes through Google's official OAuth2 login, so KuberKosh never sees or stores your password."}}, {"@type": "Question", "name": "Why is there a PIN if there's already two-step login?", "acceptedAnswer": {"@type": "Answer", "text": "Two-step login (TOTP) protects your account when you sign in. The six-digit PIN is a separate approval for each payment or withdrawal, so a stolen session still can't move money."}}, {"@type": "Question", "name": "What happens if the network drops during a transfer?", "acceptedAnswer": {"@type": "Answer", "text": "Each transfer gets a unique ID before any balance changes. If something fails halfway, the database rolls everything back and the attempt is recorded as \"Failed\" with the reason, for auditing."}}, {"@type": "Question", "name": "Why MariaDB instead of MongoDB?", "acceptedAnswer": {"@type": "Answer", "text": "Money needs strict, consistent records (ACID transactions), and relational tables with joins fit that well. The schema is in third normal form to avoid duplicate or conflicting data."}}, {"@type": "Question", "name": "How was it tested?", "acceptedAnswer": {"@type": "Answer", "text": "With unit tests, integration tests and BurpSuite, a tool for intercepting and tampering with web requests, to check cases such as negative amounts and injected characters."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How does KuberKosh handle user passwords securely?", "acceptedAnswer": {"@type": "Answer", "text": "Because user authentication passes securely through official Google OAuth2 validation layers, KuberKosh never reads, parses, or tracks password credentials locally on its application instances."}}, {"@type": "Question", "name": "Why does the wallet ask for an authentication PIN if it's already guarded by TOTP?", "acceptedAnswer": {"@type": "Answer", "text": "TOTP forms a barrier during standard session validation phases to prevent account takeovers. The six-digit wallet PIN exists as an independent authorization step designed explicitly to sign actual transaction properties."}}, {"@type": "Question", "name": "How do the microtransactions protect my primary bank logs?", "acceptedAnswer": {"@type": "Answer", "text": "When loading cash into KuberKosh, your banking ledger registers only a single bulk record. All subsequent small transactions occur cleanly inside the separate wallet environment, preventing statement clutter."}}, {"@type": "Question", "name": "What happens if a transfer is initiated during a sudden network interruption?", "acceptedAnswer": {"@type": "Answer", "text": "The system handles transaction logs systematically. Before any balance is modified, a unique, deterministic transaction ID is generated via a SHA3-256 hash using the sender, receiver, amount, and timestamp metrics. If a system failure or network dropout occurs mid-execution, the database engine rolls back the operations, and the transaction is logged in the transaction_logs table with a status of \"Failed\" and the corresponding error details for auditing."}}, {"@type": "Question", "name": "Why was MariaDB selected over other options like MongoDB or PostgreSQL?", "acceptedAnswer": {"@type": "Answer", "text": "Relational integrity and financial accounting precision require absolute ACID compliance. MariaDB provides a robust, high-performance relational database management system structured in a 3rd Normal Form (3NF) normalized database schema. This architecture ensures complete data integrity, prevents duplicate transaction redundancy, and handles standard sub-queries and table joins far more efficiently than NoSQL alternatives."}}, {"@type": "Question", "name": "How does the application prevent cross-site scripting (XSS) and SQL injection vulnerabilities?", "acceptedAnswer": {"@type": "Answer", "text": "KuberKosh follows OWASP core security guidelines to safeguard the data pipeline. For database communication, the backend relies completely on prepared statements via mysqli ( $stmt->prepare ) and parameterized data binding ( $stmt->bind_param ), rendering SQL injection vectors impossible. Furthermore, strict server-side and client-side parameter sanitization filters are implemented to clean incoming integer inputs and block potential payload insertions."}}, {"@type": "Question", "name": "How does the QR Code request system securely transmit data to the payer?", "acceptedAnswer": {"@type": "Answer", "text": "The application does not store temporary request sessions on the server for standard request links. Instead, when a user creates a payment request, all query parameters—including the target wallet address, amount, purpose, and remarks—are natively encoded directly into URL parameters processed via QRCode.js on the client side. When scanned by the payer, the system decodes the string and dynamically pre-fills the standard \"Send Money\" form securely, keeping the handshake lightweight and fast."}}, {"@type": "Question", "name": "What testing strategy was used to validate the core financial logic?", "acceptedAnswer": {"@type": "Answer", "text": "The testing phase utilized a multi-tier framework consisting of unit testing, integration testing, and automated vulnerability scanning. Individual functional components were validated via unit tests, while systemic module handshakes were targeted via integration tests. To guarantee security testing across raw HTTP data boundaries, BurpSuite was deployed as an intercepting proxy to capture, parse, and analyze traffic requests between the browser viewport and server endpoints—allowing the verification of edge cases like character-injected transaction values and negative amount limits."}}]}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -39,93 +39,189 @@
     <p class="crumbs"><a href="./projects.html">← All projects</a></p>
     <p class="eyebrow">Web application</p>
     <h1>KuberKosh</h1>
-    <p class="lead">A simple and secure digital wallet for everyday small payments, with spending charts and two-step login. It lets you top up from a bank account and pay friends without filling your bank statement with tiny entries.</p>
-    <ul class="chips"><li class="chip accent">Completed</li><li class="chip">PHP</li><li class="chip">MariaDB</li><li class="chip">Docker</li><li class="chip">AWS</li></ul>
-    <div class="btn-row"><a class="btn primary" href="https://kuberkosh.anirbanrouth.in" rel="noopener">Open live demo</a><a class="btn" href="https://github.com/anirban1011/KuberKosh" rel="noopener">View code</a><a class="btn" href="https://www.linkedin.com/posts/anirbanrouth_excited-to-share-my-latest-project-kuberkosh-ugcPost-7225437888010665984-fwiT" rel="noopener">LinkedIn post</a></div>
-    <p style="margin-top:20px"><strong style="color:var(--text)">My role:</strong> designer and full-stack developer. <strong style="color:var(--text)">Context:</strong> my B.Sc. Computer Science capstone project at Ananda Chandra College (University of North Bengal).</p>
+    <p class="role">Simple and Secure Digital Wallet</p>
+    <p class="lead">
+                                KuberKosh is a modern, web-based digital wallet application optimized for seamless, convenient peer-to-peer microtransactions and smart expense tracking. By enabling users to top up their wallet from linked bank accounts, KuberKosh eliminates the chaos of micro-payments cluttering up official bank statements. It pairs ultra-fast transaction steps with an institutional-grade security framework and powerful financial visualization tools.
+                            </p>
+    <ul class="chips"><li class="chip accent">Web Wallet</li><li class="chip accent">Completed</li><li class="chip accent">Docker Compose</li></ul>
+    <ul class="ticks meta"><li><strong>Role:</strong> Lead Designer &amp; Full-Stack Developer</li><li><strong>Context:</strong> B.Sc. Computer Science Capstone Project (University of North Bengal)</li><li><strong>Live Demo:</strong> <a href="https://kuberkosh.anirbanrouth.in" rel="noopener">kuberkosh.anirbanrouth.in</a></li></ul>
+    <div class="btn-row"><a class="btn primary" href="https://kuberkosh.anirbanrouth.in" rel="noopener">Open live demo</a><a class="btn" href="https://github.com/anirban1011/KuberKosh" rel="noopener">View Code</a><a class="btn" href="https://www.linkedin.com/posts/anirbanrouth_excited-to-share-my-latest-project-kuberkosh-ugcPost-7225437888010665984-fwiT" rel="noopener">LinkedIn Post</a></div>
+    <div class="callout"><strong>In plain words:</strong> KuberKosh is a website that works like a small wallet. You add money once from your bank, then pay friends and track your small expenses inside it — protected by Google sign-in, a one-time code and a PIN.</div>
   </div>
 </section>
-
 <section style="padding-top:8px">
   <div class="wrap shots">
-    <figure><div class="shot"><img src="./images/kuberkosh_dashboard.jpg" alt="KuberKosh dashboard with balance, recent transactions and spending chart" loading="lazy" width="1024" height="575"></div><figcaption>Dashboard</figcaption></figure>
-    <figure><div class="shot"><img src="./images/kuberkosh_home.jpg" alt="KuberKosh home page" loading="lazy" width="1024" height="575"></div><figcaption>Home page</figcaption></figure>
-    <figure><div class="shot"><img src="./images/kuberkosh_receipt.jpg" alt="KuberKosh payment confirmation receipt" loading="lazy" width="1024" height="575"></div><figcaption>Payment receipt</figcaption></figure>
+    <figure><div class="shot"><img src="./images/kuberkosh_dashboard.jpg" alt="KuberKosh wallet dashboard displaying wallet balance, recent transactions, spend analysis pie chart, and balance trends" loading="lazy" width="1024" height="575"></div><figcaption>Dashboard</figcaption></figure>
+    <figure><div class="shot"><img src="./images/kuberkosh_home.jpg" alt="KuberKosh portal homepage displaying transaction tagline" loading="lazy" width="1024" height="575"></div><figcaption>Home page</figcaption></figure>
+    <figure><div class="shot"><img src="./images/kuberkosh_receipt.jpg" alt="KuberKosh transaction successful confirmation receipt window" loading="lazy" width="1024" height="575"></div><figcaption>Payment receipt</figcaption></figure>
   </div>
 </section>
+<section style="padding:24px 0 0"><div class="wrap"><div class="stats"><div class="stat"><b>< 2s</b><span>Transaction confirmation</span></div><div class="stat"><b>SHA-256</b><span>PIN encryption & secure hashes</span></div><div class="stat"><b>Google / TOTP</b><span>Authentication mechanisms</span></div><div class="stat"><b>AWS Deployed</b><span>Cloud Docker container stack</span></div></div></div></section>
+<section id="problem-solution"><div class="wrap"><div class="section-head"><p class="eyebrow">Why it exists</p><h2>The problem and the solution</h2></div><div class="grid g2"><div class="card"><h3>The Core Challenges</h3>
+<p>
+<strong>Vulnerable Logins &amp; Interceptions:</strong> Simple web apps frequently transmit unhashed credentials or expose session variables to interception.<br><br>
+<strong>Cluttered Bank Statements:</strong> Buying snacks, street food, or paying minor utility bills fills bank logs with dozens of tiny entries.<br><br>
+<strong>Financial Blind Spots:</strong> Most everyday payment tools provide no immediate summary of lifestyle category spends.
+                                </p>
+</div><div class="card"><h3>The KuberKosh Fix</h3>
+<p>
+<strong>Cryptographic Vault Access:</strong> Implements a three-layered guard—Google OAuth2, localized TOTP Multi-Factor Authentication, and zero-plaintext client-side SHA-256 PIN hashing.<br><br>
+<strong>Isolated Wallet Architecture:</strong> Moves everyday micro-payments off bank servers into a secure relational database sandbox, grouping funding and withdrawal records cleanly.<br><br>
+<strong>Instant Analytics Engine:</strong> Dynamically renders real-time budget category percentages and multi-timeframe balance trends right on the primary viewport.
+                                </p>
+</div></div></div></section>
+<section id="features"><div class="wrap"><div class="section-head"><p class="eyebrow">Features</p><h2>Features</h2></div><div class="grid g2"><div class="card"><h3>Unified Analytics Dashboard</h3>
+<ul>
+<li><strong>Visibility Toggle:</strong> Obfuscate sensitive balances instantly with a visibility toggle icon in public areas.</li>
+<li><strong>Spend Analysis Ring:</strong> JavaScript donut chart detailing category expenditures (Education, Party, Travel, Movie).</li>
+<li><strong>Balance Trend Metric:</strong> Bar chart mapping wallet equity changes over custom periods (1 Week, 1 Month).</li>
+</ul>
+</div><div class="card"><h3>Secure Funds Routing</h3>
+<ul>
+<li><strong>Pre-Validated Linking:</strong> Pairs bank accounts to the wallet using explicit confirmation prompts.</li>
+<li><strong>Secure Cash-Out:</strong> Withdrawals to primary bank accounts trigger modals requiring SHA-256 PIN verification.</li>
+</ul>
+</div><div class="card"><h3>Smart Peer-to-Peer Transfers</h3>
+<ul>
+<li><strong>Zero-Reload Verification:</strong> Asynchronous AJAX queries resolve and verify receiver wallets to prevent user entry errors.</li>
+<li><strong>Encrypted PDF Receipts:</strong> Generates downloadable PDF transaction records with SHA3-256 vouchers.</li>
+</ul>
+</div><div class="card"><h3>Interactive Request Engines</h3>
+<ul>
+<li><strong>Dynamic QR Generation:</strong> Encodes specific billing amounts and descriptions into QRCodes, autofilling sender portals upon scanning.</li>
+</ul>
+</div></div></div></section>
+<section id="tech"><div class="wrap"><div class="section-head"><p class="eyebrow">Technology</p><h2>Tech stack</h2></div><div class="table-wrap"><table class="spec">
+<thead>
+<tr>
+<th>Component</th>
+<th>Technology Selected</th>
+<th>Purpose &amp; Justification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Backend Architecture</td>
+<td>PHP (Server-side core)</td>
+<td>Highly reliable request handling, native session protection, and smooth relational database connectivity.</td>
+</tr>
+<tr>
+<td>Database System</td>
+<td>MariaDB + phpMyAdmin</td>
+<td>High-performance relational indexing structured in 3rd Normal Form (3NF) to protect data records against collision or latency.</td>
+</tr>
+<tr>
+<td>Frontend Foundation</td>
+<td>HTML5, SCSS, JavaScript</td>
+<td>Implements fluid layouts compiled using Webpack and automated via Gulp workflows.</td>
+</tr>
+<tr>
+<td>UI Framework</td>
+<td>Bootstrap 5</td>
+<td>Built from the ground up for dynamic responsiveness across desktop and mobile devices.</td>
+</tr>
+<tr>
+<td>Security Layer</td>
+<td>Google OAuth, TOTP, SHA-256</td>
+<td>Two-factor protection leveraging RFC 6238 time-aligned authenticator keys alongside end-to-end HTTPS.</td>
+</tr>
+<tr>
+<td>Infrastructure &amp; Cloud</td>
+<td>Docker, AWS EC2, Cloudflare</td>
+<td>Containerised microservices hosted on stable cloud environments with built-in proxy edge protection against layer-7 DDoS traffic.</td>
+</tr>
+<tr>
+<td>Dynamic Engines</td>
+<td>TCPDF, QRCode.js</td>
+<td>Direct runtime PDF compilation for transaction vouchers alongside client-rendered base-64 string QR patterns.</td>
+</tr>
+</tbody>
+</table></div></div></section>
+<section><div class="wrap"><div class="section-head"><p class="eyebrow">Reliability</p><h2>Edge cases</h2><p>Client- and server-side data verification rules for absolute reliability.</p></div><div class="grid g2 perms"><div class="perm"><code>Zero-Value</code><div>
+<strong>Zero-Value Submissions:</strong> Prevents structural mutations by actively testing transfers for values ≤ 0, outputting descriptive toast notifications.
+</div></div><div class="perm"><code>Sanitization</code><div>
+<strong>Character Injection:</strong> Standardizes strict integer parsing validations on incoming values to trap alphanumeric manipulation cleanly.
+</div></div><div class="perm"><code>Boundaries</code><div>
+<strong>Balance Boundaries:</strong> Queries current database logs before updating rows to prevent balance overruns or accounts slipping into debt.
+</div></div><div class="perm"><code>Clock Shift</code><div>
+<strong>MFA Clock Shifts:</strong> Integrates synchronization safety nets within time-aligned code properties to account for device-server clock differences.
+</div></div></div></div></section>
+<section><div class="wrap"><div class="section-head"><p class="eyebrow">What's next</p><h2>Future scope</h2></div><div class="grid g2"><div class="card"><h3>AI Financial Guidance</h3>
+<p>Integrating machine learning layers to scan transaction properties over time, providing users with proactive budgeting advice and optimization strategies.</p>
+</div><div class="card"><h3>Anomaly Defense Matrices</h3>
+<p>Incorporating AI-driven risk scoring profiles to recognize sudden geographic shifts or unusual transaction velocity pattern variations dynamically.</p>
+</div><div class="card"><h3>Distributed Ledgers</h3>
+<p>Investigating transition mechanisms toward cryptographic verification protocols to create decentralized, tamper-proof transaction logs.</p>
+</div><div class="card"><h3>Comprehensive Third-Party APIs</h3>
+<p>Deploying extensive, open-access developer API modules so external applications can natively interface with and accept KuberKosh transactions.</p>
+</div></div></div></section>
+<section id="faq"><div class="wrap"><div class="section-head"><p class="eyebrow">FAQ</p><h2>Frequently asked questions</h2></div><details><summary>How does KuberKosh handle user passwords securely?</summary><div class='inner'><p>
 
-<section>
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Why it exists</p><h2>The problem and the solution</h2></div>
-    <div class="grid g2">
-      <div class="card"><h3>The problem</h3><ul class="ticks">
-        <li><strong>Insecure logins</strong> — simple apps often mishandle passwords and sessions.</li>
-        <li><strong>Cluttered statements</strong> — small purchases fill bank records with dozens of entries.</li>
-        <li><strong>No overview</strong> — most payment tools don't show where your money goes.</li></ul></div>
-      <div class="card"><h3>What KuberKosh does</h3><ul class="ticks">
-        <li><strong>Three layers of protection</strong> — Google sign-in, a time-based code (TOTP) and a PIN that is hashed before it is sent.</li>
-        <li><strong>A separate wallet</strong> — your bank shows one top-up; the small payments stay in the wallet.</li>
-        <li><strong>Instant insights</strong> — live charts of spending by category and balance over time.</li></ul></div>
-    </div>
-  </div>
-</section>
+                                        Because user authentication passes securely through official Google OAuth2 validation layers, KuberKosh never reads, parses, or tracks password credentials locally on its application instances.
+                                    
+</p></div></details><details><summary>Why does the wallet ask for an authentication PIN if it's already guarded by TOTP?</summary><div class='inner'><p>
 
-<section>
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Features</p><h2>What you can do</h2></div>
-    <div class="grid g2">
-      <div class="card"><h3>Dashboard</h3><p>Hide or show your balance with one tap, see a spending donut chart by category and a balance trend over a week or a month.</p></div>
-      <div class="card"><h3>Add and withdraw money</h3><p>Link a bank account with a clear confirmation step. Withdrawals need your PIN.</p></div>
-      <div class="card"><h3>Send money to friends</h3><p>The receiver's wallet is checked instantly, without reloading the page, to prevent mistakes.</p></div>
-      <div class="card"><h3>Receipts and QR requests</h3><p>Download a PDF receipt for each payment, or create a QR code with an amount that fills in the payment form when scanned.</p></div>
-    </div>
-  </div>
-</section>
+                                        TOTP forms a barrier during standard session validation phases to prevent account takeovers. The six-digit wallet PIN exists as an independent authorization step designed explicitly to sign actual transaction properties.
+                                    
+</p></div></details><details><summary>How do the microtransactions protect my primary bank logs?</summary><div class='inner'><p>
 
-<section>
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Built with</p><h2>Technology</h2></div>
-    <div class="card"><div class="table-wrap"><table>
-      <tr><th>Backend</th><td>PHP with server-side sessions and MariaDB (third normal form), managed with phpMyAdmin</td></tr>
-      <tr><th>Frontend</th><td>HTML5, SCSS and JavaScript, compiled with Webpack and Gulp; Bootstrap 5 for responsive layout</td></tr>
-      <tr><th>Security</th><td>Google OAuth2, TOTP two-step login (RFC 6238), SHA-256 hashed PIN, prepared statements against SQL injection, HTTPS</td></tr>
-      <tr><th>Hosting</th><td>Docker containers on AWS EC2, behind Cloudflare for DDoS protection</td></tr>
-      <tr><th>Extras</th><td>TCPDF for PDF receipts, QRCode.js for QR codes</td></tr>
-    </table></div></div>
-  </div>
-</section>
+                                        When loading cash into KuberKosh, your banking ledger registers only a single bulk record. All subsequent small transactions occur cleanly inside the separate wallet environment, preventing statement clutter.
+                                    
+</p></div></details><details><summary>What happens if a transfer is initiated during a sudden network interruption?</summary><div class='inner'><p>
 
-<section>
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">Details</p><h2>Reliability and next steps</h2></div>
-    <details><summary>Mistakes and edge cases it handles</summary><div class="inner"><ul class="ticks">
-      <li><strong>Zero or negative amounts</strong> are rejected with a clear message.</li>
-      <li><strong>Unexpected characters</strong> in amounts are blocked by strict number checks.</li>
-      <li><strong>Overdrafts</strong> — the balance is checked before any update so a wallet can't go negative.</li>
-      <li><strong>Clock differences</strong> between a phone and the server are tolerated for two-step codes.</li></ul></div></details>
-    <details><summary>Ideas for the future</summary><div class="inner"><ul class="ticks">
-      <li>AI-based budgeting suggestions from spending patterns.</li>
-      <li>Risk scoring to spot unusual activity, such as sudden location changes.</li>
-      <li>Tamper-proof, ledger-style transaction logs.</li>
-      <li>An open API so other apps can accept KuberKosh payments.</li></ul></div></details>
-    <details><summary>Run it yourself (for developers)</summary><div class="inner">
-      <p>You need Docker, Docker Compose and Node.js. Then:</p>
-<pre>git clone https://github.com/anirban1011/KuberKosh.git
-cd KuberKosh
-npm install
-npm start
-docker-compose up -d --build</pre>
-      <p style="margin-top:12px">Create a <code>.env</code> file from <code>.env.example</code> with your database details and Google OAuth keys, then open <code>http://localhost:8080</code>. See the <a href="https://github.com/anirban1011/KuberKosh" rel="noopener">repository</a> for the full steps.</p></div></details>
-  </div>
-</section>
+                                        The system handles transaction logs systematically. Before any balance is modified, a unique, deterministic transaction ID is generated via a SHA3-256 hash using the sender, receiver, amount, and timestamp metrics. If a system failure or network dropout occurs mid-execution, the database engine rolls back the operations, and the transaction is logged in the <code>transaction_logs</code> table with a status of "Failed" and the corresponding error details for auditing.
+                                    
+</p></div></details><details><summary>Why was MariaDB selected over other options like MongoDB or PostgreSQL?</summary><div class='inner'><p>
 
-<section>
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">FAQ</p><h2>Common questions</h2></div>
-    <details><summary>How does KuberKosh handle passwords?</summary><div class='inner'><p>Sign-in goes through Google's official OAuth2 login, so KuberKosh never sees or stores your password.</p></div></details><details><summary>Why is there a PIN if there's already two-step login?</summary><div class='inner'><p>Two-step login (TOTP) protects your account when you sign in. The six-digit PIN is a separate approval for each payment or withdrawal, so a stolen session still can't move money.</p></div></details><details><summary>What happens if the network drops during a transfer?</summary><div class='inner'><p>Each transfer gets a unique ID before any balance changes. If something fails halfway, the database rolls everything back and the attempt is recorded as "Failed" with the reason, for auditing.</p></div></details><details><summary>Why MariaDB instead of MongoDB?</summary><div class='inner'><p>Money needs strict, consistent records (ACID transactions), and relational tables with joins fit that well. The schema is in third normal form to avoid duplicate or conflicting data.</p></div></details><details><summary>How was it tested?</summary><div class='inner'><p>With unit tests, integration tests and BurpSuite, a tool for intercepting and tampering with web requests, to check cases such as negative amounts and injected characters.</p></div></details>
-  </div>
-</section>
+                                        Relational integrity and financial accounting precision require absolute ACID compliance. MariaDB provides a robust, high-performance relational database management system structured in a 3rd Normal Form (3NF) normalized database schema. This architecture ensures complete data integrity, prevents duplicate transaction redundancy, and handles standard sub-queries and table joins far more efficiently than NoSQL alternatives.
+                                    
+</p></div></details><details><summary>How does the application prevent cross-site scripting (XSS) and SQL injection vulnerabilities?</summary><div class='inner'><p>
 
+                                        KuberKosh follows OWASP core security guidelines to safeguard the data pipeline. For database communication, the backend relies completely on prepared statements via mysqli (<code>$stmt-&gt;prepare</code>) and parameterized data binding (<code>$stmt-&gt;bind_param</code>), rendering SQL injection vectors impossible. Furthermore, strict server-side and client-side parameter sanitization filters are implemented to clean incoming integer inputs and block potential payload insertions.
+                                    
+</p></div></details><details><summary>How does the QR Code request system securely transmit data to the payer?</summary><div class='inner'><p>
+
+                                        The application does not store temporary request sessions on the server for standard request links. Instead, when a user creates a payment request, all query parameters—including the target wallet address, amount, purpose, and remarks—are natively encoded directly into URL parameters processed via <code>QRCode.js</code> on the client side. When scanned by the payer, the system decodes the string and dynamically pre-fills the standard "Send Money" form securely, keeping the handshake lightweight and fast.
+                                    
+</p></div></details><details><summary>What testing strategy was used to validate the core financial logic?</summary><div class='inner'><p>
+
+                                        The testing phase utilized a multi-tier framework consisting of unit testing, integration testing, and automated vulnerability scanning. Individual functional components were validated via unit tests, while systemic module handshakes were targeted via integration tests. To guarantee security testing across raw HTTP data boundaries, BurpSuite was deployed as an intercepting proxy to capture, parse, and analyze traffic requests between the browser viewport and server endpoints—allowing the verification of edge cases like character-injected transaction values and negative amount limits.
+                                    
+</p></div></details></div></section>
+<section id="run"><div class="wrap"><div class="section-head"><p class="eyebrow">For developers</p><h2>Run it locally</h2><p>Launch container environment and tooling.</p></div><div class="grid g2 install">
+  <div class="card"><span class="status wip">Docker Stack</span><h3>Local Deployment</h3><p>Standard PHP/Apache2 container network environment</p><ul class="ticks" style="margin-top:14px"><li> Requires Node.js &amp; npm installed locally</li><li> Gulp SCSS/sass compilation pipeline toolchain</li><li> Docker CLI &amp; Docker Compose container engines</li><li> GPG &amp; Pass Password Store for credentials vault</li></ul><div class="btn-row"><a class="btn primary" href="https://github.com/anirban1011/KuberKosh" rel="noopener">GitHub Repository</a></div></div>
+  <div class="card"><h3>Quick launch commands</h3><ol class="steps" style="margin-top:14px"><li>
+
+                                        Clone &amp; enter repository:
+                                        <pre><code>git clone https://github.com/anirban1011/KuberKosh.git
+cd KuberKosh</code></pre>
+</li><li>
+
+                                        Install dependencies &amp; SCSS:
+                                        <pre><code>npm install
+npm install --save-dev gulp-sass sass
+npm start</code></pre>
+</li><li>
+
+                                        Initialize credentials vault:
+                                        <pre><code>gpg --generate-key
+pass init &lt;gpg-key-id&gt;</code></pre>
+</li><li>
+
+                                        Launch containers:
+                                        <pre><code>docker-compose up -d --build</code></pre>
+</li><li>
+
+                                        Access dashboard:
+                                        <p>Navigate browser to <code>http://localhost:8080</code></p>
+</li></ol></div>
+</div></div></section>
+<section><div class="wrap"><div class="card author">
+  <img src="./images/profile.svg" alt="" width="72" height="72">
+  <div><h3>Built by Anirban Routh</h3>
+  <p>Full-stack developer building web apps, Android apps and automation tools. MCA student at the University of North Bengal.</p>
+  <div class="btn-row" style="margin-top:14px"><a class="btn" href="./projects.html">All projects</a><a class="btn" href="./about.html">About me</a><a class="btn" href="https://github.com/anirban1011" rel="noopener">GitHub</a><a class="btn" href="https://linkedin.com/in/anirbanrouth" rel="noopener">LinkedIn</a><a class="btn" href="./contact.html">Contact</a></div></div>
+</div></div></section>
 </main>
 <footer class="site-footer">
   <div class="wrap foot">
